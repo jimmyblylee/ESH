@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lee</groupId>
+        <artifactId>platform</artifactId>
+        <version>1.0.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+    
+    <groupId>com.lee.ez</groupId>
+    <artifactId>esh.serv</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>jar</packaging>
+
+    <name>ESH Service</name>
+    <description>
+        <![CDATA[
+            专家库的服务层，服务层的分离式为了方便单个包的替换部署<br>
+			专家库的服务层，包括了应用跳转与业务服务
+        ]]>
+    </description>
+    
+    <dependencies>
+        <!-- 专家库持久层 -->
+		<dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>esh.dao</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+		<!-- 前台分发器支持 -->
+        <dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>jwaf-dispatcher</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <!-- for mvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <!-- 文件上传 -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+
+        <!-- 图片的base64处理 -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+		
+		<!-- 控制台日志输出 logback -->
+        <!-- logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+		
+    </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>lee-git-repo</id>
+            <name>Jimmybly Lee's personal Github Repository</name>
+            <url>https://raw.githubusercontent.com/jimmyblylee/maven-repo/master/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>

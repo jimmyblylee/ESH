@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="esh_mgmt" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- 系统管理所需实体 -->
+        <class>com.lee.ez.esh.entity.SysDict</class>
+        <class>com.lee.ez.esh.entity.SysDictionary</class>
+        <class>com.lee.ez.esh.entity.SysFunc</class>
+        <class>com.lee.ez.esh.entity.SysOrg</class>
+        <class>com.lee.ez.esh.entity.SysUser</class>
+        <class>com.lee.ez.esh.entity.SysUserPhoto</class>
+        <class>com.lee.ez.esh.entity.SysUserPwd</class>
+
+        <!-- 专家库业务所需实体 -->
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="false" />
+            <property name="hibernate.validator.autoregister_listeners" value="false" />
+            <property name="hibernate.jdbc.batch_size" value="50" />
+            <property name="hibernate.jdbc.fetch_size" value="100" />
+        </properties>
+    </persistence-unit>
+</persistence>

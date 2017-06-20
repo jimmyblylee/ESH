@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.lee.ez</groupId>
+    <artifactId>esh-aggregator</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    
+    <name>ESH Aggregator</name>
+    <description>Expert Store House Aggregator</description>
+    
+    <modules>
+        <module>esh-dao</module>
+        <module>esh-serv</module>
+        <module>esh-ui</module>
+        <module>esh-war</module>
+    </modules>
+</project>

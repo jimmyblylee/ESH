@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lee</groupId>
+        <artifactId>platform</artifactId>
+        <version>1.0.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+    
+    <groupId>com.lee.ez</groupId>
+    <artifactId>esh.war</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>war</packaging>
+
+    <name>ESH War</name>
+    <description>
+        <![CDATA[
+            专家库部署war包
+        ]]>
+    </description>
+    
+    <dependencies>
+        <!-- 专家库持久层 -->
+		<dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>esh.dao</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <!-- 专家库服务层 -->
+		<dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>esh.serv</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <!-- 专家库前台 -->
+		<dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>esh.ui</artifactId>
+            <version>1.0.0.RELEASE</version>
+			<type>war</type>
+        </dependency>
+		<!-- 控制台日志输出更多支持 slf4j jcl, colour console -->
+        <!-- slf4j jcl to replace commons-logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <!-- colour console log support for windows -->
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <finalName>esh</finalName>
+        <!-- plugins -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <repositories>
+        <repository>
+            <id>lee-git-repo</id>
+            <name>Jimmybly Lee's personal Github Repository</name>
+            <url>https://raw.githubusercontent.com/jimmyblylee/maven-repo/master/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>
