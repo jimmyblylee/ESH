@@ -40,7 +40,7 @@ public final class SysUserPhoto {
     @Column(name = "USER_ID", insertable = false, updatable = false)
     private Integer id;
 
-    /** 用户密码. */
+    /** 用户头像. */
     @Column(name = "USER_PHOTO")
     private String photo;
 
