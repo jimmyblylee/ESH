@@ -7,7 +7,7 @@
         <groupId>com.lee</groupId>
         <artifactId>platform</artifactId>
         <version>1.0.1.RELEASE</version>
-        <relativePath/>
+        <relativePath>../framework/pom/platform/pom.xml</relativePath>
     </parent>
     
     <groupId>com.lee.ez</groupId>
@@ -62,23 +62,4 @@
         </dependency>
 		
     </dependencies>
-    
-    <repositories>
-        <repository>
-            <id>lee-git-repo</id>
-            <name>Jimmybly Lee's personal Github Repository</name>
-            <url>https://raw.githubusercontent.com/jimmyblylee/maven-repo/master/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-            <layout>default</layout>
-        </repository>
-    </repositories>
 </project>

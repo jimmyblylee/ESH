@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lee</groupId>
+        <artifactId>platform</artifactId>
+        <version>1.0.1.RELEASE</version>
+        <relativePath>../pom/platform/pom.xml</relativePath>
+    </parent>
+    
+    <groupId>com.lee.ez</groupId>
+    <artifactId>jwaf-exception</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>jar</packaging>
+
+    <name>JWAF Exception</name>
+    <description>
+        <![CDATA[
+            EZ series production <br>
+            JWAF(Java-based Web Application Framework) <br>
+            Exception
+        ]]>
+    </description>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+        </dependency>
+    </dependencies>
+</project>

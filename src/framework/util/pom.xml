@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lee</groupId>
+        <artifactId>platform</artifactId>
+        <version>1.0.1.RELEASE</version>
+        <relativePath>../pom/platform/pom.xml</relativePath>
+    </parent>
+    
+    <groupId>com.lee.tools</groupId>
+    <artifactId>commons-util</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>jar</packaging>
+
+    <name>Java Util</name>
+    <description>
+        <![CDATA[
+            Java Util. Copy Springframework Utils, and add some method which I need in my projects.
+        ]]>
+    </description>
+    
+    <dependencies>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+        </dependency>
+    </dependencies>
+</project>

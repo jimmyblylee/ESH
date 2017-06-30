@@ -1,10 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
+Version: 4.7.5
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js" data-ng-app="MetronicApp"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js" data-ng-app="MetronicApp"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="MetronicApp" cacheVersion="1.0.0">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+
 <head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
-</head>
-<body>
-Hello
+    <title data-ng-bind="'专家库 | ' + $state.current.data.pageTitle"></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="resources/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/global/plugins/angularjs/plugins/angular-loading-bar/loading-bar.min.css" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
+    <link id="ng_load_plugins_before" />
+    <!-- END DYMANICLY LOADED CSS FILES -->
+    <!-- BEGIN THEME STYLES -->
+    <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+    <link href="resources/global/css/components-md.min.css" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="resources/global/css/plugins-md.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="resources/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="resources/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="resources/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" /> </head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<!-- DOC: Apply "page-header-menu-fixed" class to set the mega menu fixed  -->
+<!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
+
+<body ng-controller="AppController" class="page-container-bg-solid page-md">
+<!-- BEGIN PAGE SPINNER -->
+<div ng-spinner-bar class="page-spinner-bar">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+</div>
+<!-- END PAGE SPINNER -->
+<div class="page-wrapper">
+    <div class="page-wrapper-row">
+        <div class="page-wrapper-top">
+            <!-- BEGIN HEADER -->
+            <div data-ng-include="'packages/index/tpl/header.html'+cacheVersion" data-ng-controller="HeaderController" class="page-header"> </div>
+            <!-- END HEADER -->
+        </div>
+    </div>
+    <div class="page-wrapper-row full-height">
+        <div class="page-wrapper-middle">
+            <!-- BEGIN CONTAINER -->
+            <div class="page-container">
+                <!-- BEGIN PAGE HEAD -->
+                <div data-ng-include="'packages/index/tpl/page-head.html'+cacheVersion" data-ng-controller="PageHeadController" class="page-head"> </div>
+                <!-- END PAGE HEAD -->
+                <!-- BEGIN PAGE CONTENT -->
+                <div class="page-content">
+                    <div class="container">
+                        <!-- BEGIN ACTUAL CONTENT -->
+                        <div ui-view class="fade-in-up"> </div>
+                        <!-- END ACTUAL CONTENT -->
+                    </div>
+                </div>
+                <!-- END PAGE CONTENT -->
+            </div>
+            <!-- END CONTAINER -->
+        </div>
+    </div>
+    <div class="page-wrapper-row">
+        <div class="page-wrapper-bottom">
+            <!-- BEGIN FOOTER -->
+            <div data-ng-include="'packages/index/tpl/footer.html'+cacheVersion" data-ng-controller="FooterController"> </div>
+            <!-- END FOOTER -->
+        </div>
+    </div>
+</div>
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE JQUERY PLUGINS -->
+<!--[if lt IE 9]>
+<script src="resources/global/plugins/respond.min.js"></script>
+<script src="resources/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="resources/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE JQUERY PLUGINS -->
+<!-- BEGIN CORE ANGULARJS PLUGINS -->
+<script src="resources/global/plugins/angularjs/angular.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/angularjs/angular-sanitize.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/angularjs/angular-touch.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/angularjs/plugins/angular-ui-router.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/angularjs/plugins/ocLazyLoad.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/angularjs/plugins/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+<script src="resources/global/plugins/angularjs/plugins/angular-loading-bar/loading-bar.min.js" type="text/javascript"></script>
+<!-- END CORE ANGULARJS PLUGINS -->
+<!-- BEGIN OTHER JAVASCRIPT PLUGINS -->
+<script src="resources/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+<!-- END OTHER JAVASCRIPT PLUGINS -->
+<!-- BEGIN APP LEVEL ANGULARJS SCRIPTS -->
+<script src="packages/index/js/main.js" type="text/javascript"></script>
+<script src="packages/index/js/directives.js" type="text/javascript"></script>
+<script src="packages/index/js/service.js" type="text/javascript"></script>
+<script src="packages/index/js/controllers/AppController.js" type="text/javascript"></script>
+<script src="packages/index/js/controllers/BlankController.js" type="text/javascript"></script>
+<script src="packages/index/js/controllers/FooterController.js" type="text/javascript"></script>
+<script src="packages/index/js/controllers/HeaderController.js" type="text/javascript"></script>
+<script src="packages/index/js/controllers/PageHeadController.js" type="text/javascript"></script>
+<script src="packages/index/js/controllers/SidebarController.js" type="text/javascript"></script>
+<!-- END APP LEVEL ANGULARJS SCRIPTS -->
+<!-- BEGIN APP LEVEL JQUERY SCRIPTS -->
+<script src="resources/global/scripts/app.js" type="text/javascript"></script>
+<script src="resources/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
+<!-- END APP LEVEL JQUERY SCRIPTS -->
+<!-- END JAVASCRIPTS -->
 </body>
+<!-- END BODY -->
+
 </html>

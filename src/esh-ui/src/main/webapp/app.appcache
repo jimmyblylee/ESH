@@ -1,0 +1,9 @@
+CACHE MANIFEST
+# 2017-06-30 v1.0.0
+resources/*
+
+NETWORK:
+*
+
+FALLBACK:
+/html5/ /404.html

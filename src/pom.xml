@@ -11,6 +11,7 @@
     <description>Expert Store House Aggregator</description>
     
     <modules>
+		<module>framework</module>
         <module>esh-dao</module>
         <module>esh-serv</module>
         <module>esh-ui</module>

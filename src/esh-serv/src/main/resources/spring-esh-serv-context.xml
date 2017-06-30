@@ -7,6 +7,5 @@
     xmlns:context="http://www.springframework.org/schema/context">
 
     <context:component-scan base-package="com.lee.ez.esh.controller" />
-    <context:component-scan base-package="com.lee.ez.esh.controller" />
 
 </beans>

@@ -1,0 +1,141 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lee</groupId>
+        <artifactId>platform</artifactId>
+        <version>1.0.1.RELEASE</version>
+        <relativePath>../pom/platform/pom.xml</relativePath>
+    </parent>
+    
+    <groupId>com.lee.ez</groupId>
+    <artifactId>jwaf-dispatcher</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>jar</packaging>
+
+    <name>JWAF Dispatcher</name>
+    <description>
+        <![CDATA[
+            EZ series production <br>
+            JWAF(Java-based Web Application Framework) <br>
+            Dispatcher, that route request to target controller.
+        ]]>
+    </description>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.lee.tools</groupId>
+            <artifactId>commons-util</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>jwaf-message</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>jwaf-token-api</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lee.ez</groupId>
+            <artifactId>jwaf-exception</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <!-- spring security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+        <!-- servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        
+        <!-- transaction atomikos -->
+        <dependency>
+            <groupId>com.lee.tools</groupId>
+            <artifactId>simple-jta-platform</artifactId>
+            <version>1.0.0.RELEASE</version>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- distributed transaction support -->
+        <dependency>
+            <groupId>com.atomikos</groupId>
+            <artifactId>transactions-jta</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.atomikos</groupId>
+            <artifactId>transactions-jdbc</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        
+        <!-- log -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        
+        <!-- unit test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+        </dependency>
+    </dependencies>
+</project>

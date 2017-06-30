@@ -10,7 +10,8 @@
     xmlns:jee="http://www.springframework.org/schema/jee"
     xmlns:tx="http://www.springframework.org/schema/tx">
 
-    <context:component-scan base-package="com.lee.ez.esh.dao" />
+    <context:component-scan base-package="com.lee.ez.esh.service" />
+    <context:component-scan base-package="com.lee.ez.sys.service" />
 
     <bean id="crmEntityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="esh_mgmt" />

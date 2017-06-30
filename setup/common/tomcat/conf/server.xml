@@ -46,9 +46,9 @@
               
     <Resource name="jdbc/esh" auth="Container"
               type="javax.sql.DataSource"
-              driverClassName="com.mysql.jdbc.Driver"
-              username="root" password="root"
-              url="jdbc:mysql://192.168.2.3:3306/esh?useUnicode=true&amp;characterEncoding=utf-8" />
+              driverClassName="oracle.jdbc.driver.OracleDriver"
+              username="esh" password="esh"
+              url="jdbc:oracle:thin:@192.168.2.4:1521:orcl" />
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share

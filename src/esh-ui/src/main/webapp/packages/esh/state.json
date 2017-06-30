@@ -1,0 +1,103 @@
+{
+  "hd-tj": {
+    "data": {
+      "pageTitle": "活动统计",
+      "pageSubTitle": "统计活动与专家信息"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+  "hd-ll": {
+    "data": {
+      "pageTitle": "活动浏览",
+      "pageSubTitle": "浏览历史活动信息"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+  "hd-bb": {
+    "data": {
+      "pageTitle": "本部活动",
+      "pageSubTitle": "本处室创建的活动"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+  "hd-sh": {
+    "data": {
+      "pageTitle": "活动审核",
+      "pageSubTitle": "审核活动需求并配选专家"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+  "hd-dj": {
+    "data": {
+      "pageTitle": "活动登记",
+      "pageSubTitle": "登记并上报活动"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+
+
+  "zj-ll": {
+    "data": {
+      "pageTitle": "专家浏览",
+      "pageSubTitle": "浏览系统中的专家"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+  "zj-gl": {
+    "data": {
+      "pageTitle": "专家管理",
+      "pageSubTitle": "维护系统中的专家"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+  "zj-sh": {
+    "data": {
+      "pageTitle": "专家审核",
+      "pageSubTitle": "审核登记的专家"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  },
+  "zj-dj": {
+    "data": {
+      "pageTitle": "专家登记",
+      "pageSubTitle": "登记并上报专家"
+    },
+    "templateUrl": "packages/index/tpl/blank.html",
+    "controller": "BlankController",
+    "files": [
+      "packages/index/js/controllers/BlankController.js"
+    ]
+  }
+}
