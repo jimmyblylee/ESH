@@ -1,0 +1,47 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-drawer"></i> 处室列表
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload"></a>
+        </div>
+        <div class="actions">
+            <a href="javascript:" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> 添加处室</a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>处室名称</th>
+                        <th>座机</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td>{{item.name}}</td>
+                        <td>{{item.tel}}</td>
+                        <td>
+                            <span class="label label-sm"
+                                  ng-class="{'label-success': item.isEnabled,'label-warning': !item.isEnabled}">{{item.isEnabled ? '启用' : '禁用'}}</span>
+                        </td>
+                        <td>
+                            <!-- 启用/禁用 -->
+                            <a href="javascript:" class="btn btn-xs green"></a>
+                            <!-- 编辑 -->
+                        </td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

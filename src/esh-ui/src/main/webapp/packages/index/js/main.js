@@ -22,15 +22,17 @@
  * @author Jimmybly Lee
  */
 /* Metronic App */
-var MetronicApp = angular.module("MetronicApp", [
+angular.module("WebApp", [
     "ui.router",
     "ui.bootstrap",
     "oc.lazyLoad",
-    "ngSanitize"
+    "ngSanitize",
+
+    "chieffancypants.loadingBar"
 ]);
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
-MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
+angular.module('WebApp').config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         // global configs go here
     });
@@ -38,55 +40,114 @@ MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
 
 /********************************************
  BEGIN: BREAKING CHANGE in AngularJS v1.3.x:
-*********************************************/
+ *********************************************/
 /**
-`$controller` will no longer look for controllers on `window`.
-The old behavior of looking on `window` for controllers was originally intended
-for use in examples, demos, and toy apps. We found that allowing global controller
-functions encouraged poor practices, so we resolved to disable this behavior by
-default.
+ `$controller` will no longer look for controllers on `window`.
+ The old behavior of looking on `window` for controllers was originally intended
+ for use in examples, demos, and toy apps. We found that allowing global controller
+ functions encouraged poor practices, so we resolved to disable this behavior by
+ default.
 
-To migrate, register your controllers with modules rather than exposing them
-as globals:
+ To migrate, register your controllers with modules rather than exposing them
+ as globals:
 
-Before:
+ Before:
 
-```javascript
-function MyController() {
+ ```javascript
+ function MyController() {
   // ...
 }
-```
+ ```
 
-After:
+ After:
 
-```javascript
-angular.module('myApp', []).controller('MyController', [function() {
+ ```javascript
+ angular.module('myApp', []).controller('MyController', [function() {
   // ...
 }]);
 
-Although it's not recommended, you can re-enable the old behavior like this:
+ Although it's not recommended, you can re-enable the old behavior like this:
 
-```javascript
-angular.module('myModule').config(['$controllerProvider', function($controllerProvider) {
+ ```javascript
+ angular.module('myModule').config(['$controllerProvider', function($controllerProvider) {
   // this option might be handy for migrating old apps, but please don't use it
   // in new ones!
   $controllerProvider.allowGlobals();
 }]);
-**/
+ **/
 
 //AngularJS v1.3.x workaround for old style controller declarition in HTML
-MetronicApp.config(['$controllerProvider', function($controllerProvider) {
-  // this option might be handy for migrating old apps, but please don't use it
-  // in new ones!
-  $controllerProvider.allowGlobals();
+angular.module('WebApp').config(['$controllerProvider', function ($controllerProvider) {
+    // this option might be handy for migrating old apps, but please don't use it
+    // in new ones!
+    $controllerProvider.allowGlobals();
+}]);
+
+angular.module('WebApp').factory('httpInterceptor', ['$q', function ($q) {
+    return {
+        'response': function (response) {
+            return response;
+        },
+        'responseError': function (response) {
+            var errorDetail = "";
+            if (response.status === 404) {
+                errorDetail += "请求发生了错误：";
+                errorDetail += "<span>" + response.status + "</span>";
+                errorDetail += ", 系统找不到请求：";
+                errorDetail += response.config.url;
+            } else if (response.status === 401 || response.status === 403 || response.status === 417) {
+                if (response.data && response.data['errLevel'] && response.data['errLevel'] === "warning") {
+                    errorDetail += response.data['errMsg'];
+                } else {
+                    errorDetail += "请求发生了错误：";
+                    errorDetail += "<span>" + response.status + "</span>";
+                    errorDetail += response.status === 417 ? ", 请求过程中发生业务异常：" : ", 您无权访问此请求：";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>请求目标:</span>" + response.config.data.controller;
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>请求函数:</span>" + response.config.data.method;
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>编码:</span>" + response.data['errCode'];
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='margin-right-10'></span>";
+                    errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>描述:</span> " + response.data['errMsg'];
+                }
+            }
+            App.alert({
+                container: $(".page-container .page-content .container .main-error-div"),
+                place: 'append', // append or prepent in container
+                type: 'warning', // alert's type
+                message: errorDetail, // alert's message
+                close: true, // make alert closable
+                icon: 'fa fa-warning' // put icon class before the message
+            });
+            return $q.reject(response);
+        },
+        'request': function (config) {
+            //处理AJAX请求（否则后台IsAjaxRequest()始终false）
+            config.headers['X-Requested-With'] = 'XMLHttpRequest';
+            return config;
+        },
+        'requestError': function (config) {
+            return config;
+        }
+    };
+}]);
+angular.module('WebApp').config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('httpInterceptor');
+    $httpProvider.defaults.headers.post = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
 }]);
 
 /********************************************
  END: BREAKING CHANGE in AngularJS v1.3.x:
-*********************************************/
+ *********************************************/
 
 /* Setup global settings */
-MetronicApp.factory('settings', ['$rootScope', function($rootScope) {
+angular.module('WebApp').factory('settings', ['$rootScope', function ($rootScope) {
     // supported languages
     var settings = {
         layout: {
@@ -105,44 +166,44 @@ MetronicApp.factory('settings', ['$rootScope', function($rootScope) {
 }]);
 
 /***
-Layout Partials.
-By default the partials are loaded through AngularJS ng-include directive. In case they loaded in server side(e.g: PHP include function) then below partial
-initialization can be disabled and Layout.init() should be called on page load complete as explained above.
-***/
+ Layout Partials.
+ By default the partials are loaded through AngularJS ng-include directive. In case they loaded in server side(e.g: PHP include function) then below partial
+ initialization can be disabled and Layout.init() should be called on page load complete as explained above.
+ ***/
 
-/* Setup Rounting For All Pages */
-MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    // Redirect any unmatched url
-    $urlRouterProvider.otherwise("/home.html");
+/* Setup Routing For All Pages */
+angular.module('WebApp').config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $.ajaxSettings.async = false;
+
+    // 配置路由跳转相关配置信息
     $stateProvider.state("home", {
         url: "/home.html",
         templateUrl: "packages/esh/views/home/home.html",
-        data: { "pageTitle": "首页" },
+        data: {"pageTitle": "首页"},
         controller: "HomeCtrl",
         resolve: {
-            deps: ["$ocLazyLoad", function($ocLazyLoad) {
+            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
-                    name: "MetronicApp",
+                    name: "WebApp",
                     files: ["packages/esh/js/HomeCtrl.js"],
                     cache: false
                 });
             }]
         }
     });
-
-    $.getJSON("packages/config.json", function(configs) {
-        $.each(configs, function(key, cfg) {
-            $.getJSON(cfg["url"], function(states) {
-                $.each(states, function(key, data) {
+    $.getJSON("packages/config.json", function (configs) {
+        $.each(configs, function (key, cfg) {
+            $.getJSON(cfg["url"], function (states) {
+                $.each(states, function (key, data) {
                     $stateProvider.state(key, {
                         url: "/" + key + ".html",
                         templateUrl: data["templateUrl"],
                         data: data["data"],
                         controller: data["controller"],
                         resolve: {
-                            deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
                                 return $ocLazyLoad.load({
-                                    name: "MetronicApp",
+                                    name: "WebApp",
                                     insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
                                     files: data["files"],
                                     cache: false
@@ -151,48 +212,61 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         }
                     });
                 });
-            })
+            });
         });
     });
+
+    // Redirect any unmatched url
+    $urlRouterProvider.otherwise("/404.html");
+
+    $.ajaxSettings.async = true;
 }]);
 
 /* Init global settings and run the app */
-MetronicApp.run(["$rootScope", "settings", "$state", "$http", function($rootScope, settings, $state, $http) {
+angular.module('WebApp').run(["$rootScope", "settings", "$state", "$location", function ($rootScope, settings, $state, $location) {
     $rootScope.cacheVersion = "?" + $("html").attr("cacheVersion");
     $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$settings = settings; // state to be accessed from view
-    $rootScope.reloadToken = function() {
-        $http({
-            method : 'post',
-            url : 'mvc/dispatch',
-            data : {
-                "controller": "LoginController",
-                "method": "getCurrentToken"
-            },
-            headers : {
-                'Content-Type' : 'application/x-www-form-urlencoded'
-            },
-            transformRequest : function(obj) {
-                var str = [];
-                $.each(obj, function(idx, data){
-                    str.push(encodeURIComponent(idx) + "=" + encodeURIComponent(data));
-                });
-                return str.join("&");
-            }
-        }).success(function(req) {
-            $rootScope.token = {
-                "user": req.user,
-                "funcs": req.funcs,
-                "funcTree": req.funcTree
-            };
-            if ($rootScope.token.user.id === -1) {
-                $rootScope.token.user.type = "ANONYMOUS";
-            } else if ($rootScope.token.user.id === -2) {
-                $rootScope.token.user.type = "ADMIN";
-            } else if ($rootScope.token.user.id > 0) {
-                $rootScope.token.user.type = "NORMAL";
+
+    /*
+     路由和权限配置过程，需要同步处理（不能异步）
+     1、获得当前权限
+     2、注册落于变化监听
+     */
+
+    // 1、获得当前用户令牌，并根据令牌，尝试配置跳转权限
+    $rootScope.reloadToken = function () {
+        $.ajax({
+            url: "mvc/dispatch", async: false,
+            data: {controller: "LoginController", method: "getCurrentToken"},
+            success: function (data) {
+                $rootScope.token = {"user": data.user, "funcs": data.funcs, "funcTree": data.funcTree};
+                $rootScope.token.user.type = $rootScope.token.user.id === -1 ?
+                    "ANONYMOUS" : $rootScope.token.user.id === -2 ? "ADMIN" : "NORMAL";
             }
         });
     };
     $rootScope.reloadToken();
+
+    // 2、注册路由变化监听器
+    $rootScope.$on("$stateChangeStart", function (event, toState) {
+        var isValid = false;
+        var commonFuncList = ["403", "404", "500", "about", "coming", "contact", "help", "lock", "login", "home"];
+        $.each(commonFuncList, function (idx, func) {
+            if (func === toState.name) {
+                isValid = true;
+            }
+        });
+        if (!isValid) {
+            $.each($rootScope.token.funcs, function (idx, data) {
+                if (data.code === toState.name) {
+                    isValid = true;
+                }
+            });
+        }
+        if (!isValid) {
+            event.preventDefault();
+            $state.go("403");
+        }
+    });
 }]);

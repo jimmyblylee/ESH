@@ -22,7 +22,7 @@
  * @author Jimmybly Lee
  */
 /* Setup Layout Part - Header */
-MetronicApp.controller('HeaderController', ['$rootScope', '$scope', '$ajaxCall', function($rootScope, $scope, $ajaxCall) {
+angular.module('WebApp').controller('HeaderController', ['$rootScope', '$scope', '$ajaxCall', function($rootScope, $scope, $ajaxCall) {
     $scope.$on('$includeContentLoaded', function() {
         Layout.initHeader(); // init header
     });

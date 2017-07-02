@@ -21,7 +21,7 @@
  * Created by Jimmybly Lee on 2017/6/30.
  * @author Jimmybly Lee
  */
-angular.module("MetronicApp").service("$listService", ["$http", function($http) {
+angular.module("WebApp").service("$listService", ["$http", function($http) {
     var $scopeLocal = {};
     // default pagination configuration list
     var pageSizeList = [5, 10, 30, 50];
@@ -74,7 +74,7 @@ angular.module("MetronicApp").service("$listService", ["$http", function($http) 
         return $scopeLocal.pageRequest.getResponse();
     };
 }]);
-angular.module("MetronicApp").service("$ajaxCall", ["$http", function($http){
+angular.module("WebApp").service("$ajaxCall", ["$http", function($http){
     this.post = function(param) {
         $http({
             method : param.method ? param.method : 'post',

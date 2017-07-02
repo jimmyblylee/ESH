@@ -16,14 +16,12 @@
  * You should have received a copy of the MIT License along
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
+
 /**
- * Description: FooterController.<br>
- * Created by Jimmybly Lee on 2017/6/30.
+ * Description: 处室列表控制器.<br>
+ * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
-/* Setup Layout Part - Footer */
-angular.module('WebApp').controller('FooterController', ['$scope', function($scope) {
-    $scope.$on('$includeContentLoaded', function() {
-        Layout.initFooter(); // init footer
-    });
+angular.module('WebApp').controller('OrgListCtrl', ['$scope', '$rootScope', "$http", function($scope, $rootScope, $http) {
+
 }]);

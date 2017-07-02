@@ -22,7 +22,7 @@
  * @author Jimmybly Lee
  */
 /* Setup Layout Part - Sidebar */
-MetronicApp.controller('PageHeadController', ['$scope', function ($scope) {
+angular.module('WebApp').controller('PageHeadController', ['$scope', function ($scope) {
 
     // Handle Theme Settings
     var handleTheme = function () {

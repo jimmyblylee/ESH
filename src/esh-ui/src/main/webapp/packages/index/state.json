@@ -6,7 +6,7 @@
             "pageTitle": "403",
             "pageSubTitle": "没有权限访问对应的页面"
         },
-        "templateUrl": "packages/index/tpl/403.html",
+        "templateUrl": "packages/index/views/403.html",
         "controller": "BlankController",
         "files": [
             "packages/index/css/error.css",
@@ -21,7 +21,7 @@
             "pageTitle": "404",
             "pageSubTitle": "无法找到对应的页面"
         },
-        "templateUrl": "packages/index/tpl/404.html",
+        "templateUrl": "packages/index/views/404.html",
         "controller": "BlankController",
         "files": [
             "packages/index/css/error.css",
@@ -36,7 +36,7 @@
             "pageTitle": "500",
             "pageSubTitle": "系统发生了意外"
         },
-        "templateUrl": "packages/index/tpl/500.html",
+        "templateUrl": "packages/index/views/500.html",
         "controller": "BlankController",
         "files": [
             "packages/index/css/error.css",

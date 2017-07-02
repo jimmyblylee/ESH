@@ -22,7 +22,7 @@
  * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
-MetronicApp.controller('LoginController', ['$rootScope', '$scope', '$ajaxCall', '$location', function ($rootScope, $scope, $ajaxCall, $location) {
+angular.module('WebApp').controller('LoginController', ['$rootScope', '$scope', '$ajaxCall', '$location', function ($rootScope, $scope, $ajaxCall, $location) {
 
     $scope.login = function (user) {
         if (!user || !user.account || !user.pwd) {
@@ -46,7 +46,7 @@ MetronicApp.controller('LoginController', ['$rootScope', '$scope', '$ajaxCall', 
             success: function (req) {
                 if (req.result) {
                     $rootScope.reloadToken();
-                    $location.path("#/home.html")
+                    $location.path("#/home.html");
                 } else {
                     App.alert({
                         container: $('.login .content .login-form .msg'), // alerts parent container

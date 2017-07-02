@@ -53,7 +53,7 @@
             "pageTitle": "处室管理",
             "pageSubTitle": "维护处室信息"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
+        "templateUrl": "packages/sys/views/org/main.html",
         "controller": "BlankController",
         "files": [
             "packages/index/js/controllers/BlankController.js"
