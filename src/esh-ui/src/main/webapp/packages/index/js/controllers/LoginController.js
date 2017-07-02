@@ -46,7 +46,7 @@ angular.module('WebApp').controller('LoginController', ['$rootScope', '$scope', 
             success: function (req) {
                 if (req.result) {
                     $rootScope.reloadToken();
-                    $location.path("#/home.html");
+                    $rootScope.$state.go("home");
                 } else {
                     App.alert({
                         container: $('.login .content .login-form .msg'), // alerts parent container

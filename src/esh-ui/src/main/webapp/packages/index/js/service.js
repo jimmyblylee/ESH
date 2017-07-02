@@ -28,7 +28,7 @@ angular.module("WebApp").service("$listService", ["$http", function($http) {
     // default pagination options
     var defaultOptions = {
         pageSize: pageSizeList[0],
-        queryConditionKey: "pageQuery",
+        queryConditionKey: "condition",
         queryConditionObj: "condition",
         callback: function() {},
         error: function() {}
@@ -69,9 +69,6 @@ angular.module("WebApp").service("$listService", ["$http", function($http) {
         };
 
         $scopeLocal = $scope;
-    };
-    this.load = function() {
-        return $scopeLocal.pageRequest.getResponse();
     };
 }]);
 angular.module("WebApp").service("$ajaxCall", ["$http", function($http){

@@ -54,9 +54,10 @@
             "pageSubTitle": "维护处室信息"
         },
         "templateUrl": "packages/sys/views/org/main.html",
-        "controller": "BlankController",
+        "controller": "OrgListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/sys/js/org/OrgListCtrl.js",
+            "packages/sys/js/org/OrgUpdateCtrl.js"
         ]
     }
 }
