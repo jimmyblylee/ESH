@@ -1,57 +1,62 @@
 {
-  "sys-dict": {
-    "data": {
-      "pageTitle": "字典管理",
-      "pageSubTitle": "管理系统字典配置信息"
+    "sys-dict": {
+        "data": {
+            "nav": ["系统管理", "字典管理"],
+            "pageTitle": "字典管理",
+            "pageSubTitle": "管理系统字典配置信息"
+        },
+        "templateUrl": "packages/index/tpl/blank.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/js/controllers/BlankController.js"
+        ]
     },
-    "templateUrl": "packages/index/tpl/blank.html",
-    "controller": "BlankController",
-    "files": [
-      "packages/index/js/controllers/BlankController.js"
-    ]
-  },
-  "sys-auth": {
-    "data": {
-      "pageTitle": "权限管理",
-      "pageSubTitle": "为用户分配可见菜单"
+    "sys-auth": {
+        "data": {
+            "nav": ["系统管理", "权限管理"],
+            "pageTitle": "权限管理",
+            "pageSubTitle": "为用户分配可见菜单"
+        },
+        "templateUrl": "packages/index/tpl/blank.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/js/controllers/BlankController.js"
+        ]
     },
-    "templateUrl": "packages/index/tpl/blank.html",
-    "controller": "BlankController",
-    "files": [
-      "packages/index/js/controllers/BlankController.js"
-    ]
-  },
-  "sys-user-org": {
-    "data": {
-      "pageTitle": "用户管理",
-      "pageSubTitle": "维护本处室用户信息"
+    "sys-user-org": {
+        "data": {
+            "nav": ["系统管理", "用户管理"],
+            "pageTitle": "用户管理",
+            "pageSubTitle": "维护本处室用户信息"
+        },
+        "templateUrl": "packages/index/tpl/blank.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/js/controllers/BlankController.js"
+        ]
     },
-    "templateUrl": "packages/index/tpl/blank.html",
-    "controller": "BlankController",
-    "files": [
-      "packages/index/js/controllers/BlankController.js"
-    ]
-  },
-  "sys-user": {
-    "data": {
-      "pageTitle": "用户管理",
-      "pageSubTitle": "维护用户信息"
+    "sys-user": {
+        "data": {
+            "nav": ["系统管理", "用户管理"],
+            "pageTitle": "用户管理",
+            "pageSubTitle": "维护用户信息"
+        },
+        "templateUrl": "packages/index/tpl/blank.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/js/controllers/BlankController.js"
+        ]
     },
-    "templateUrl": "packages/index/tpl/blank.html",
-    "controller": "BlankController",
-    "files": [
-      "packages/index/js/controllers/BlankController.js"
-    ]
-  },
-  "sys-org": {
-    "data": {
-      "pageTitle": "处室管理",
-      "pageSubTitle": "维护处室信息"
-    },
-    "templateUrl": "packages/index/tpl/blank.html",
-    "controller": "BlankController",
-    "files": [
-      "packages/index/js/controllers/BlankController.js"
-    ]
-  }
+    "sys-org": {
+        "data": {
+            "nav": ["系统管理", "处室管理"],
+            "pageTitle": "处室管理",
+            "pageSubTitle": "维护处室信息"
+        },
+        "templateUrl": "packages/index/tpl/blank.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    }
 }

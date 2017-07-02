@@ -1,0 +1,134 @@
+{
+    "403": {
+        "data": {
+            "nav": ["403"],
+            "isBuiltIn": true,
+            "pageTitle": "403",
+            "pageSubTitle": "没有权限访问对应的页面"
+        },
+        "templateUrl": "packages/index/tpl/403.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/css/error.css",
+
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "404": {
+        "data": {
+            "nav": ["404"],
+            "isBuiltIn": true,
+            "pageTitle": "404",
+            "pageSubTitle": "无法找到对应的页面"
+        },
+        "templateUrl": "packages/index/tpl/404.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/css/error.css",
+
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "500": {
+        "data": {
+            "nav": ["500"],
+            "isBuiltIn": true,
+            "pageTitle": "500",
+            "pageSubTitle": "系统发生了意外"
+        },
+        "templateUrl": "packages/index/tpl/500.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/css/error.css",
+
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "about": {
+        "data": {
+            "nav": ["关于我们"],
+            "isBuiltIn": true,
+            "pageTitle": "关于我们",
+            "pageSubTitle": ""
+        },
+        "templateUrl": "packages/index/views/about.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/css/about.css",
+
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "coming": {
+        "data": {
+            "nav": ["建设中"],
+            "isBuiltIn": true,
+            "pageTitle": "建设中",
+            "pageSubTitle": "功能正在建设中，敬请等待"
+        },
+        "templateUrl": "packages/index/views/coming_soon.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/css/coming-soon.css",
+
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "contact": {
+        "data": {
+            "nav": ["联系我们"],
+            "isBuiltIn": true,
+            "pageTitle": "联系我们",
+            "pageSubTitle": ""
+        },
+        "templateUrl": "packages/index/views/contact.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/css/contact.css",
+
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "help": {
+        "data": {
+            "nav": ["帮助"],
+            "isBuiltIn": true,
+            "pageTitle": "帮助",
+            "pageSubTitle": "系统帮助信息"
+        },
+        "templateUrl": "packages/index/views/help.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/css/faq.css",
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "lock": {
+        "data": {
+            "nav": ["锁屏"],
+            "isBuiltIn": true,
+            "pageTitle": "锁屏",
+            "pageSubTitle": ""
+        },
+        "templateUrl": "packages/index/views/lock_screen.html",
+        "controller": "BlankController",
+        "files": [
+            "packages/index/js/controllers/BlankController.js"
+        ]
+    },
+    "login": {
+        "data": {
+            "nav": ["登录"],
+            "isBuiltIn": true,
+            "pageTitle": "登录",
+            "pageSubTitle": "系统登录"
+        },
+        "templateUrl": "packages/index/views/login.html",
+        "controller": "LoginController",
+        "files": [
+            "packages/index/css/login-3.css",
+
+            "packages/index/js/controllers/LoginController.js"
+        ]
+    }
+}

@@ -16,6 +16,11 @@
  * You should have received a copy of the MIT License along
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
+/**
+ * Description: service.<br>
+ * Created by Jimmybly Lee on 2017/6/30.
+ * @author Jimmybly Lee
+ */
 angular.module("MetronicApp").service("$listService", ["$http", function($http) {
     var $scopeLocal = {};
     // default pagination configuration list

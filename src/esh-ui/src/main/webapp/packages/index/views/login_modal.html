@@ -1,0 +1,46 @@
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">系统登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <form role="form">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                        <div class="input-icon">
+                                            <input type="text" id="loginAccount" class="form-control"
+                                                   ng-model="user.account">
+                                            <label for="loginAccount">用户名</label>
+                                            <span class="help-block">用户名不能为空</span>
+                                            <i class="icon-user"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                        <div class="input-icon">
+                                            <input type="password" id="loginPwd" class="form-control"
+                                                   ng-model="user.pwd">
+                                            <label for="loginPwd">密码</label>
+                                            <span class="help-block">密码不能为空</span>
+                                            <i class="icon-key"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
+                <button type="button" class="btn green" ng-click="login(user)">登录</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,26 @@
-/***
-GLobal Directives
-***/
-
+/* ***************************************************************************
+ * EZ.JWAF/EZ.JCWAP: Easy series Production.
+ * Including JWAF(Java-based Web Application Framework)
+ * and JCWAP(Java-based Customized Web Application Platform).
+ * Copyright (C) 2016-2017 the original author or authors.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of MIT License as published by
+ * the Free Software Foundation;
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the MIT License for more details.
+ *
+ * You should have received a copy of the MIT License along
+ * with this library; if not, write to the Free Software Foundation.
+ * ***************************************************************************/
+/**
+ * Description: GLobal Directives.<br>
+ * Created by Jimmybly Lee on 2017/6/30.
+ * @author Jimmybly Lee
+ */
 // Route State Load Spinner(used on page or content load)
 MetronicApp.directive('ngSpinnerBar', ['$rootScope', '$state',
     function($rootScope, $state) {
@@ -21,11 +40,11 @@ MetronicApp.directive('ngSpinnerBar', ['$rootScope', '$state',
                     element.addClass('hide'); // hide spinner bar
                     $('body').removeClass('page-on-load'); // remove page loading indicator
                     Layout.setAngularJsMainMenuActiveLink('match', null, event.currentScope.$state); // activate selected link in the sidebar menu
-                   
+
                     // auto scorll to page top
                     setTimeout(function () {
                         App.scrollTop(); // scroll to the top on content load
-                    }, $rootScope.settings.layout.pageAutoScrollOnLoad);     
+                    }, $rootScope.settings.layout.pageAutoScrollOnLoad);
                 });
 
                 // handle errors
@@ -63,5 +82,5 @@ MetronicApp.directive('dropdownMenuHover', function () {
     link: function (scope, elem) {
       elem.dropdownHover();
     }
-  };  
+  };
 });

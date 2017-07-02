@@ -1,38 +1,31 @@
+/* ***************************************************************************
+ * EZ.JWAF/EZ.JCWAP: Easy series Production.
+ * Including JWAF(Java-based Web Application Framework)
+ * and JCWAP(Java-based Customized Web Application Platform).
+ * Copyright (C) 2016-2017 the original author or authors.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of MIT License as published by
+ * the Free Software Foundation;
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the MIT License for more details.
+ *
+ * You should have received a copy of the MIT License along
+ * with this library; if not, write to the Free Software Foundation.
+ * ***************************************************************************/
 /**
+ * Description: HeaderController.<br>
  * Created by Jimmybly Lee on 2017/6/30.
+ * @author Jimmybly Lee
  */
 /* Setup Layout Part - Header */
 MetronicApp.controller('HeaderController', ['$rootScope', '$scope', '$ajaxCall', function($rootScope, $scope, $ajaxCall) {
     $scope.$on('$includeContentLoaded', function() {
         Layout.initHeader(); // init header
     });
-    $scope.login = function(user) {
-        $ajaxCall.post({
-            data: {
-                "controller": "LoginController",
-                "method": "login",
-                "account": user.account,
-                "pwd": user.pwd
-            },
-            success: function(req) {
-                if (req.result) {
-                    $rootScope.reloadToken();
-                    $("#loginModal").modal('hide')
-                } else {
-                    bootbox.dialog({
-                        title: "提示",
-                        message: "用户名或密码错误，请检查用户名和密码！",
-                        buttons: {
-                            success: {
-                                label: "确定",
-                                className: "green"
-                            }
-                        }
-                    })
-                }
-            }
-        });
-    };
     $scope.logout = function() {
         bootbox.dialog({
             title: "请确认",

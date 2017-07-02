@@ -3,8 +3,10 @@
     <div class="container">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a ui-sref="home">
-                <img src="packages/index/img/logo.png" alt="logo" class="logo-default" height="100px" style="margin: 0;"> </a>
+            <a ui-sref="home" class="font-blue-hoki">
+                <span class="main-title">全国公安警务保障</span>
+                <span class="sub-title">专家库系统</span>
+            </a>
         </div>
         <!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -14,254 +16,28 @@
         <div class="top-menu">
             <ul class="nav navbar-nav pull-right">
                 <!-- BEGIN NOTIFICATION DROPDOWN -->
-                <li class="dropdown dropdown-extended dropdown-dark dropdown-notification" id="header_notification_bar">
-                    <a href="javascript:" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
-                        <i class="icon-bell"></i>
-                        <span class="badge badge-default">7</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="external">
-                            <h3>系统公告</h3>
-                            <a href="javascript:">查看所有</a>
-                        </li>
-                        <li>
-                            <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">just now</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-success">
-                                                <i class="fa fa-plus"></i>
-                                            </span> New user registered. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">3 mins</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-danger">
-                                                <i class="fa fa-bolt"></i>
-                                            </span> Server #12 overloaded. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">10 mins</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-warning">
-                                                <i class="fa fa-bell-o"></i>
-                                            </span> Server #2 not responding. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">14 hrs</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-info">
-                                                <i class="fa fa-bullhorn"></i>
-                                            </span> Application error. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">2 days</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-danger">
-                                                <i class="fa fa-bolt"></i>
-                                            </span> Database overloaded 68%. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">3 days</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-danger">
-                                                <i class="fa fa-bolt"></i>
-                                            </span> A user IP blocked. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">4 days</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-warning">
-                                                <i class="fa fa-bell-o"></i>
-                                            </span> Storage Server #4 not responding dfdfdfd. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">5 days</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-info">
-                                                <i class="fa fa-bullhorn"></i>
-                                            </span> System Error. </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="time">9 days</span>
-                                        <span class="details">
-                                            <span class="label label-sm label-icon label-danger">
-                                                <i class="fa fa-bolt"></i>
-                                            </span> Storage server failed. </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                <li data-ng-include="'packages/index/views/menu_annc.html'+cacheVersion" id="header_notification_bar"
+                    class="dropdown dropdown-extended dropdown-dark dropdown-notification"></li>
                 <!-- END NOTIFICATION DROPDOWN -->
-                <!-- BEGIN TODO DROPDOWN -->
-                <li class="dropdown dropdown-extended dropdown-dark dropdown-tasks" id="header_task_bar">
-                    <a href="javascript:" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
-                        <i class="icon-calendar"></i>
-                        <span class="badge badge-default">3</span>
-                    </a>
-                    <ul class="dropdown-menu extended tasks">
-                        <li class="external">
-                            <h3>您有
-                                <strong>12 个</strong> 待办任务</h3>
-                            <a href="javascript:">查看所有</a>
-                        </li>
-                        <li>
-                            <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="task">
-                                            <span class="desc">New release v1.2 </span>
-                                            <span class="percent">30%</span>
-                                        </span>
-                                        <span class="progress">
-                                            <span style="width: 40%;" class="progress-bar progress-bar-success" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">40% Complete</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="task">
-                                            <span class="desc">Application deployment</span>
-                                            <span class="percent">65%</span>
-                                        </span>
-                                        <span class="progress">
-                                            <span style="width: 65%;" class="progress-bar progress-bar-danger" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">65% Complete</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="task">
-                                            <span class="desc">Mobile app release</span>
-                                            <span class="percent">98%</span>
-                                        </span>
-                                        <span class="progress">
-                                            <span style="width: 98%;" class="progress-bar progress-bar-success" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">98% Complete</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="task">
-                                            <span class="desc">Database migration</span>
-                                            <span class="percent">10%</span>
-                                        </span>
-                                        <span class="progress">
-                                            <span style="width: 10%;" class="progress-bar progress-bar-warning" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">10% Complete</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="task">
-                                            <span class="desc">Web server upgrade</span>
-                                            <span class="percent">58%</span>
-                                        </span>
-                                        <span class="progress">
-                                            <span style="width: 58%;" class="progress-bar progress-bar-info" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">58% Complete</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="task">
-                                            <span class="desc">Mobile development</span>
-                                            <span class="percent">85%</span>
-                                        </span>
-                                        <span class="progress">
-                                            <span style="width: 85%;" class="progress-bar progress-bar-success" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">85% Complete</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:">
-                                        <span class="task">
-                                            <span class="desc">New UI release</span>
-                                            <span class="percent">38%</span>
-                                        </span>
-                                        <span class="progress progress-striped">
-                                            <span style="width: 38%;" class="progress-bar progress-bar-important" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
-                                                <span class="sr-only">38% Complete</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <!-- END TODO DROPDOWN -->
+                <!-- BEGIN TASK DROPDOWN -->
+                <li data-ng-include="'packages/index/views/menu_task.html'+cacheVersion"  id="header_task_bar"
+                    class="dropdown dropdown-extended dropdown-dark dropdown-tasks"></li>
+                <!-- END TASK DROPDOWN -->
                 <li class="droddown dropdown-separator">
                     <span class="separator"></span>
                 </li>
                 <!-- BEGIN USER LOGIN DROPDOWN -->
-                <li class="dropdown dropdown-user dropdown-dark">
-                    <a href="javascript:" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
-                        <img alt="" class="img-circle" src="data:image/jpeg;base64,{{token.user['photo']}}">
-                        <span class="username username-hide-mobile">{{token.user.name}}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-default">
-                        <li ng-if="token.user.type != 'ANONYMOUS'">
-                            <a href="#/profile/dashboard">
-                                <i class="icon-user"></i> 我的信息 </a>
-                        </li>
-                        <li ng-if="token.user.type != 'ANONYMOUS'">
-                            <a href="#/todo">
-                                <i class="icon-rocket"></i> 我的任务
-                                <span class="badge badge-success"> 7 </span>
-                            </a>
-                        </li>
-                        <li ng-if="token.user.type != 'ANONYMOUS'">
-                            <a href="#">
-                                <i class="icon-key"></i> 修改密码 </a>
-                        </li>
-                        <li ng-if="token.user.type != 'ANONYMOUS'" class="divider"> </li>
-                        <li ng-if="token.user.type != 'ANONYMOUS'">
-                            <a href="#">
-                                <i class="icon-lock"></i> 锁屏 </a>
-                        </li>
-                        <li ng-if="token.user.type == 'ANONYMOUS'">
-                            <a href="/#loginModal" data-toggle="modal" ng-click="user = {account: '', pwd: ''}">
-                                <i class="icon-login"></i> 登录 </a>
-                        </li>
-                        <li ng-if="token.user.type != 'ANONYMOUS'">
-                            <a href="javascript:" ng-click="logout()">
-                                <i class="icon-logout"></i> 退出 </a>
-                        </li>
-                    </ul>
+                <li data-ng-include="'packages/index/views/menu_user.html'+cacheVersion"
+                    class="dropdown dropdown-user dropdown-dark">
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
+                <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                <li class="dropdown dropdown-extended" ng-if="token.user.type == 'ANONYMOUS'">
+                    <a ui-sref="login" class="dropdown-toggle">
+                        <i class="icon-login"></i>
+                    </a>
+                </li>
+                <!-- END QUICK SIDEBAR TOGGLER -->
             </ul>
         </div>
         <!-- END TOP NAVIGATION MENU -->
@@ -271,6 +47,19 @@
 <!-- BEGIN HEADER MENU -->
 <div class="page-header-menu">
     <div class="container">
+        <!-- BEGIN HEADER SEARCH BOX -->
+        <form class="search-form" action="extra_search.html" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="搜索专家或活动" name="query">
+                <span class="input-group-btn">
+                    <a href="javascript:" class="btn submit">
+                        <i class="icon-magnifier"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <!-- END HEADER SEARCH BOX -->
+
         <!-- BEGIN MEGA MENU -->
         <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
         <!-- DOC: Remove dropdown-menu-hover and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
@@ -290,54 +79,19 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a ui-sref="contact"><i class="icon-call-in"></i> 联系我们 </a>
+                </li>
+                <li>
+                    <a ui-sref="help"><i class="icon-support"></i> 帮助 </a>
+                </li>
+                <li>
+                    <a ui-sref="about"><i class="icon-info"></i> 关于我们 </a>
+                </li>
             </ul>
         </div>
         <!-- END MEGA MENU -->
     </div>
 </div>
 <!-- END HEADER MENU -->
-<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">系统登录</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form">
-                    <form role="form">
-                        <div class="form-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group form-md-line-input form-md-floating-label">
-                                        <div class="input-icon">
-                                            <input type="text" id="loginAccount" class="form-control" ng-model="user.account">
-                                            <label for="loginAccount">用户名</label>
-                                            <span class="help-block">用户名不能为空</span>
-                                            <i class="icon-user"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group form-md-line-input form-md-floating-label">
-                                        <div class="input-icon">
-                                            <input type="password" id="loginPwd" class="form-control" ng-model="user.pwd">
-                                            <label for="loginPwd">密码</label>
-                                            <span class="help-block">密码不能为空</span>
-                                            <i class="icon-key"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn dark btn-outline" data-dismiss="modal">取消</button>
-                <button type="button" class="btn green" ng-click="login(user)">登录</button>
-            </div>
-        </div>
-    </div>
-
-</div>
+<div data-ng-include="'packages/index/views/login_modal.html'+cacheVersion"></div>

@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lee</groupId>
+        <artifactId>platform</artifactId>
+        <version>1.0.1.RELEASE</version>
+        <relativePath>../framework/pom/platform/pom.xml</relativePath>
+    </parent>
+    
+    <groupId>com.lee.ez</groupId>
+    <artifactId>esh.ear</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>ear</packaging>
+
+    <name>ESH Ear</name>
+
+	<build>
+		<finalName>esh</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<defaultJavaBundleDir>APP-INF/lib</defaultJavaBundleDir>
+					<modules>
+						<!-- Register our War as a web module, and set the context root -->
+						<webModule>
+							<groupId>com.lee.ez</groupId>
+							<artifactId>esh.war</artifactId>
+							<bundleFileName>esh.war</bundleFileName>
+							<contextRoot>/esh</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.lee.ez</groupId>
+			<artifactId>esh.war</artifactId>
+			<version>1.0.0.RELEASE</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+</project>
