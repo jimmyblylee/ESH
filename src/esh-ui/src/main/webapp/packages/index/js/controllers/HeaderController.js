@@ -45,8 +45,8 @@ angular.module('WebApp').controller('HeaderController', ['$rootScope', '$scope',
                                 "method": "logout"
                             },
                             success: function() {
-                                $rootScope.reloadToken();
                                 $rootScope.$state.go("home");
+                                $rootScope.reloadToken();
                             }
                         });
                     }
