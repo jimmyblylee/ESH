@@ -22,9 +22,33 @@
  * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('LoginController', ['$rootScope', '$scope', '$ajaxCall', '$location', function ($rootScope, $scope, $ajaxCall, $location) {
+angular.module('WebApp').controller('LoginController', ['$rootScope', '$scope', '$ajaxCall', function ($rootScope, $scope, $ajaxCall) {
+
+    $scope.$on("$viewContentLoaded", function() {
+        // 处理“记住我”
+        if (Cookies.get("userAccount")) {
+            $scope.user = {account: Cookies.get("userAccount")};
+            $("input[ng-model='user.pwd']").focus();
+            $("#rememberme").attr("checked", true);
+        } else {
+            $("input[ng-model='user.account']").focus();
+        }
+    });
+
+    $scope.keyLogin = function(event, user) {
+        if (event.originalEvent.charCode === 13) {
+            $scope.login(user);
+        }
+    };
 
     $scope.login = function (user) {
+        // 处理“记住我”
+        if ($("#rememberme").attr("checked")) {
+            Cookies.set("userAccount", user.account);
+        } else {
+            Cookies.remove("userAccount");
+        }
+        // 登录
         if (!user || !user.account || !user.pwd) {
             App.alert({
                 container: $('.login .content .login-form .msg'), // alerts parent container

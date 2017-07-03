@@ -174,30 +174,34 @@ angular.module('WebApp').factory('settings', ['$rootScope', function ($rootScope
 /* Setup Routing For All Pages */
 angular.module('WebApp').config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $.ajaxSettings.async = false;
+    var cacheVersion = "?" + $("html").attr("cacheVersion");
 
     // 配置路由跳转相关配置信息
     $stateProvider.state("home", {
         url: "/home.html",
-        templateUrl: "packages/esh/views/home/home.html",
+        templateUrl: "packages/esh/views/home/home.html" + cacheVersion,
         data: {"pageTitle": "首页"},
         controller: "HomeCtrl",
         resolve: {
             deps: ["$ocLazyLoad", function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: "WebApp",
-                    files: ["packages/esh/js/HomeCtrl.js"],
-                    cache: false
+                    files: ["packages/esh/js/HomeCtrl.js" + cacheVersion]
                 });
             }]
         }
     });
-    $.getJSON("packages/config.json", function (configs) {
-        $.each(configs, function (key, cfg) {
-            $.getJSON(cfg["url"], function (states) {
+    $.getJSON("packages/config.json" + cacheVersion, function (configs) {
+        $.each(configs, function (name, cfg) {
+            $.getJSON(cfg["url"] + cacheVersion, function (states) {
                 $.each(states, function (key, data) {
+                    var files = [];
+                    $.each(data["files"], function(idx, url) {
+                        files.push(url + cacheVersion);
+                    });
                     $stateProvider.state(key, {
                         url: "/" + key + ".html",
-                        templateUrl: data["templateUrl"],
+                        templateUrl: data["templateUrl"] + cacheVersion,
                         data: data["data"],
                         controller: data["controller"],
                         resolve: {
@@ -205,8 +209,7 @@ angular.module('WebApp').config(['$stateProvider', '$urlRouterProvider', functio
                                 return $ocLazyLoad.load({
                                     name: "WebApp",
                                     insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
-                                    files: data["files"],
-                                    cache: false
+                                    files: files
                                 });
                             }]
                         }

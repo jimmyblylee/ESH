@@ -21,6 +21,8 @@ package com.lee.ez.esh.controller;
 
 import javax.annotation.Resource;
 
+import com.lee.ez.sys.entity.SysDictionary;
+import com.lee.jwaf.exception.WarnException;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -42,4 +44,43 @@ public class DictController extends AbstractControllerSupport {
     /** 字典服务. */
     @Resource
     private DictService service;
+
+    /**
+     * 查询处室.
+     */
+    public void query() {
+        final SysDictionary condition = workDTO.convertJsonToBeanByKey("condition", SysDictionary.class);
+        workDTO.setResult(service.query(condition, workDTO.getStart(), workDTO.getLimit()));
+        workDTO.setTotle(service.count(condition));
+    }
+
+    /**
+     * 创建处室.
+     * @throws WarnException 有已经存在重复的类型和编码
+     */
+    public void create() throws WarnException {
+        service.create(workDTO.convertJsonToBeanByKey("entity", SysDictionary.class));
+    }
+
+    /**
+     * 修改处室.
+     * @throws WarnException 有已经存在重复的类型和编码
+     */
+    public void update() throws WarnException {
+        service.update(workDTO.convertJsonToBeanByKey("entity", SysDictionary.class));
+    }
+
+    /**
+     * 删除处室.
+     */
+    public void remove() {
+        service.changeStatus(workDTO.getInteger("id"), false);
+    }
+
+    /**
+     * 恢复删除处室.
+     */
+    public void resume() {
+        service.changeStatus(workDTO.getInteger("id"), true);
+    }
 }

@@ -33,7 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lee.ez.sys.entity.SysDict;
 import com.lee.ez.sys.entity.SysDictionary;
 import com.lee.ez.sys.service.DictService;
-import com.lee.jwaf.exception.ServiceException;
+import com.lee.jwaf.exception.WarnException;
 import com.lee.util.ObjectUtils;
 import com.lee.util.StringUtils;
 
@@ -88,6 +88,9 @@ public class DictServiceImpl implements DictService {
         if (!StringUtils.isEmpty(condition.getValue())) {
             hql += " and d.value like :dictValue";
         }
+        if (!ObjectUtils.isEmpty(condition.getIsNature())) {
+            hql += " and d.isNature = :isNature";
+        }
 
         final Query query = em.createQuery(hql);
         query.setFirstResult(start).setMaxResults(limit);
@@ -95,13 +98,16 @@ public class DictServiceImpl implements DictService {
         query.setParameter("isEnabled", condition.getIsEnabled());
 
         if (!StringUtils.isEmpty(condition.getNature())) {
-            query.setParameter("dictNature", "%" + condition.getNature() + "%");
+            query.setParameter("dictNature", "%" + condition.getNature().toUpperCase() + "%");
         }
         if (!StringUtils.isEmpty(condition.getCode())) {
-            query.setParameter("dictCode", "%" + condition.getCode() + "%");
+            query.setParameter("dictCode", "%" + condition.getCode().toUpperCase() + "%");
         }
         if (!StringUtils.isEmpty(condition.getValue())) {
             query.setParameter("dictValue", "%" + condition.getValue() + "%");
+        }
+        if (!ObjectUtils.isEmpty(condition.getIsNature())) {
+            query.setParameter("isNature", condition.getIsNature());
         }
 
         //noinspection unchecked
@@ -127,19 +133,25 @@ public class DictServiceImpl implements DictService {
         if (!StringUtils.isEmpty(condition.getValue())) {
             hql += " and d.value like :dictValue";
         }
+        if (!ObjectUtils.isEmpty(condition.getIsNature())) {
+            hql += " and d.isNature = :isNature";
+        }
 
         final Query query = em.createQuery(hql);
 
         query.setParameter("isEnabled", condition.getIsEnabled());
 
         if (!StringUtils.isEmpty(condition.getNature())) {
-            query.setParameter("dictNature", "%" + condition.getNature() + "%");
+            query.setParameter("dictNature", "%" + condition.getNature().toUpperCase() + "%");
         }
         if (!StringUtils.isEmpty(condition.getCode())) {
-            query.setParameter("dictCode", "%" + condition.getCode() + "%");
+            query.setParameter("dictCode", "%" + condition.getCode().toUpperCase() + "%");
         }
         if (!StringUtils.isEmpty(condition.getValue())) {
             query.setParameter("dictValue", "%" + condition.getValue() + "%");
+        }
+        if (!ObjectUtils.isEmpty(condition.getIsNature())) {
+            query.setParameter("isNature", condition.getIsNature());
         }
 
         return ((Number) query.getSingleResult()).intValue();
@@ -149,11 +161,11 @@ public class DictServiceImpl implements DictService {
      * 创建实体.
      * @param entity 游离状态实体
      * @return 持久化实体
-     * @throws ServiceException 有已经存在重复的类型和编码
+     * @throws WarnException 有已经存在重复的类型和编码
      */
-    public SysDictionary create(SysDictionary entity) throws ServiceException {
+    public SysDictionary create(SysDictionary entity) throws WarnException {
         if (checkNatureAndCode(entity)) {
-            throw new ServiceException("有已经存在重复的类型和编码！");
+            throw new WarnException("有已经存在重复的类型和编码！");
         }
         entity.setParent(em.find(SysDictionary.class, entity.getParent().getId()));
         em.persist(entity);
@@ -163,11 +175,11 @@ public class DictServiceImpl implements DictService {
     /**
      * 更新实体.只更新编码，显示值，描述
      * @param entity 游离状态实体.
-     * @throws ServiceException 有已经存在重复的类型和编码
+     * @throws WarnException 有已经存在重复的类型和编码
      */
-    public void update(SysDictionary entity) throws ServiceException {
+    public void update(SysDictionary entity) throws WarnException {
         if (checkNatureAndCode(entity)) {
-            throw new ServiceException("有已经存在重复的类型和编码！");
+            throw new WarnException("有已经存在重复的类型和编码！");
         }
         final SysDictionary entityInDB = em.find(SysDictionary.class, entity.getId());
         entityInDB.setCode(entity.getCode());

@@ -25,13 +25,18 @@
                 <div class="input-icon">
                     <i class="fa fa-lock"></i>
                     <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码"
-                           ng-model="user.pwd" /> </div>
+                           ng-model="user.pwd" ng-keypress="keyLogin($event, user)"/> </div>
             </div>
             <div class="form-actions">
-                <label class="rememberme mt-checkbox mt-checkbox-outline">
-                    <input type="checkbox" name="remember" value="1" /> 记住我
-                    <span></span>
-                </label>
+                <div class="md-checkbox-inline">
+                    <div class="md-checkbox">
+                        <input type="checkbox" id="rememberme" class="md-check">
+                        <label for="rememberme">
+                            <span></span>
+                            <span class="check"></span>
+                            <span class="box"></span> 记住我 </label>
+                    </div>
+                </div>
                 <button type="button" class="btn green pull-right" ng-click="login(user)"> 登录 </button>
             </div>
         </form>

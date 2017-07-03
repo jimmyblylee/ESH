@@ -85,12 +85,12 @@ angular.module('WebApp').directive('dropdownMenuHover', function () {
     };
 });
 
-angular.module('WebApp').directive("tablePagingFooter", [function() {
+angular.module('WebApp').directive("tablePagingFooter", ["$rootScope", function($rootScope) {
     return {
         restrict: "A",
         link: function() {
             return null;
         },
-        templateUrl: "packages/index/tpl/table-paging-footer.html"
+        templateUrl: "packages/index/tpl/table-paging-footer.html" + $rootScope.cacheVersion
     }
 }]);

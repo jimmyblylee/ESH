@@ -73,7 +73,7 @@ public final class SysDictionary {
     // CSON: LineLength
 
     /** 是否是“类型”而非具体字典项. */
-    @Formula("(CASE WHEN (DICT_NATURE = 'NATURE_TYPE') THEN 1 ELSE 0 END)")
+    @Formula("(CASE WHEN (DICT_CODE = 'NATURE_TYPE') THEN 1 ELSE 0 END)")
     private Boolean isNature;
 
     public Integer getId() {

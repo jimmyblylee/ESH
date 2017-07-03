@@ -23,7 +23,7 @@ import java.util.List;
 
 import com.lee.ez.sys.entity.SysDict;
 import com.lee.ez.sys.entity.SysDictionary;
-import com.lee.jwaf.exception.ServiceException;
+import com.lee.jwaf.exception.WarnException;
 
 /**
  * Description: 字典服务.<br>
@@ -60,16 +60,16 @@ public interface DictService {
      * 创建实体.
      * @param entity 游离状态实体
      * @return 持久化实体
-     * @throws ServiceException 有已经存在重复的类型和编码
+     * @throws WarnException 有已经存在重复的类型和编码
      */
-    SysDictionary create(SysDictionary entity) throws ServiceException;
+    SysDictionary create(SysDictionary entity) throws WarnException;
 
     /**
      * 更新实体.只更新编码，显示值，描述
      * @param entity 游离状态实体.
-     * @throws ServiceException 有已经存在重复的类型和编码
+     * @throws WarnException 有已经存在重复的类型和编码
      */
-    void update(SysDictionary entity) throws ServiceException;
+    void update(SysDictionary entity) throws WarnException;
 
     /**
      * 校验类型和编码.

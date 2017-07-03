@@ -5,10 +5,11 @@
             "pageTitle": "字典管理",
             "pageSubTitle": "管理系统字典配置信息"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/sys/views/dict/main.html",
+        "controller": "DictListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/sys/js/dict/DictListCtrl.js",
+            "packages/sys/js/dict/DictUpdateCtrl.js"
         ]
     },
     "sys-auth": {
