@@ -27,6 +27,7 @@ angular.module("WebApp", [
     "ui.bootstrap",
     "oc.lazyLoad",
     "ngSanitize",
+    "ui.select",
 
     "chieffancypants.loadingBar"
 ]);

@@ -3,29 +3,46 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <label class="control-label col-md-3">名称</label>
+                    <label class="control-label col-md-3">类型</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="处室名称" ng-model="condition.name">
+                        <input type="text" class="form-control" placeholder="类型" ng-model="condition.nature">
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label class="control-label col-md-3">电话</label>
+                    <label class="control-label col-md-3">编码</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="电话" ng-model="condition.tel">
+                        <input type="text" class="form-control" placeholder="编码" ng-model="condition.code">
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
-                    <label class="control-label col-md-3">状态</label>
-                    <div class="col-md-9">
+                    <label class="control-label col-md-6">是否类型</label>
+                    <div class="col-md-6">
                         <div class="md-checkbox-inline">
                             <div class="md-checkbox">
-                                <input type="checkbox" id="org_search_zt" class="md-check" checked
-                                       ng-change="changeConditionStatus()" ng-model="foo">
-                                <label for="org_search_zt">
+                                <input type="checkbox" id="dict_search_lx" class="md-check" checked
+                                       ng-change="changeConditionStatus('isNature')" ng-model="foo1">
+                                <label for="dict_search_lx">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 类型 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="control-label col-md-6">是否启用</label>
+                    <div class="col-md-6">
+                        <div class="md-checkbox-inline">
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="dict_search_zt" class="md-check" checked
+                                       ng-change="changeConditionStatus('isEnabled')" ng-model="foo2">
+                                <label for="dict_search_zt">
                                     <span></span>
                                     <span class="check"></span>
                                     <span class="box"></span> 启用 </label>
@@ -34,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
             </div>
         </div>
@@ -61,21 +78,28 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class="text-center wid180px">上级</th>
-                        <th class="text-center wid160px">类型</th>
-                        <th class="text-center wid160px">编码</th>
+                        <th class="text-center wid260px">上级</th>
+                        <th class="text-center wid100px">类型</th>
+                        <th class="text-center wid100px">编码</th>
                         <th class="text-center wid160px">显示值</th>
                         <th class="text-center wid160px">描述</th>
                         <th class="text-center wid90px">状态</th>
-                        <th class="text-center wid160px">操作</th>
+                        <th class="text-center wid140px">操作</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr ng-repeat="item in list">
-                        <td>{{item['parent']['nature']}}.{{item['parent']['code']}}.{{item['parent']['value']}}</td>
+                        <td>
+                            <span class="label label-sm label-primary">{{item['parent']['nature']}}</span>
+                            <span class="label label-sm label-default">{{item['parent']['code']}}</span>
+                            <span class="label label-sm label-success">{{item['parent']['value']}}</span>
+                        </td>
                         <td class="text-center">{{item['nature']}}</td>
-                        <td class="text-center">{{item['code']}}</td>
+                        <td class="text-center">
+                            <span class="label label-sm label-primary" ng-if="item['isNature']">类型</span>
+                            <span class="label label-sm label-warning" ng-if="!item['isNature']">{{item['code']}}</span>
+                        </td>
                         <td class="text-center">{{item['value']}}</td>
                         <td>{{item['desc']}}</td>
                         <td class="text-center">

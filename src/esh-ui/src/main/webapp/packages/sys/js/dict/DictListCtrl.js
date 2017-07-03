@@ -26,11 +26,12 @@ angular.module('WebApp').controller('DictListCtrl', ['$scope', "$listService", "
     /**
      * 查询条件中，状态改变时同步到查询条件里
      */
-    $scope.changeConditionStatus = function () {
-        $scope.condition.isEnabled = !$scope.condition.isEnabled;
+    $scope.changeConditionStatus = function (code) {
+        $scope.condition[code] = !$scope.condition[code];
     };
-    $scope.foo = true;
-    $scope.condition = {isEnabled: true};
+    $scope.foo1 = true;
+    $scope.foo2 = true;
+    $scope.condition = {isEnabled: true, isNature: true};
     $listService.init($scope, {
         "controller": "DictController",
         "method": "query",
@@ -64,7 +65,7 @@ angular.module('WebApp').controller('DictListCtrl', ['$scope', "$listService", "
                     callback: function () {
                         $ajaxCall.post({
                             data: {
-                                controller: "OrgController",
+                                controller: "DictController",
                                 method: isEnabled ? "resume" : "remove",
                                 id: item.id
                             },

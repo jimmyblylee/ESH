@@ -14,9 +14,13 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">上级字典</label>
                                         <div class="col-md-9">
-                                            <select class="form-control update-dict-parent-select-ajax">
-                                                <option value="2126244" selected="selected" disabled>请选择上级</option>
-                                            </select>
+                                            <ui-select ng-model="entity.parent" theme="bootstrap">
+                                                <ui-select-match placeholder="选择或查找...">{{$select.selected.value}}</ui-select-match>
+                                                <ui-select-choices repeat="item in natureList | filter: $select.search">
+                                                    <div ng-bind-html="item.value | highlight: $select.search"></div>
+                                                    <small ng-bind-html="item.nature | highlight: $select.search"></small>
+                                                </ui-select-choices>
+                                            </ui-select>
                                         </div>
                                     </div>
                                 </div>

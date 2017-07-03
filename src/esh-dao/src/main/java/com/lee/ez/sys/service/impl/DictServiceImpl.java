@@ -168,6 +168,7 @@ public class DictServiceImpl implements DictService {
             throw new WarnException("有已经存在重复的类型和编码！");
         }
         entity.setParent(em.find(SysDictionary.class, entity.getParent().getId()));
+        entity.setIsEnabled(true);
         em.persist(entity);
         return entity;
     }
@@ -196,7 +197,7 @@ public class DictServiceImpl implements DictService {
     @Transactional(readOnly = true)
     public boolean checkNatureAndCode(SysDictionary entity) {
         String hql = " select count(d) from SysDictionary as d";
-        hql += "where where d.nature = :nature and d.code = :code";
+        hql += " where d.nature = :nature and d.code = :code";
         if (!ObjectUtils.isEmpty(entity)) {
             hql += " and d.id = :id";
         }
