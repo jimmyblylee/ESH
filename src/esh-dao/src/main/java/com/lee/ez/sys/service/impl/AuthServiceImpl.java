@@ -35,6 +35,7 @@ import com.lee.ez.sys.dto.EshFunc;
 import com.lee.ez.sys.dto.EshToken;
 import com.lee.ez.sys.entity.SysFunc;
 import com.lee.ez.sys.entity.SysUser;
+import com.lee.ez.sys.entity.SysUserAccount;
 import com.lee.ez.sys.service.AuthService;
 import com.lee.jwaf.token.Func;
 import com.lee.jwaf.token.FuncTree;
@@ -69,7 +70,7 @@ public class AuthServiceImpl implements AuthService {
      * @return user id 获得 空（如果找不到）
      */
     public Integer checkAccountAndPwd(String account, String pwd) {
-        String hql = "from SysUser as u";
+        String hql = "from SysUserAccount as u";
         hql += " where u.account = :account";
         hql += " and u.pwd = :pwd";
         hql += " and u.isEnabled = true";
@@ -77,7 +78,7 @@ public class AuthServiceImpl implements AuthService {
         query.setParameter("account", account);
         query.setParameter("pwd", PasswordUtils.encryptByMD5(pwd));
         //noinspection unchecked
-        final List<SysUser> result = query.getResultList();
+        final List<SysUserAccount> result = query.getResultList();
         return result.size() > 0 ? result.get(0).getId() : null;
     }
 
@@ -111,6 +112,7 @@ public class AuthServiceImpl implements AuthService {
     public Token getTokenByUserId(Integer userId) {
         final EshToken token = new EshToken();
         final SysUser user = em.find(SysUser.class, userId);
+        final SysUserAccount account = em.find(SysUserAccount.class, userId);
 
         // org
         token.org().setId(user.getOrg().getId());
@@ -119,7 +121,7 @@ public class AuthServiceImpl implements AuthService {
         token.user().setId(user.getId());
         token.user().setName(user.getName());
         token.user().setOrg(token.org());
-        token.user().setAccount(user.getAccount());
+        token.user().setAccount(account.getAccount());
 
         //noinspection unchecked
         final List<Number> ids = em.createNativeQuery("SELECT FUNC_ID FROM SYS_USER_FUNC WHERE USER_ID = :userId")

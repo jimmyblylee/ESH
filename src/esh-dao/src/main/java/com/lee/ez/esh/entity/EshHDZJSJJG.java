@@ -34,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_HD_ZJ_SJ_JG")
 @SuppressWarnings("unused")
-public final class EshHDZJSJJG {
+public class EshHDZJSJJG {
     /** 随机结果ID.**/
     @Id
     @Column(name = "SJJG_ID")
@@ -54,34 +54,74 @@ public final class EshHDZJSJJG {
     @Column(name = "SJJG_WCJYY")
     private String wcjyy;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the zj.
+     *
+     * @return return the zj
+     */
     public EshZJ getZj() {
         return zj;
     }
 
+    /**
+     * Set zj.
+     *
+     * @param zj the zj to set
+     */
     public void setZj(EshZJ zj) {
         this.zj = zj;
     }
 
+    /**
+     * Get the sfcj.
+     *
+     * @return return the sfcj
+     */
     public Boolean getSfcj() {
         return sfcj;
     }
 
+    /**
+     * Set sfcj.
+     *
+     * @param sfcj the sfcj to set
+     */
     public void setSfcj(Boolean sfcj) {
         this.sfcj = sfcj;
     }
 
+    /**
+     * Get the wcjyy.
+     *
+     * @return return the wcjyy
+     */
     public String getWcjyy() {
         return wcjyy;
     }
 
+    /**
+     * Set wcjyy.
+     *
+     * @param wcjyy the wcjyy to set
+     */
     public void setWcjyy(String wcjyy) {
         this.wcjyy = wcjyy;
     }

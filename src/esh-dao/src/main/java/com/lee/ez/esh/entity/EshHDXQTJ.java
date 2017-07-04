@@ -40,7 +40,7 @@ import com.lee.ez.sys.entity.SysDict;
 @Entity
 @Table(name = "ESH_HD_XQ_TJ")
 @SuppressWarnings("unused")
-public final class EshHDXQTJ {
+public class EshHDXQTJ {
     /** 条件ID.**/
     @Id
     @Column(name = "TJ_ID")
@@ -66,34 +66,74 @@ public final class EshHDXQTJ {
     @Column(name = "TJ_Z")
     private String z;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the xq.
+     *
+     * @return return the xq
+     */
     public EshHDXQ getXq() {
         return xq;
     }
 
+    /**
+     * Set xq.
+     *
+     * @param xq the xq to set
+     */
     public void setXq(EshHDXQ xq) {
         this.xq = xq;
     }
 
+    /**
+     * Get the lx.
+     *
+     * @return return the lx
+     */
     public SysDict getLx() {
         return lx;
     }
 
+    /**
+     * Set lx.
+     *
+     * @param lx the lx to set
+     */
     public void setLx(SysDict lx) {
         this.lx = lx;
     }
 
+    /**
+     * Get the z.
+     *
+     * @return return the z
+     */
     public String getZ() {
         return z;
     }
 
+    /**
+     * Set z.
+     *
+     * @param z the z to set
+     */
     public void setZ(String z) {
         this.z = z;
     }

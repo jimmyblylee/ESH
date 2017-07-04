@@ -30,10 +30,11 @@
             "pageTitle": "用户管理",
             "pageSubTitle": "维护本处室用户信息"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/sys/views/user/main.html",
+        "controller": "UserListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/sys/js/user/UserListCtrl.js",
+            "packages/sys/js/user/UserUpdateCtrl.js"
         ]
     },
     "sys-user": {
@@ -42,10 +43,11 @@
             "pageTitle": "用户管理",
             "pageSubTitle": "维护用户信息"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/sys/views/user/main.html",
+        "controller": "UserListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/sys/js/user/UserListCtrl.js",
+            "packages/sys/js/user/UserUpdateCtrl.js"
         ]
     },
     "sys-org": {

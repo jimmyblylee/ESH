@@ -22,50 +22,30 @@ package com.lee.ez.sys.entity;
 import javax.persistence.*;
 
 /**
- * Description: 字典实体类 for 引用.<br>
+ * Description: 系统用户账号密码.<br>
  * Created by Jimmybly Lee on 2017/6/20.
  *
  * @author Jimmybly Lee
  */
 @Entity
-@Table(name = "SYS_DICT")
+@Table(name = "SYS_USER")
 @SuppressWarnings("unused")
-public class SysDict {
+public class SysUserAccount {
 
-    /**
-     * 如果是类型，而非具体的字典项，此为标识.
-     */
-    @Transient
-    public static final String CNS_NATURE = "NATURE";
-
-    /**
-     * Id.
-     */
+    /** Id. */
     @Id
-    @Column(name = "DICT_ID", insertable = false, updatable = false)
+    @Column(name = "USER_ID")
     private Integer id;
 
-    /**
-     * 类型.
-     */
-    @Column(name = "DICT_NATURE")
-    private String nature;
+    /** 用户帐号. */
+    @Column(name = "USER_ACCOUNT")
+    private String account;
 
-    /**
-     * 编码.
-     */
-    @Column(name = "DICT_CODE")
-    private String code;
+    /** 用户密码. */
+    @Column(name = "USER_PWD")
+    private String pwd;
 
-    /**
-     * 显示值.
-     */
-    @Column(name = "DICT_VALUE")
-    private String value;
-
-    /**
-     * 是否禁用.
-     */
+    /** 是否可用. */
     @Column(name = "IS_ENABLED")
     private Boolean isEnabled;
 
@@ -88,57 +68,39 @@ public class SysDict {
     }
 
     /**
-     * Get the nature.
+     * Get the account.
      *
-     * @return return the nature
+     * @return return the account
      */
-    public String getNature() {
-        return nature;
+    public String getAccount() {
+        return account;
     }
 
     /**
-     * Set nature.
+     * Set account.
      *
-     * @param nature the nature to set
+     * @param account the account to set
      */
-    public void setNature(String nature) {
-        this.nature = nature;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     /**
-     * Get the code.
+     * Get the pwd.
      *
-     * @return return the code
+     * @return return the pwd
      */
-    public String getCode() {
-        return code;
+    public String getPwd() {
+        return pwd;
     }
 
     /**
-     * Set code.
+     * Set pwd.
      *
-     * @param code the code to set
+     * @param pwd the pwd to set
      */
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    /**
-     * Get the value.
-     *
-     * @return return the value
-     */
-    public String getValue() {
-        return value;
-    }
-
-    /**
-     * Set value.
-     *
-     * @param value the value to set
-     */
-    public void setValue(String value) {
-        this.value = value;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     /**

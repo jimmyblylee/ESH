@@ -34,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_ZJ_GZJL")
 @SuppressWarnings("unused")
-public final class EshZJGZJL implements EshZJFZ {
+public class EshZJGZJL implements EshZJFZ {
 
     /** 工作经历ID.**/
     @Id
@@ -60,50 +60,114 @@ public final class EshZJGZJL implements EshZJFZ {
     @Column(name = "GZJL_ZW")
     private String zw;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
+    @Override
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the zj.
+     *
+     * @return return the zj
+     */
+    @Override
     public EshZJ getZj() {
         return zj;
     }
 
+    /**
+     * Set zj.
+     *
+     * @param zj the zj to set
+     */
+    @Override
     public void setZj(EshZJ zj) {
         this.zj = zj;
     }
 
+    /**
+     * Get the ks.
+     *
+     * @return return the ks
+     */
     public String getKs() {
         return ks;
     }
 
+    /**
+     * Set ks.
+     *
+     * @param ks the ks to set
+     */
     public void setKs(String ks) {
         this.ks = ks;
     }
 
+    /**
+     * Get the zz.
+     *
+     * @return return the zz
+     */
     public String getZz() {
         return zz;
     }
 
+    /**
+     * Set zz.
+     *
+     * @param zz the zz to set
+     */
     public void setZz(String zz) {
         this.zz = zz;
     }
 
+    /**
+     * Get the dw.
+     *
+     * @return return the dw
+     */
     public String getDw() {
         return dw;
     }
 
+    /**
+     * Set dw.
+     *
+     * @param dw the dw to set
+     */
     public void setDw(String dw) {
         this.dw = dw;
     }
 
+    /**
+     * Get the zw.
+     *
+     * @return return the zw
+     */
     public String getZw() {
         return zw;
     }
 
+    /**
+     * Set zw.
+     *
+     * @param zw the zw to set
+     */
     public void setZw(String zw) {
         this.zw = zw;
     }

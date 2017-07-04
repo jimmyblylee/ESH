@@ -40,7 +40,7 @@ import com.lee.ez.sys.entity.SysDict;
 @Entity
 @Table(name = "ESH_HD_XQ")
 @SuppressWarnings("unused")
-public final class EshHDXQ {
+public class EshHDXQ {
     /** 活动需求ID.**/
     @Id
     @Column(name = "XQ_ID")
@@ -67,42 +67,92 @@ public final class EshHDXQ {
     @Column(name = "XQ_TDCQ")
     private Boolean tdcq;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the hd.
+     *
+     * @return return the hd
+     */
     public EshHD getHd() {
         return hd;
     }
 
+    /**
+     * Set hd.
+     *
+     * @param hd the hd to set
+     */
     public void setHd(EshHD hd) {
         this.hd = hd;
     }
 
+    /**
+     * Get the zylb.
+     *
+     * @return return the zylb
+     */
     public SysDict getZylb() {
         return zylb;
     }
 
+    /**
+     * Set zylb.
+     *
+     * @param zylb the zylb to set
+     */
     public void setZylb(SysDict zylb) {
         this.zylb = zylb;
     }
 
+    /**
+     * Get the rs.
+     *
+     * @return return the rs
+     */
     public Integer getRs() {
         return rs;
     }
 
+    /**
+     * Set rs.
+     *
+     * @param rs the rs to set
+     */
     public void setRs(Integer rs) {
         this.rs = rs;
     }
 
+    /**
+     * Get the tdcq.
+     *
+     * @return return the tdcq
+     */
     public Boolean getTdcq() {
         return tdcq;
     }
 
+    /**
+     * Set tdcq.
+     *
+     * @param tdcq the tdcq to set
+     */
     public void setTdcq(Boolean tdcq) {
         this.tdcq = tdcq;
     }

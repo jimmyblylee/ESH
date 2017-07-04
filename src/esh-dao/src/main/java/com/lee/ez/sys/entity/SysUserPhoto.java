@@ -17,47 +17,49 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.lee.ez.esh.entity;
+package com.lee.ez.sys.entity;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-// CSOFF: MethodCount
-// CSOFF: ParameterName
-// CSOFF: MethodName
-// CSOFF: MemberName
+import org.hibernate.annotations.*;
+
 /**
- * Description: 活动专家表实体类.<br>
- * Created by Jimmybly Lee on 2017/6/25.
+ * Description: 系统用户照片.<br>
+ * Created by Jimmybly Lee on 2017/6/20.
  *
  * @author Jimmybly Lee
  */
 @Entity
-@Table(name = "ESH_HD_ZJ")
+@Table(name = "SYS_USER")
 @SuppressWarnings("unused")
-public class EshHDZJ {
-    /** 活动ID.**/
+public class SysUserPhoto {
+
+    /**
+     * Id.
+     */
     @Id
-    @Column(name = "HDZJ_ID")
-    @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
-    @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @Column(name = "USER_ID")
+    @GenericGenerator(name = "foreignKey", strategy = "foreign",
+        parameters = {@org.hibernate.annotations.Parameter(name = "property", value = "user")})
+    @GeneratedValue(generator = "foreignKey")
+    private Integer id;
 
-    /** 活动.**/
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "HD_ID")
-    private EshHD hd;
-
-    /** 专家.**/
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ZJ_ID")
-    private EshZJ zj;
+    /**
+     * 用户头像.
+     */
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "USER_PHOTO", columnDefinition = "CLOB")
+    private String data;
 
     /**
      * Get the id.
      *
      * @return return the id
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -66,43 +68,25 @@ public class EshHDZJ {
      *
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * Get the hd.
+     * Get the data.
      *
-     * @return return the hd
+     * @return return the data
      */
-    public EshHD getHd() {
-        return hd;
+    public String getData() {
+        return data;
     }
 
     /**
-     * Set hd.
+     * Set data.
      *
-     * @param hd the hd to set
+     * @param data the data to set
      */
-    public void setHd(EshHD hd) {
-        this.hd = hd;
-    }
-
-    /**
-     * Get the zj.
-     *
-     * @return return the zj
-     */
-    public EshZJ getZj() {
-        return zj;
-    }
-
-    /**
-     * Set zj.
-     *
-     * @param zj the zj to set
-     */
-    public void setZj(EshZJ zj) {
-        this.zj = zj;
+    public void setData(String data) {
+        this.data = data;
     }
 }

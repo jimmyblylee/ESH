@@ -46,7 +46,7 @@ public class DictController extends AbstractControllerSupport {
     private DictService service;
 
     /**
-     * 查询处室.
+     * 查询实体.
      */
     public void query() {
         final SysDictionary condition = workDTO.convertJsonToBeanByKey("condition", SysDictionary.class);
@@ -55,7 +55,7 @@ public class DictController extends AbstractControllerSupport {
     }
 
     /**
-     * 创建处室.
+     * 创建实体.
      * @throws WarnException 有已经存在重复的类型和编码
      */
     public void create() throws WarnException {
@@ -63,7 +63,7 @@ public class DictController extends AbstractControllerSupport {
     }
 
     /**
-     * 修改处室.
+     * 修改实体.
      * @throws WarnException 有已经存在重复的类型和编码
      */
     public void update() throws WarnException {
@@ -71,14 +71,14 @@ public class DictController extends AbstractControllerSupport {
     }
 
     /**
-     * 删除处室.
+     * 删除实体.
      */
     public void remove() {
         service.changeStatus(workDTO.getInteger("id"), false);
     }
 
     /**
-     * 恢复删除处室.
+     * 恢复删除实体.
      */
     public void resume() {
         service.changeStatus(workDTO.getInteger("id"), true);

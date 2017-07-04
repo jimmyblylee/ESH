@@ -33,13 +33,14 @@ import com.lee.jwaf.token.User;
  */
 public final class EshUser implements User, Serializable {
 
-    /** SerialVersionUID. */
+    /**
+     * SerialVersionUID.
+     */
     private static final long serialVersionUID = 8097971841099343594L;
     // CSOFF: JavadocVariable
     private Integer id;
     private Org org;
     private String name;
-    private String account;
 
     @Override
     public Integer getId() {
@@ -73,12 +74,12 @@ public final class EshUser implements User, Serializable {
 
     @Override
     public String getAccount() {
-        return account;
+        return null;
     }
 
     @Override
     public void setAccount(String account) {
-        this.account = account;
+
     }
 
     @Override

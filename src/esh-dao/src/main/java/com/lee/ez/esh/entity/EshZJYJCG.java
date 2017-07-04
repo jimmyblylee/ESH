@@ -34,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_ZJ_YJCG")
 @SuppressWarnings("unused")
-public final class EshZJYJCG implements EshZJFZ {
+public class EshZJYJCG implements EshZJFZ {
 
     /** 研究成果ID.**/
     @Id
@@ -62,58 +62,132 @@ public final class EshZJYJCG implements EshZJFZ {
     @Column(name = "YJCG_RQ")
     private String rq;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
+    @Override
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the zj.
+     *
+     * @return return the zj
+     */
+    @Override
     public EshZJ getZj() {
         return zj;
     }
 
+    /**
+     * Set zj.
+     *
+     * @param zj the zj to set
+     */
+    @Override
     public void setZj(EshZJ zj) {
         this.zj = zj;
     }
 
+    /**
+     * Get the mc.
+     *
+     * @return return the mc
+     */
     public String getMc() {
         return mc;
     }
 
+    /**
+     * Set mc.
+     *
+     * @param mc the mc to set
+     */
     public void setMc(String mc) {
         this.mc = mc;
     }
 
+    /**
+     * Get the kw.
+     *
+     * @return return the kw
+     */
     public String getKw() {
         return kw;
     }
 
+    /**
+     * Set kw.
+     *
+     * @param kw the kw to set
+     */
     public void setKw(String kw) {
         this.kw = kw;
     }
 
+    /**
+     * Get the dw.
+     *
+     * @return return the dw
+     */
     public String getDw() {
         return dw;
     }
 
+    /**
+     * Set dw.
+     *
+     * @param dw the dw to set
+     */
     public void setDw(String dw) {
         this.dw = dw;
     }
 
+    /**
+     * Get the jb.
+     *
+     * @return return the jb
+     */
     public String getJb() {
         return jb;
     }
 
+    /**
+     * Set jb.
+     *
+     * @param jb the jb to set
+     */
     public void setJb(String jb) {
         this.jb = jb;
     }
 
+    /**
+     * Get the rq.
+     *
+     * @return return the rq
+     */
     public String getRq() {
         return rq;
     }
 
+    /**
+     * Set rq.
+     *
+     * @param rq the rq to set
+     */
     public void setRq(String rq) {
         this.rq = rq;
     }

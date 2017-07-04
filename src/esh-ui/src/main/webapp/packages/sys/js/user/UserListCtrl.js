@@ -18,17 +18,34 @@
  * ***************************************************************************/
 
 /**
- * Description: 处室列表控制器.<br>
+ * Description: 用户列表控制器.<br>
  * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('OrgListCtrl', ['$scope', "$listService", "$ajaxCall", function ($scope, $listService, $ajaxCall) {
+angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
     $scope.condition = {isEnabled: true};
+    $scope.isOrgMgmt = $rootScope.$state.current.name === "sys-user-org";
+    if ($scope.isOrgMgmt) {
+        $scope.condition.org = $rootScope.token.user.org;
+    }
+    $ajaxCall.post({
+        data: {
+            controller: "OrgController",
+            method: "query",
+            condition: JSON.stringify({isEnabled: true}),
+            start: 0,
+            limit: 100
+        },
+        success: function(res) {
+            $scope.orgList = res.result;
+        }
+    });
     $listService.init($scope, {
-        "controller": "OrgController",
+        "controller": "UserController",
         "method": "query",
         callback: function (success) {
             $scope.list = success.data.result;
+            console.log($scope.list);
         }
     });
 
@@ -48,7 +65,7 @@ angular.module('WebApp').controller('OrgListCtrl', ['$scope', "$listService", "$
     $scope.changeStatus = function (item, isEnabled) {
         bootbox.dialog({
             title: "请确认",
-            message: isEnabled ? "是否确认恢复该处室？" : "是否确认禁用该处室？",
+            message: isEnabled ? "是否确认恢复该用户？" : "是否确认禁用该用户？",
             buttons: {
                 main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
                 danger: {
@@ -57,7 +74,7 @@ angular.module('WebApp').controller('OrgListCtrl', ['$scope', "$listService", "$
                     callback: function () {
                         $ajaxCall.post({
                             data: {
-                                controller: "OrgController",
+                                controller: "UserController",
                                 method: isEnabled ? "resume" : "remove",
                                 id: item.id
                             },
@@ -75,8 +92,8 @@ angular.module('WebApp').controller('OrgListCtrl', ['$scope', "$listService", "$
      * 准备添加实体
      */
     $scope.prepareToAdd = function () {
-        var scope = $("#updateOrgModalDiv").scope();
-        scope.title = "添加处室信息";
+        var scope = $("#updateUserModalDiv").scope();
+        scope.title = "添加用户信息";
         scope.method = "create";
         scope.entity = {};
 
@@ -89,8 +106,8 @@ angular.module('WebApp').controller('OrgListCtrl', ['$scope', "$listService", "$
      * 准备修改实体
      */
     $scope.prepareToUpdate = function (item) {
-        var scope = $("#updateOrgModalDiv").scope();
-        scope.title = "修改处室信息";
+        var scope = $("#updateUserModalDiv").scope();
+        scope.title = "修改用户信息";
         scope.method = "update";
         scope.entity = item;
 

@@ -27,12 +27,12 @@
         <org.springframework.version>4.3.2.RELEASE</org.springframework.version>
         <aspectjweaver.version>1.8.9</aspectjweaver.version>
         <spring-security.version>4.1.3.RELEASE</spring-security.version>
-        
+
         <!--
             ejg dependencies
         -->
         <ejb-api.version>3.0</ejb-api.version>
-        
+
         <!--
             net work dependencies
         -->
@@ -40,7 +40,7 @@
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <jackson-databind.version>2.7.3</jackson-databind.version>
-        
+
         <!--
             console log dependencies
         -->
@@ -49,16 +49,16 @@
         <log4j2.version>2.6.2</log4j2.version>
         <jansi.version>1.13</jansi.version>
         <slf4j-api.version>1.7.20</slf4j-api.version>
-        
+
         <!--
             Data access dependencies
         -->
-        <hibernate-core.version>5.2.2.Final</hibernate-core.version>
+        <hibernate-core.version>5.2.10.Final</hibernate-core.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <mysql-connector-java.version>5.1.27</mysql-connector-java.version>
         <ucanaccess.version>3.0.6</ucanaccess.version>
         <atomikos.version>4.0.4</atomikos.version>
-        
+
         <!--
             unit test dependencies
         -->
@@ -67,7 +67,7 @@
         <selenium.version>2.53.1</selenium.version>
         <dbunit.version>2.5.3</dbunit.version>
         <unitils.version>3.4.3</unitils.version>
-        
+
         <!--
             other dependencies
         -->
@@ -79,7 +79,7 @@
 
     <dependencyManagement>
         <dependencies>
-        
+
             <!--
                 springframework dependencies
             -->
@@ -132,7 +132,7 @@
                 <artifactId>spring-security-core</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
-            
+
             <!--
                 ejg dependencies
             -->
@@ -142,7 +142,7 @@
                 <artifactId>ejb-api</artifactId>
                 <version>${ejb-api.version}</version>
             </dependency>
-            
+
             <!--
                 net work dependencies
             -->
@@ -172,7 +172,7 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson-databind.version}</version>
             </dependency>
-            
+
             <!--
                 console log dependencies,
                 you should depend one and only one between log4j2 and logback
@@ -217,7 +217,7 @@
                 <version>${slf4j-api.version}</version>
                 <scope>runtime</scope>
             </dependency>
-            
+
             <!--
                 Data access dependencies
             -->
@@ -269,7 +269,7 @@
                 <artifactId>transactions-jta</artifactId>
                 <version>${atomikos.version}</version>
             </dependency>
-            
+
             <!--
                 unit test dependencies
             -->
@@ -326,7 +326,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            
+
             <!--
                 other dependencies
             -->
@@ -352,7 +352,7 @@
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
             </dependency>
-            
+
         </dependencies>
     </dependencyManagement>
 </project>

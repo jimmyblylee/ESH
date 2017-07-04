@@ -245,6 +245,7 @@ angular.module('WebApp').run(["$rootScope", "settings", "$state", "$location", f
             data: {controller: "LoginController", method: "getCurrentToken"},
             success: function (data) {
                 $rootScope.token = {"user": data.user, "funcs": data.funcs, "funcTree": data.funcTree};
+                $rootScope.token.user.photo = data.photo.data;
                 $rootScope.token.user.type = $rootScope.token.user.id === -1 ?
                     "ANONYMOUS" : $rootScope.token.user.id === -2 ? "ADMIN" : "NORMAL";
             }

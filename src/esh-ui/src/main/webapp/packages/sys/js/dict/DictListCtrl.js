@@ -23,14 +23,6 @@
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('DictListCtrl', ['$scope', "$listService", "$ajaxCall", function ($scope, $listService, $ajaxCall) {
-    /**
-     * 查询条件中，状态改变时同步到查询条件里
-     */
-    $scope.changeConditionStatus = function (code) {
-        $scope.condition[code] = !$scope.condition[code];
-    };
-    $scope.foo1 = true;
-    $scope.foo2 = true;
     $scope.condition = {isEnabled: true, isNature: true};
     $listService.init($scope, {
         "controller": "DictController",
@@ -56,7 +48,7 @@ angular.module('WebApp').controller('DictListCtrl', ['$scope', "$listService", "
     $scope.changeStatus = function (item, isEnabled) {
         bootbox.dialog({
             title: "请确认",
-            message: isEnabled ? "是否确认恢复该处室？" : "是否确认禁用该处室？",
+            message: isEnabled ? "是否确认恢复该字典？" : "是否确认禁用该字典？",
             buttons: {
                 main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
                 danger: {

@@ -34,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_ZJ_JZ")
 @SuppressWarnings("unused")
-public final class EshZJJZ implements EshZJFZ {
+public class EshZJJZ implements EshZJFZ {
 
     /** 兼职ID.**/
     @Id
@@ -58,42 +58,96 @@ public final class EshZJJZ implements EshZJFZ {
     @Column(name = "JZ_RQ")
     private String rq;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
+    @Override
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the zj.
+     *
+     * @return return the zj
+     */
+    @Override
     public EshZJ getZj() {
         return zj;
     }
 
+    /**
+     * Set zj.
+     *
+     * @param zj the zj to set
+     */
+    @Override
     public void setZj(EshZJ zj) {
         this.zj = zj;
     }
 
+    /**
+     * Get the zzmc.
+     *
+     * @return return the zzmc
+     */
     public String getZzmc() {
         return zzmc;
     }
 
+    /**
+     * Set zzmc.
+     *
+     * @param zzmc the zzmc to set
+     */
     public void setZzmc(String zzmc) {
         this.zzmc = zzmc;
     }
 
+    /**
+     * Get the zw.
+     *
+     * @return return the zw
+     */
     public String getZw() {
         return zw;
     }
 
+    /**
+     * Set zw.
+     *
+     * @param zw the zw to set
+     */
     public void setZw(String zw) {
         this.zw = zw;
     }
 
+    /**
+     * Get the rq.
+     *
+     * @return return the rq
+     */
     public String getRq() {
         return rq;
     }
 
+    /**
+     * Set rq.
+     *
+     * @param rq the rq to set
+     */
     public void setRq(String rq) {
         this.rq = rq;
     }

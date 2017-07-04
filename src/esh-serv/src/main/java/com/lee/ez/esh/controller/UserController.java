@@ -25,8 +25,12 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.lee.ez.sys.entity.SysUser;
+import com.lee.ez.sys.entity.SysUserAccount;
+import com.lee.ez.sys.entity.SysUserPhoto;
 import com.lee.ez.sys.service.UserService;
 import com.lee.jwaf.action.AbstractControllerSupport;
+import com.lee.jwaf.exception.WarnException;
 
 /**
  * Description: 用户管理.<br>
@@ -43,23 +47,65 @@ public class UserController extends AbstractControllerSupport {
     @Resource
     private UserService service;
 
+    /**
+     * 查询实体.
+     */
     public void query() {
-
+        final SysUser condition = workDTO.convertJsonToBeanByKey("condition", SysUser.class);
+        workDTO.setResult(service.query(condition, workDTO.getStart(), workDTO.getLimit()));
+        workDTO.setTotle(service.count(condition));
     }
 
-    public void create() {
-
+    /**
+     * 创建实体.
+     * @throws WarnException 有重复的账号，不能创建
+     */
+    public void create() throws WarnException {
+        service.create(workDTO.convertJsonToBeanByKey("entity", SysUser.class));
     }
 
-    public void update() {
-
+    /**
+     * 修改实体.
+     * @throws WarnException 有重复的账号，不能修改
+     */
+    public void update() throws WarnException {
+        service.update(workDTO.convertJsonToBeanByKey("entity", SysUser.class));
     }
 
+    /**
+     * 更新账户.
+     * @throws WarnException 有重复的账号，不能修改
+     */
+    public void updateAccount() throws WarnException {
+        service.updateAccount(workDTO.convertJsonToBeanByKey("entity", SysUserAccount.class));
+    }
+
+    /**
+     * 更新头像.
+     */
+    public void updatePhoto() {
+        service.updatePhoto(workDTO.convertJsonToBeanByKey("entity", SysUserPhoto.class));
+    }
+
+    /**
+     * 删除实体.
+     */
     public void remove() {
-
+        service.changeStatus(workDTO.getInteger("id"), false);
     }
 
+    /**
+     * 恢复删除实体.
+     */
     public void resume() {
+        service.changeStatus(workDTO.getInteger("id"), true);
+    }
 
+    /**
+     * 修改密码.
+     * @throws WarnException 有重复的账号，不能修改
+     */
+    public void changePassword() throws WarnException {
+        service.updateAccount(workDTO.convertJsonToBeanByKey("entity", SysUserAccount.class));
     }
 }

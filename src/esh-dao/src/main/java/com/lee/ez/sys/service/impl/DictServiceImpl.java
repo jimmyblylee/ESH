@@ -77,6 +77,7 @@ public class DictServiceImpl implements DictService {
     @Transactional(readOnly = true)
     public List<SysDictionary> query(SysDictionary condition, Integer start, Integer limit) {
         String hql = " from SysDictionary as d";
+        hql += " left join fetch d.parent";
         hql += " where d.isEnabled = :isEnabled";
 
         if (!StringUtils.isEmpty(condition.getNature())) {

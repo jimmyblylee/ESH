@@ -30,7 +30,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SYS_ORG")
 @SuppressWarnings("unused")
-public final class SysOrg {
+public class SysOrg {
 
     /** ID.*/
     @Id
@@ -51,34 +51,74 @@ public final class SysOrg {
     @Column(name = "IS_ENABLED")
     private Boolean isEnabled;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Get the name.
+     *
+     * @return return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set name.
+     *
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Get the tel.
+     *
+     * @return return the tel
+     */
     public String getTel() {
         return tel;
     }
 
+    /**
+     * Set tel.
+     *
+     * @param tel the tel to set
+     */
     public void setTel(String tel) {
         this.tel = tel;
     }
 
+    /**
+     * Get the isEnabled.
+     *
+     * @return return the isEnabled
+     */
     public Boolean getIsEnabled() {
         return isEnabled;
     }
 
+    /**
+     * Set isEnabled.
+     *
+     * @param isEnabled the isEnabled to set
+     */
     public void setIsEnabled(Boolean isEnabled) {
         this.isEnabled = isEnabled;
     }

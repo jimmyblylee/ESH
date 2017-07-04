@@ -32,7 +32,7 @@ import org.hibernate.annotations.Formula;
 @Entity
 @Table(name = "SYS_DICT")
 @SuppressWarnings("unused")
-public final class SysDictionary {
+public class SysDictionary {
 
     /** Id. */
     @Id
@@ -76,74 +76,164 @@ public final class SysDictionary {
     @Formula("(CASE WHEN (DICT_CODE = 'NATURE_TYPE') THEN 1 ELSE 0 END)")
     private Boolean isNature;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Get the parent.
+     *
+     * @return return the parent
+     */
     public SysDictionary getParent() {
         return parent;
     }
 
+    /**
+     * Set parent.
+     *
+     * @param parent the parent to set
+     */
     public void setParent(SysDictionary parent) {
         this.parent = parent;
     }
 
+    /**
+     * Get the nature.
+     *
+     * @return return the nature
+     */
     public String getNature() {
         return nature;
     }
 
+    /**
+     * Set nature.
+     *
+     * @param nature the nature to set
+     */
     public void setNature(String nature) {
         this.nature = nature;
     }
 
+    /**
+     * Get the code.
+     *
+     * @return return the code
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Set code.
+     *
+     * @param code the code to set
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * Get the value.
+     *
+     * @return return the value
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Set value.
+     *
+     * @param value the value to set
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
+    /**
+     * Get the desc.
+     *
+     * @return return the desc
+     */
     public String getDesc() {
         return desc;
     }
 
+    /**
+     * Set desc.
+     *
+     * @param desc the desc to set
+     */
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    /**
+     * Get the isEnabled.
+     *
+     * @return return the isEnabled
+     */
     public Boolean getIsEnabled() {
         return isEnabled;
     }
 
+    /**
+     * Set isEnabled.
+     *
+     * @param isEnabled the isEnabled to set
+     */
     public void setIsEnabled(Boolean isEnabled) {
         this.isEnabled = isEnabled;
     }
 
+    /**
+     * Get the hasChildren.
+     *
+     * @return return the hasChildren
+     */
     public Boolean getHasChildren() {
         return hasChildren;
     }
 
+    /**
+     * Set hasChildren.
+     *
+     * @param hasChildren the hasChildren to set
+     */
     public void setHasChildren(Boolean hasChildren) {
         this.hasChildren = hasChildren;
     }
 
+    /**
+     * Get the isNature.
+     *
+     * @return return the isNature
+     */
     public Boolean getIsNature() {
         return isNature;
     }
 
+    /**
+     * Set isNature.
+     *
+     * @param isNature the isNature to set
+     */
     public void setIsNature(Boolean isNature) {
         this.isNature = isNature;
     }

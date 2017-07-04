@@ -79,7 +79,8 @@ public class LoginController extends AbstractControllerSupport {
         if (!sessionDTO.hasToken()) {
             sessionDTO.setActiveUser(authService.getTokenByUserId(-1));
         }
-        workDTO.put("user", userService.getUserWithPhoto(sessionDTO.currentToken().user().getId()));
+        workDTO.put("user", sessionDTO.currentToken().user());
+        workDTO.put("photo", userService.getUserPhoto(sessionDTO.currentToken().user().getId()));
         workDTO.put("funcs", sessionDTO.currentToken().funcs());
         workDTO.put("funcTree", sessionDTO.currentToken().funcTree());
     }

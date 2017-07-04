@@ -34,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_HD_XQ_KW")
 @SuppressWarnings("unused")
-public final class EshHDXQKW {
+public class EshHDXQKW {
     /** 库外ID.**/
     @Id
     @Column(name = "KW_ID")
@@ -50,26 +50,56 @@ public final class EshHDXQKW {
     @JoinColumn(name = "ZJ_ID")
     private EshZJ zj;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the xq.
+     *
+     * @return return the xq
+     */
     public EshHDXQ getXq() {
         return xq;
     }
 
+    /**
+     * Set xq.
+     *
+     * @param xq the xq to set
+     */
     public void setXq(EshHDXQ xq) {
         this.xq = xq;
     }
 
+    /**
+     * Get the zj.
+     *
+     * @return return the zj
+     */
     public EshZJ getZj() {
         return zj;
     }
 
+    /**
+     * Set zj.
+     *
+     * @param zj the zj to set
+     */
     public void setZj(EshZJ zj) {
         this.zj = zj;
     }

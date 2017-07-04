@@ -3,18 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>com.lee.ez</groupId>
-    <artifactId>esh-aggregator</artifactId>
+    <artifactId>esh-build-aggregator</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
     
-    <name>ESH Aggregator</name>
-    <description>Expert Store House Aggregator</description>
+    <name>ESH Build Aggregator</name>
+    <description>Expert Store House Build Aggregator</description>
     
     <modules>
-		<module>framework</module>
-        <module>esh-dao</module>
-        <module>esh-serv</module>
-        <module>esh-ui</module>
-        <module>build</module>
+        <module>esh-war</module>
+        <module>esh-ear</module>
     </modules>
 </project>

@@ -34,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_HD")
 @SuppressWarnings("unused")
-public final class EshHD {
+public class EshHD {
     /** 活动ID.**/
     @Id
     @Column(name = "HD_ID")
@@ -71,82 +71,182 @@ public final class EshHD {
     @Column(name = "HD_GXSJ")
     private String gxsj;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the mc.
+     *
+     * @return return the mc
+     */
     public String getMc() {
         return mc;
     }
 
+    /**
+     * Set mc.
+     *
+     * @param mc the mc to set
+     */
     public void setMc(String mc) {
         this.mc = mc;
     }
 
+    /**
+     * Get the ks.
+     *
+     * @return return the ks
+     */
     public String getKs() {
         return ks;
     }
 
+    /**
+     * Set ks.
+     *
+     * @param ks the ks to set
+     */
     public void setKs(String ks) {
         this.ks = ks;
     }
 
+    /**
+     * Get the zz.
+     *
+     * @return return the zz
+     */
     public String getZz() {
         return zz;
     }
 
+    /**
+     * Set zz.
+     *
+     * @param zz the zz to set
+     */
     public void setZz(String zz) {
         this.zz = zz;
     }
 
+    /**
+     * Get the xz.
+     *
+     * @return return the xz
+     */
     public HDXZ getXz() {
         return xz;
     }
 
+    /**
+     * Set xz.
+     *
+     * @param xz the xz to set
+     */
     public void setXz(HDXZ xz) {
         this.xz = xz;
     }
 
+    /**
+     * Get the bm.
+     *
+     * @return return the bm
+     */
     public String getBm() {
         return bm;
     }
 
+    /**
+     * Set bm.
+     *
+     * @param bm the bm to set
+     */
     public void setBm(String bm) {
         this.bm = bm;
     }
 
+    /**
+     * Get the dz.
+     *
+     * @return return the dz
+     */
     public String getDz() {
         return dz;
     }
 
+    /**
+     * Set dz.
+     *
+     * @param dz the dz to set
+     */
     public void setDz(String dz) {
         this.dz = dz;
     }
 
+    /**
+     * Get the zt.
+     *
+     * @return return the zt
+     */
     public HDZT getZt() {
         return zt;
     }
 
+    /**
+     * Set zt.
+     *
+     * @param zt the zt to set
+     */
     public void setZt(HDZT zt) {
         this.zt = zt;
     }
 
+    /**
+     * Get the djsj.
+     *
+     * @return return the djsj
+     */
     public String getDjsj() {
         return djsj;
     }
 
+    /**
+     * Set djsj.
+     *
+     * @param djsj the djsj to set
+     */
     public void setDjsj(String djsj) {
         this.djsj = djsj;
     }
 
+    /**
+     * Get the gxsj.
+     *
+     * @return return the gxsj
+     */
     public String getGxsj() {
         return gxsj;
     }
 
+    /**
+     * Set gxsj.
+     *
+     * @param gxsj the gxsj to set
+     */
     public void setGxsj(String gxsj) {
         this.gxsj = gxsj;
     }

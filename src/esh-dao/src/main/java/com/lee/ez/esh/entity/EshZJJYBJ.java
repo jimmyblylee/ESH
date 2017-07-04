@@ -34,7 +34,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_ZJ_JYBJ")
 @SuppressWarnings("unused")
-public final class EshZJJYBJ implements EshZJFZ {
+public class EshZJJYBJ implements EshZJFZ {
 
     /** 教育背景ID.**/
     @Id
@@ -61,50 +61,114 @@ public final class EshZJJYBJ implements EshZJFZ {
     @Column(name = "JYBJ_ZY")
     private String zy;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
+    @Override
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the zj.
+     *
+     * @return return the zj
+     */
+    @Override
     public EshZJ getZj() {
         return zj;
     }
 
+    /**
+     * Set zj.
+     *
+     * @param zj the zj to set
+     */
+    @Override
     public void setZj(EshZJ zj) {
         this.zj = zj;
     }
 
+    /**
+     * Get the ks.
+     *
+     * @return return the ks
+     */
     public String getKs() {
         return ks;
     }
 
+    /**
+     * Set ks.
+     *
+     * @param ks the ks to set
+     */
     public void setKs(String ks) {
         this.ks = ks;
     }
 
+    /**
+     * Get the zz.
+     *
+     * @return return the zz
+     */
     public String getZz() {
         return zz;
     }
 
+    /**
+     * Set zz.
+     *
+     * @param zz the zz to set
+     */
     public void setZz(String zz) {
         this.zz = zz;
     }
 
+    /**
+     * Get the yx.
+     *
+     * @return return the yx
+     */
     public String getYx() {
         return yx;
     }
 
+    /**
+     * Set yx.
+     *
+     * @param yx the yx to set
+     */
     public void setYx(String yx) {
         this.yx = yx;
     }
 
+    /**
+     * Get the zy.
+     *
+     * @return return the zy
+     */
     public String getZy() {
         return zy;
     }
 
+    /**
+     * Set zy.
+     *
+     * @param zy the zy to set
+     */
     public void setZy(String zy) {
         this.zy = zy;
     }

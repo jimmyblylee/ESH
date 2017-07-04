@@ -34,7 +34,7 @@ import java.util.List;
 @Entity
 @Table(name = "SYS_FUNC")
 @SuppressWarnings("unused")
-public final class SysFunc {
+public class SysFunc {
 
     /** Id. */
     @Id
@@ -83,78 +83,182 @@ public final class SysFunc {
     private Boolean isLeaf;
     // CSON: LineLength
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Get the parent.
+     *
+     * @return return the parent
+     */
     public SysFunc getParent() {
         return parent;
     }
 
+    /**
+     * Set parent.
+     *
+     * @param parent the parent to set
+     */
     public void setParent(SysFunc parent) {
         this.parent = parent;
     }
 
+    /**
+     * Get the code.
+     *
+     * @return return the code
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Set code.
+     *
+     * @param code the code to set
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * Get the name.
+     *
+     * @return return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set name.
+     *
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Get the seq.
+     *
+     * @return return the seq
+     */
     public Integer getSeq() {
         return seq;
     }
 
+    /**
+     * Set seq.
+     *
+     * @param seq the seq to set
+     */
     public void setSeq(Integer seq) {
         this.seq = seq;
     }
 
+    /**
+     * Get the icon.
+     *
+     * @return return the icon
+     */
     public String getIcon() {
         return icon;
     }
 
+    /**
+     * Set icon.
+     *
+     * @param icon the icon to set
+     */
     public void setIcon(String icon) {
         this.icon = icon;
     }
 
+    /**
+     * Get the isEnabled.
+     *
+     * @return return the isEnabled
+     */
     public Boolean getIsEnabled() {
         return isEnabled;
     }
 
+    /**
+     * Set isEnabled.
+     *
+     * @param isEnabled the isEnabled to set
+     */
+    public void setIsEnabled(Boolean isEnabled) {
+        this.isEnabled = isEnabled;
+    }
+
+    /**
+     * Get the children.
+     *
+     * @return return the children
+     */
     public List<SysFunc> getChildren() {
         return children;
     }
 
+    /**
+     * Set children.
+     *
+     * @param children the children to set
+     */
     public void setChildren(List<SysFunc> children) {
         this.children = children;
     }
 
+    /**
+     * Get the isRoot.
+     *
+     * @return return the isRoot
+     */
     public Boolean getIsRoot() {
         return isRoot;
     }
 
+    /**
+     * Set isRoot.
+     *
+     * @param isRoot the isRoot to set
+     */
     public void setIsRoot(Boolean isRoot) {
         this.isRoot = isRoot;
     }
 
+    /**
+     * Get the isLeaf.
+     *
+     * @return return the isLeaf
+     */
     public Boolean getIsLeaf() {
         return isLeaf;
     }
 
+    /**
+     * Set isLeaf.
+     *
+     * @param isLeaf the isLeaf to set
+     */
     public void setIsLeaf(Boolean isLeaf) {
         this.isLeaf = isLeaf;
     }

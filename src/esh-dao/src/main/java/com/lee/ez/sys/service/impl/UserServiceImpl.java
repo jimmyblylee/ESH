@@ -32,8 +32,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lee.ez.sys.entity.SysOrg;
 import com.lee.ez.sys.entity.SysUser;
+import com.lee.ez.sys.entity.SysUserAccount;
+import com.lee.ez.sys.entity.SysUserPhoto;
 import com.lee.ez.sys.service.UserService;
-import com.lee.jwaf.exception.ServiceException;
+import com.lee.jwaf.exception.WarnException;
 import com.lee.util.ObjectUtils;
 import com.lee.util.PasswordUtils;
 import com.lee.util.StringUtils;
@@ -74,11 +76,18 @@ public class UserServiceImpl implements UserService {
      * @return 用户实体，拥有照片
      */
     @Transactional(readOnly = true)
-    public SysUser getUserWithPhoto(Integer id) {
-        final SysUser user = get(id);
-        //noinspection ResultOfMethodCallIgnored
-        user.getPhoto();
-        return user;
+    public SysUserPhoto getUserPhoto(Integer id) {
+        return em.find(SysUserPhoto.class, id);
+    }
+
+    /**
+     * 根据id获得用户帐号.
+     * @param id 用户id
+     * @return 用户帐号
+     */
+    @Transactional(readOnly = true)
+    public SysUserAccount getUserAccount(Integer id) {
+        return em.find(SysUserAccount.class, id);
     }
 
     /**
@@ -107,7 +116,7 @@ public class UserServiceImpl implements UserService {
 
         query.setParameter("isEnabled", condition.getIsEnabled());
         if (!StringUtils.isEmpty(condition.getName())) {
-            query.setParameter(":userName", "%" + condition.getName() + "%");
+            query.setParameter("userName", "%" + condition.getName() + "%");
         }
         if (!ObjectUtils.isEmpty(condition.getOrg()) && !ObjectUtils.isEmpty(condition.getOrg().getId())) {
             query.setParameter("orgId", condition.getOrg().getId());
@@ -143,7 +152,7 @@ public class UserServiceImpl implements UserService {
 
         query.setParameter("isEnabled", condition.getIsEnabled());
         if (!StringUtils.isEmpty(condition.getName())) {
-            query.setParameter(":userName", "%" + condition.getName() + "%");
+            query.setParameter("userName", "%" + condition.getName() + "%");
         }
         if (!ObjectUtils.isEmpty(condition.getOrg()) && !ObjectUtils.isEmpty(condition.getOrg().getId())) {
             query.setParameter("orgId", condition.getOrg().getId());
@@ -159,33 +168,37 @@ public class UserServiceImpl implements UserService {
      * 创建用户.
      * @param entity 用户游离实体
      * @return 持久实体
-     * @throws ServiceException 账号没校验通过
+     * @throws WarnException 账号没校验通过
      */
-    public SysUser create(SysUser entity) throws ServiceException {
-        if (checkUserAccount(entity)) {
-            throw new ServiceException("有重复的账号，不能使用这个账号！");
+    public SysUser create(SysUser entity) throws WarnException {
+        final SysUserAccount account = entity.getAccount();
+        entity.setAccount(null);
+        final SysUserPhoto photo = entity.getPhoto();
+        entity.setPhoto(null);
+        if (checkUserAccount(account)) {
+            throw new WarnException("有重复的账号，不能使用这个账号！");
         }
         entity.setOrg(em.find(SysOrg.class, entity.getOrg().getId()));
         em.persist(entity);
+        em.flush();
+        final SysUserAccount accountInDB = getUserAccount(entity.getId());
+        accountInDB.setAccount(account.getAccount());
+        accountInDB.setPwd(PasswordUtils.encryptByMD5(account.getPwd()));
+
+        final SysUserPhoto photoInDB = getUserPhoto(entity.getId());
+        photoInDB.setData(photo.getData());
         return entity;
     }
 
     /**
      * 更新用户实体.只更新用户名、电话、邮箱、头像
      * @param entity 实体
-     * @throws ServiceException 账号没校验通过
      */
-    public void update(SysUser entity) throws ServiceException {
+    public void update(SysUser entity) {
         final SysUser entityInDB = em.find(SysUser.class, entity.getId());
-        if (checkUserAccount(entity)) {
-            throw new ServiceException("有重复的账号，不能使用这个账号！");
-        }
-
-        entityInDB.setAccount(entity.getAccount());
         entityInDB.setName(entity.getName());
         entityInDB.setTel(entity.getTel());
         entityInDB.setMail(entity.getMail());
-        entityInDB.setPhoto(entity.getPhoto());
     }
 
     /**
@@ -195,8 +208,8 @@ public class UserServiceImpl implements UserService {
      */
     @SuppressWarnings("WeakerAccess")
     @Transactional(readOnly = true)
-    public boolean checkUserAccount(SysUser user) {
-        String hql = "  select count(u) from SysUser as u";
+    public boolean checkUserAccount(SysUserAccount user) {
+        String hql = "  select count(u) from SysUserAccount as u";
         hql += " where u.account = :account";
         if (!ObjectUtils.isEmpty(user.getId())) {
             hql += " and u.id <> :userId";
@@ -212,10 +225,24 @@ public class UserServiceImpl implements UserService {
     /**
      * 更新用户密码.
      * @param entity 用户实体
+     * @throws WarnException 账号没校验通过
      */
-    public void updatePwd(SysUser entity) {
-        final SysUser entityInDB = em.find(SysUser.class, entity.getId());
+    public void updateAccount(SysUserAccount entity) throws WarnException {
+        if (checkUserAccount(entity)) {
+            throw new WarnException("有重复的账号，不能使用这个账号！");
+        }
+        final SysUserAccount entityInDB = getUserAccount(entity.getId());
+        entityInDB.setAccount(entity.getAccount());
         entityInDB.setPwd(PasswordUtils.encryptByMD5(entity.getPwd()));
+    }
+
+    /**
+     * 更新头像.
+     * @param photo 头像实体
+     */
+    public void updatePhoto(SysUserPhoto photo) {
+        final SysUserPhoto photoInDB = getUserPhoto(photo.getId());
+        photoInDB.setData(photo.getData());
     }
 
     /**

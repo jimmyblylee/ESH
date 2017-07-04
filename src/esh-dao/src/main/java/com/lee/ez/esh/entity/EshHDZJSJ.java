@@ -36,7 +36,7 @@ import com.lee.ez.sys.entity.SysUser;
 @Entity
 @Table(name = "ESH_HD_ZJ_SJ")
 @SuppressWarnings("unused")
-public final class EshHDZJSJ {
+public class EshHDZJSJ {
     /** 活动ID.**/
     @Id
     @Column(name = "SJ_ID")
@@ -62,42 +62,92 @@ public final class EshHDZJSJ {
     @Column(name = "SJ_CZSJ")
     private String czsj;
 
+    /**
+     * Get the id.
+     *
+     * @return return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Set id.
+     *
+     * @param id the id to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Get the hd.
+     *
+     * @return return the hd
+     */
     public EshHD getHd() {
         return hd;
     }
 
+    /**
+     * Set hd.
+     *
+     * @param hd the hd to set
+     */
     public void setHd(EshHD hd) {
         this.hd = hd;
     }
 
+    /**
+     * Get the bz.
+     *
+     * @return return the bz
+     */
     public String getBz() {
         return bz;
     }
 
+    /**
+     * Set bz.
+     *
+     * @param bz the bz to set
+     */
     public void setBz(String bz) {
         this.bz = bz;
     }
 
+    /**
+     * Get the czr.
+     *
+     * @return return the czr
+     */
     public SysUser getCzr() {
         return czr;
     }
 
+    /**
+     * Set czr.
+     *
+     * @param czr the czr to set
+     */
     public void setCzr(SysUser czr) {
         this.czr = czr;
     }
 
+    /**
+     * Get the czsj.
+     *
+     * @return return the czsj
+     */
     public String getCzsj() {
         return czsj;
     }
 
+    /**
+     * Set czsj.
+     *
+     * @param czsj the czsj to set
+     */
     public void setCzsj(String czsj) {
         this.czsj = czsj;
     }
