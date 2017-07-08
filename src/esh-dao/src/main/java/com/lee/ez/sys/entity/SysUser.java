@@ -21,9 +21,6 @@ package com.lee.ez.sys.entity;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 /**
  * Description: 系统用户.<br>
  * Created by Jimmybly Lee on 2017/6/20.
@@ -64,13 +61,12 @@ public class SysUser {
     private Boolean isEnabled;
 
     /** 账号. */
-    @OneToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", insertable = false, updatable = false)
     private SysUserAccount account;
 
     /** 图片. */
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", insertable = false, updatable = false)
     private SysUserPhoto photo;
 

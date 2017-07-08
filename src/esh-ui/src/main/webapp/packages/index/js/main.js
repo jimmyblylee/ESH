@@ -28,6 +28,7 @@ angular.module("WebApp", [
     "oc.lazyLoad",
     "ngSanitize",
     "ui.select",
+    "mgcrea.ngStrap",
 
     "chieffancypants.loadingBar"
 ]);
@@ -99,6 +100,7 @@ angular.module('WebApp').factory('httpInterceptor', ['$q', function ($q) {
             } else if (response.status === 401 || response.status === 403 || response.status === 417) {
                 if (response.data && response.data['errLevel'] && response.data['errLevel'] === "warning") {
                     errorDetail += response.data['errMsg'];
+                    console.log(response.data);
                 } else {
                     errorDetail += "请求发生了错误：";
                     errorDetail += "<span>" + response.status + "</span>";
@@ -116,8 +118,9 @@ angular.module('WebApp').factory('httpInterceptor', ['$q', function ($q) {
                     errorDetail += "<span class='bold margin-right-10 font-grey-cascade'>描述:</span> " + response.data['errMsg'];
                 }
             }
+            var containerId = response.data["errContainer"] ? response.data["errContainer"] : ".page-container .page-content .container .main-error-div";
             App.alert({
-                container: $(".page-container .page-content .container .main-error-div"),
+                container: $(containerId),
                 place: 'append', // append or prepent in container
                 type: 'warning', // alert's type
                 message: errorDetail, // alert's message
@@ -227,10 +230,14 @@ angular.module('WebApp').config(['$stateProvider', '$urlRouterProvider', functio
 }]);
 
 /* Init global settings and run the app */
-angular.module('WebApp').run(["$rootScope", "settings", "$state", "$location", function ($rootScope, settings, $state, $location) {
+angular.module('WebApp').run(["$rootScope", "settings", "$state", function ($rootScope, settings, $state) {
     $rootScope.cacheVersion = "?" + $("html").attr("cacheVersion");
     $rootScope.$state = $state; // state to be accessed from view
     $rootScope.$settings = settings; // state to be accessed from view
+    // 一些业务上可能的默认配置
+    $.getJSON("packages/index/json/config.json", function(obj) {
+        $rootScope.cfg = obj;
+    });
 
     /*
      路由和权限配置过程，需要同步处理（不能异步）

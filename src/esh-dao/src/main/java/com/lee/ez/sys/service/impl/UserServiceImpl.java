@@ -100,6 +100,9 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public List<SysUser> query(SysUser condition, Integer start, Integer limit) {
         String hql = "  from SysUser as u";
+        hql += " left join fetch u.org";
+        hql += " left join fetch u.account";
+        hql += " left join fetch u.photo";
         hql += " where u.isEnabled = :isEnabled";
         if (!StringUtils.isEmpty(condition.getName())) {
             hql += " and u.name like :userName";
@@ -178,16 +181,23 @@ public class UserServiceImpl implements UserService {
         if (checkUserAccount(account)) {
             throw new WarnException("有重复的账号，不能使用这个账号！");
         }
-        entity.setOrg(em.find(SysOrg.class, entity.getOrg().getId()));
-        em.persist(entity);
-        em.flush();
-        final SysUserAccount accountInDB = getUserAccount(entity.getId());
-        accountInDB.setAccount(account.getAccount());
-        accountInDB.setPwd(PasswordUtils.encryptByMD5(account.getPwd()));
 
-        final SysUserPhoto photoInDB = getUserPhoto(entity.getId());
-        photoInDB.setData(photo.getData());
-        return entity;
+        // 先处理一对一关联的末端：account
+        account.setPwd(PasswordUtils.encryptByMD5(account.getPwd()));
+        em.persist(account);
+        em.flush();
+
+        em.find(SysUserPhoto.class, account.getId()).setData(photo.getData());
+
+        final SysUser entityInDB = em.find(SysUser.class, account.getId());
+
+        entityInDB.setOrg(em.find(SysOrg.class, entity.getOrg().getId()));
+        entityInDB.setName(entity.getName());
+        entityInDB.setMail(entity.getMail());
+        entityInDB.setTel(entity.getTel());
+        entityInDB.setIsEnabled(true);
+
+        return entityInDB;
     }
 
     /**
@@ -199,6 +209,12 @@ public class UserServiceImpl implements UserService {
         entityInDB.setName(entity.getName());
         entityInDB.setTel(entity.getTel());
         entityInDB.setMail(entity.getMail());
+
+        entityInDB.getPhoto().setData(entity.getPhoto().getData());
+
+        if (!checkUserAccount(entity.getAccount())) {
+            entityInDB.getAccount().setAccount(entity.getAccount().getAccount());
+        }
     }
 
     /**

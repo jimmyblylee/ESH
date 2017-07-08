@@ -33,6 +33,10 @@
         "templateUrl": "packages/sys/views/user/main.html",
         "controller": "UserListCtrl",
         "files": [
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/common/js/UploadPhotoCtrl.js",
             "packages/sys/js/user/UserListCtrl.js",
             "packages/sys/js/user/UserUpdateCtrl.js"
         ]
@@ -46,6 +50,10 @@
         "templateUrl": "packages/sys/views/user/main.html",
         "controller": "UserListCtrl",
         "files": [
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/common/js/UploadPhotoCtrl.js",
             "packages/sys/js/user/UserListCtrl.js",
             "packages/sys/js/user/UserUpdateCtrl.js"
         ]

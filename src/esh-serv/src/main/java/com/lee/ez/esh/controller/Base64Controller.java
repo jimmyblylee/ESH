@@ -62,7 +62,7 @@ public class Base64Controller extends AbstractControllerSupport {
     public void convertImg2Base64() throws ServiceException {
         try {
             final MultipartHttpServletRequest fileReq = (MultipartHttpServletRequest) servletRequest;
-            final InputStream uploadFileStream = fileReq.getFile("salesImage").getInputStream();
+            final InputStream uploadFileStream = fileReq.getFile("photo").getInputStream();
             final Base64 encoder = new Base64();
             final byte[] data = new byte[uploadFileStream.available()];
             //noinspection ResultOfMethodCallIgnored
@@ -119,8 +119,8 @@ public class Base64Controller extends AbstractControllerSupport {
         final Integer srcWidth = srcBufferedImage.getWidth();
         final Integer srcHeight = srcBufferedImage.getHeight();
         final Image srcImage = srcBufferedImage.getScaledInstance(srcWidth, srcHeight, Image.SCALE_DEFAULT);
-        Assert.isTrue((cut.startX + cut.width) < srcWidth);
-        Assert.isTrue((cut.startY + cut.height) < srcHeight);
+        Assert.isTrue((cut.startX + cut.width) <= srcWidth);
+        Assert.isTrue((cut.startY + cut.height) <= srcHeight);
 
         // 剪裁
         final ImageFilter cropFilter = new CropImageFilter(cut.startX, cut.startY, cut.width, cut.height);

@@ -13,7 +13,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">部门</label>
                     <div class="col-md-9">
-                        <div class="input-group">
+                        <div class="input-icon right">
+                            <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.org = undefined"></i>
                             <ui-select ng-model="condition.org" theme="bootstrap">
                                 <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
                                 <ui-select-choices repeat="item in orgList | filter: $select.search">
@@ -21,10 +22,6 @@
                                     <small ng-bind-html="'电话：' + item.tel | highlight: $select.search"></small>
                                 </ui-select-choices>
                             </ui-select>
-                            <span class="input-group-btn">
-                                <a href="javascript:" class="btn btn-default" ng-click="condition.org = undefined">
-                                    <i class="icon-trash"></i></a>
-                            </span>
                         </div>
                     </div>
                 </div>
@@ -59,7 +56,7 @@
         </div>
         <div class="tools">
             <a href="javascript:" class="fullscreen"></a>
-            <a href="javascript:" class="reload"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
         </div>
         <div class="actions">
             <!--suppress HtmlUnknownAnchorTarget -->
@@ -96,13 +93,16 @@
                         </td>
                         <td>
                             <!-- 启用/禁用 -->
-                            <a href="javascript:" class="btn btn-xs red"
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
                                ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
                                 <i class="fa fa-ban"></i>
                             </a>
-                            <a href="javascript:" class="btn btn-xs green"
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
                                ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
                                 <i class="fa fa-recycle"></i>
+                            </a>
+                            <a href="javascript:" class="btn btn-xs yellow-gold" ng-click="resetPwd(item)">
+                                <i class="icon-key"></i>
                             </a>
                             <!-- 编辑 -->
                             <!--suppress HtmlUnknownAnchorTarget -->

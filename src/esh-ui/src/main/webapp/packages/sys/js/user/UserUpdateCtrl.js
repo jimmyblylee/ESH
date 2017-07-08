@@ -30,7 +30,7 @@ angular.module('WebApp').controller('UserUpdateCtrl', ['$scope', "$ajaxCall", fu
     $scope.submit = function () {
         $ajaxCall.post({
             data: {
-                controller: "DictController",
+                controller: "UserController",
                 method: $scope.method,
                 entity: JSON.stringify($scope.entity)
             },
@@ -56,5 +56,12 @@ angular.module('WebApp').controller('UserUpdateCtrl', ['$scope', "$ajaxCall", fu
         success: function(data) {
             $scope.natureList = data.result;
         }
-    })
+    });
+
+    $scope.prepare2SetPhoto = function() {
+        var uploadModalScope = $("#uploadPhoto").scope();
+        uploadModalScope.$on("submit", function(event, data) {
+            $scope.entity.photo.data = data;
+        });
+    }
 }]);

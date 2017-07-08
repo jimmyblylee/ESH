@@ -45,7 +45,6 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
         "method": "query",
         callback: function (success) {
             $scope.list = success.data.result;
-            console.log($scope.list);
         }
     });
 
@@ -95,7 +94,14 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
         var scope = $("#updateUserModalDiv").scope();
         scope.title = "添加用户信息";
         scope.method = "create";
-        scope.entity = {};
+        scope.entity = {
+            account: {
+                pwd: "12345"
+            },
+            photo: {
+                data: $rootScope.cfg ["defaultPhoto"]
+            }
+        };
 
         scope.$on("submitted", function () {
             $scope.load();
@@ -113,6 +119,32 @@ angular.module('WebApp').controller('UserListCtrl', ['$rootScope', '$scope', "$l
 
         scope.$on("submitted", function () {
             $scope.load();
+        });
+    };
+
+    $scope.resetPwd = function(item) {
+        bootbox.dialog({
+            title: "请确认",
+            message: "是否为" + item.name + "重置密码？",
+            buttons: {
+                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+                danger: {
+                    label: " 重 置 ！ ",
+                    className: "icon-key yellow-gold",
+                    callback: function () {
+                        $ajaxCall.post({
+                            data: {
+                                controller: "UserController",
+                                method: "changePassword",
+                                entity: JSON.stringify({id: item.id, account: item.account.account, pwd: "12345"})
+                            },
+                            success: function() {
+                                bootbox.alert({title: "提示", message: "密码已经重置完毕，重置为12345"});
+                            }
+                        });
+                    }
+                }
+            }
         });
     };
 
