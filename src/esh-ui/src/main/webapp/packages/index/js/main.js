@@ -24,7 +24,6 @@
 /* Metronic App */
 angular.module("WebApp", [
     "ui.router",
-    "ui.bootstrap",
     "oc.lazyLoad",
     "ngSanitize",
     "ngAnimate",
