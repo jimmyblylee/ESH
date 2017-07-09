@@ -27,8 +27,10 @@ angular.module("WebApp", [
     "ui.bootstrap",
     "oc.lazyLoad",
     "ngSanitize",
+    "ngAnimate",
     "ui.select",
-    "mgcrea.ngStrap",
+    "mgcrea.ngStrap.tooltip",
+    "mgcrea.ngStrap.datepicker",
 
     "chieffancypants.loadingBar"
 ]);
