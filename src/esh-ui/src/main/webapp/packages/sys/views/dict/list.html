@@ -108,17 +108,18 @@
                         </td>
                         <td>
                             <!-- 启用/禁用 -->
-                            <a href="javascript:" class="btn btn-xs red"
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
                                ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
                                 <i class="fa fa-ban"></i>
                             </a>
-                            <a href="javascript:" class="btn btn-xs green"
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
                                ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
                                 <i class="fa fa-recycle"></i>
                             </a>
                             <!-- 编辑 -->
                             <!--suppress HtmlUnknownAnchorTarget -->
-                            <a href="/#updateDictModalDiv" data-toggle="modal" class="btn btn-xs blue" ng-click="prepareToUpdate(item)">
+                            <a href="/#updateDictModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>

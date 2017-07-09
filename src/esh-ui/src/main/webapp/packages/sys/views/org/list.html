@@ -23,7 +23,8 @@
                     <div class="col-md-9">
                         <div class="md-checkbox-inline">
                             <div class="md-checkbox">
-                                <input type="checkbox" id="org_search_zt" class="md-check" checked ng-model="condition.isEnabled">
+                                <input type="checkbox" id="org_search_zt" class="md-check" checked
+                                       ng-model="condition.isEnabled">
                                 <label for="org_search_zt">
                                     <span></span>
                                     <span class="check"></span>
@@ -77,17 +78,18 @@
                         </td>
                         <td>
                             <!-- 启用/禁用 -->
-                            <a href="javascript:" class="btn btn-xs red"
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
                                ng-if="item.isEnabled" ng-click="changeStatus(item, false)">
                                 <i class="fa fa-ban"></i>
                             </a>
-                            <a href="javascript:" class="btn btn-xs green"
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
                                ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
                                 <i class="fa fa-recycle"></i>
                             </a>
                             <!-- 编辑 -->
                             <!--suppress HtmlUnknownAnchorTarget -->
-                            <a href="/#updateOrgModalDiv" data-toggle="modal" class="btn btn-xs blue" ng-click="prepareToUpdate(item)">
+                            <a href="/#updateOrgModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
                                 <i class="fa fa-edit"></i>
                             </a>
                         </td>
