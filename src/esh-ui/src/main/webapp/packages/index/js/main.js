@@ -26,7 +26,6 @@ angular.module("WebApp", [
     "ui.router",
     "oc.lazyLoad",
     "ngSanitize",
-    "ngAnimate",
     "ui.select",
     "mgcrea.ngStrap.tooltip",
     "mgcrea.ngStrap.datepicker",
