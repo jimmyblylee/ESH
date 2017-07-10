@@ -101,7 +101,8 @@
                                ng-if="!item.isEnabled" ng-click="changeStatus(item, true)">
                                 <i class="fa fa-recycle"></i>
                             </a>
-                            <a href="javascript:" class="btn btn-xs yellow-gold" ng-click="resetPwd(item)">
+                            <a href="javascript:" class="btn btn-xs yellow-gold"
+                               bs-tooltip data-title="重置密码" ng-click="resetPwd(item)">
                                 <i class="icon-key"></i>
                             </a>
                             <!-- 编辑 -->

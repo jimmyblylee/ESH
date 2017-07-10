@@ -18,10 +18,10 @@
             "pageTitle": "权限管理",
             "pageSubTitle": "为用户分配可见菜单"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/sys/views/auth/main.html",
+        "controller": "AuthCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/sys/js/auth/AuthCtrl.js"
         ]
     },
     "sys-user-org": {

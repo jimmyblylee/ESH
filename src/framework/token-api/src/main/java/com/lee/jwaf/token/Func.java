@@ -89,12 +89,12 @@ public interface Func extends Serializable {
     public void setIcon(String icon);
 
     /**
-     * @return the isVisable
+     * @return the isVisible
      */
-    public Boolean getIsVisable();
+    public Boolean getIsVisible();
 
     /**
-     * @param isVisable the isVisable to set
+     * @param isVisible the isVisible to set
      */
-    public void setIsVisable(Boolean isVisable);
+    public void setIsVisible(Boolean isVisible);
 }

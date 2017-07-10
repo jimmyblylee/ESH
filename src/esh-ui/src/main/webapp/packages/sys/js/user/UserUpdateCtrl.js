@@ -60,6 +60,7 @@ angular.module('WebApp').controller('UserUpdateCtrl', ['$scope', "$ajaxCall", fu
 
     $scope.prepare2SetPhoto = function() {
         var uploadModalScope = $("#uploadPhoto").scope();
+        uploadModalScope.init();
         uploadModalScope.$on("submit", function(event, data) {
             $scope.entity.photo.data = data;
         });

@@ -24,7 +24,47 @@
  */
 angular.module("WebApp").controller("UploadPhotoCtrl", ["$rootScope", "$scope", "$http", "$ajaxCall", function ($rootScope, $scope, $http, $ajaxCall) {
 
-    $scope.sourceImage = $rootScope.cfg["defaultPhoto"];
+    $scope.preview = function() {
+        $ajaxCall.post({
+            data: {
+                controller: "Base64Controller",
+                method: "formatBase64Img",
+                x: $scope.c.x,
+                y: $scope.c.y,
+                width: $scope.c.w,
+                height: $scope.c.h,
+                data: $scope.sourceImage
+            },
+            success: function(res) {
+                $scope.previewImage = res.result;
+            }
+        })
+    };
+
+    $scope.init = function() {
+        $scope.c = {x:0, y:0, w:299, h:300};
+        $scope.sourceImage = $rootScope.cfg["defaultPhoto"];
+        $scope.previewImage = $scope.sourceImage;
+        if (!$scope.latestJcrop) {
+            var onJcropChange = function(c) {
+                $scope.c = c;
+            };
+            $("#sourceImageDom").Jcrop({
+                aspectRatio: 400/400,
+                onChange: onJcropChange,
+                onSelect: onJcropChange,
+                drawBorders: true,
+                boxHeight: 300,
+                onRelease: function(){$scope.c = undefined}
+            }, function(){
+                $scope.latestJcrop = this;
+                $scope.latestJcrop.setImage("data:image/png;base64,"+$scope.sourceImage);
+            });
+        } else {
+            $scope.latestJcrop.setImage("data:image/png;base64,"+$scope.sourceImage);
+        }
+    };
+    $scope.init();
 
     $scope.upload = function() {
         var files = $scope["outSelector"] ? $("input[type='file'][name='photo']", $($scope["outSelector"])) : $("input[type='file'][name='photo']");
@@ -44,40 +84,8 @@ angular.module("WebApp").controller("UploadPhotoCtrl", ["$rootScope", "$scope", 
             transformRequest : angular.identity
         }).success(function(success) {
             $scope.sourceImage = success.result;
-
-            if (!$scope.latestJcrop) {
-                var onJcropChange = function(c) {
-                    $scope.c = c;
-                };
-                $("#sourceImageDom").Jcrop({
-                    aspectRatio: 400/400,
-                    onChange: onJcropChange,
-                    onSelect: onJcropChange,
-                    boxHeight: 300,
-                    onRelease: function(){$scope.c = undefined}
-                }, function(){
-                    $scope.latestJcrop = this;
-                });
-            }
             $scope.latestJcrop.setImage("data:image/png;base64,"+$scope.sourceImage);
         });
-    };
-
-    $scope.preview = function() {
-        $ajaxCall.post({
-            data: {
-                controller: "Base64Controller",
-                method: "formatBase64Img",
-                x: $scope.c.x,
-                y: $scope.c.y,
-                width: $scope.c.w,
-                height: $scope.c.h,
-                data: $scope.sourceImage
-            },
-            success: function(res) {
-                $scope.previewImage = res.result;
-            }
-        })
     };
 
     $scope.submit = function() {

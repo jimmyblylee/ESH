@@ -154,12 +154,12 @@ public final class EshFunc implements FuncTree, Serializable {
     }
 
     @Override
-    public Boolean getIsVisable() {
+    public Boolean getIsVisible() {
         return false;
     }
 
     @Override
-    public void setIsVisable(Boolean isVisable) {
+    public void setIsVisible(Boolean isVisible) {
 
     }
 }

@@ -30,7 +30,8 @@ angular.module("WebApp", [
     "mgcrea.ngStrap.tooltip",
     "mgcrea.ngStrap.datepicker",
 
-    "chieffancypants.loadingBar"
+    "chieffancypants.loadingBar",
+    "frapontillo.bootstrap-switch"
 ]);
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */

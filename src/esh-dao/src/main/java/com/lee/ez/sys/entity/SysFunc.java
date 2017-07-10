@@ -83,6 +83,10 @@ public class SysFunc {
     private Boolean isLeaf;
     // CSON: LineLength
 
+    /** 是否已经被赋予. */
+    @Transient
+    private Boolean isAssigned = false;
+
     /**
      * Get the id.
      *
@@ -261,5 +265,23 @@ public class SysFunc {
      */
     public void setIsLeaf(Boolean isLeaf) {
         this.isLeaf = isLeaf;
+    }
+
+    /**
+     * Get the isAssigned.
+     *
+     * @return return the isAssigned
+     */
+    public Boolean getIsAssigned() {
+        return isAssigned;
+    }
+
+    /**
+     * Set isAssigned.
+     *
+     * @param isAssigned the isAssigned to set
+     */
+    public void setIsAssigned(Boolean isAssigned) {
+        this.isAssigned = isAssigned;
     }
 }

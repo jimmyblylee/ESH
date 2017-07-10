@@ -69,6 +69,7 @@ public class AuthServiceImpl implements AuthService {
      * @param pwd 密码
      * @return user id 获得 空（如果找不到）
      */
+    @Transactional(readOnly = true)
     public Integer checkAccountAndPwd(String account, String pwd) {
         String hql = "from SysUserAccount as u";
         hql += " where u.account = :account";
@@ -109,6 +110,7 @@ public class AuthServiceImpl implements AuthService {
      * @param userId 用户id
      * @return 用户令牌
      */
+    @Transactional(readOnly = true)
     public Token getTokenByUserId(Integer userId) {
         final EshToken token = new EshToken();
         final SysUser user = em.find(SysUser.class, userId);
@@ -145,6 +147,7 @@ public class AuthServiceImpl implements AuthService {
      * @param ids 权限列表
      * @return 权限过滤后的跟菜单数据传输对象
      */
+    @Transactional(readOnly = true)
     private EshFunc fetchChildren(SysFunc node, List<Integer> ids) {
         if (node.getIsLeaf() && !ids.contains(node.getId())) {
             // 如果是最终功能，而且，不在权限列表中，那么返回空，等待“不”加到列表中
@@ -179,6 +182,7 @@ public class AuthServiceImpl implements AuthService {
      * @param func 树节点
      * @return 菜单列表
      */
+    @Transactional(readOnly = true)
     private List<Func> getFuncList(FuncTree func) {
         final List<Func> result = new LinkedList<>();
         result.add(func);
@@ -188,6 +192,41 @@ public class AuthServiceImpl implements AuthService {
             }
         }
         return result;
+    }
+
+    /**
+     * 根据用户id获得用户拥有的权限.
+     * @param userId 用户id
+     * @return 用户拥有的权限id列表
+     */
+    @Transactional(readOnly = true)
+    public List<Number> queryFuncIdByUser(Integer userId) {
+        //noinspection unchecked
+        return em.createNativeQuery("SELECT FUNC_ID FROM SYS_USER_FUNC WHERE USER_ID = :userId")
+            .setParameter("userId", userId).getResultList();
+    }
+
+    /**
+     * 获得所有的功能菜单，并以树结构展示.
+     * @return 树结构功能菜单。
+     */
+    @Transactional(readOnly = true)
+    public SysFunc getAllFuncByTree() {
+        SysFunc root = em.find(SysFunc.class, -1000000);
+        fetchChildren(root);
+        return root;
+    }
+
+    /**
+     * 递归获取子节点.
+     * @param node 当前节点.
+     */
+    private void fetchChildren(SysFunc node) {
+        if (!node.getIsLeaf()) {
+            for (SysFunc child : node.getChildren()) {
+                fetchChildren(child);
+            }
+        }
     }
 
 }

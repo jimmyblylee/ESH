@@ -19,6 +19,9 @@
 
 package com.lee.ez.sys.service;
 
+import java.util.List;
+
+import com.lee.ez.sys.entity.SysFunc;
 import com.lee.jwaf.token.*;
 
 /**
@@ -52,4 +55,16 @@ public interface AuthService extends AuthorizationTokenService {
      */
     Token getTokenByUserId(Integer userId);
 
+    /**
+     * 根据用户id获得用户拥有的权限.
+     * @param userId 用户id
+     * @return 用户拥有的权限id列表
+     */
+    List<Number> queryFuncIdByUser(Integer userId);
+
+    /**
+     * 获得所有的功能菜单，并以树结构展示.
+     * @return 树结构功能菜单。
+     */
+    SysFunc getAllFuncByTree();
 }
