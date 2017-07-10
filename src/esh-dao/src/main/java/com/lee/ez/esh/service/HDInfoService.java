@@ -19,29 +19,11 @@
 
 package com.lee.ez.esh.service;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 /**
  * Description: 活动服务信息维护服务.<br>
  * Created by Jimmybly Lee on 2017/6/28.
  *
  * @author Jimmybly Lee
  */
-@Transactional
-@Service
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@SuppressWarnings("unused")
-public class HDInfoService {
-
-    // CSOFF: MemberName
-    /** Hibernate 数据库操作管理器. **/
-    @PersistenceContext(unitName = "esh_mgmt")
-    private EntityManager em;
-    // CSON: MemberName
+public interface HDInfoService {
 }

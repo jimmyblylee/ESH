@@ -17,57 +17,74 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.lee.ez.esh.controller;
+package com.lee.ez.sys.controller;
 
 import javax.annotation.Resource;
 
-import com.lee.ez.sys.entity.SysDictionary;
-import com.lee.jwaf.exception.WarnException;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.lee.ez.sys.service.DictService;
+import com.lee.ez.sys.entity.SysUser;
+import com.lee.ez.sys.entity.SysUserAccount;
+import com.lee.ez.sys.entity.SysUserPhoto;
+import com.lee.ez.sys.service.UserService;
 import com.lee.jwaf.action.AbstractControllerSupport;
+import com.lee.jwaf.exception.WarnException;
 
 /**
- * Description: 字典管理.<br>
+ * Description: 用户管理.<br>
  * Created by Jimmybly Lee on 2017/7/3.
  *
  * @author Jimmybly Lee
  */
-@Controller("DictController")
+@Controller("UserController")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SuppressWarnings("unused")
-public class DictController extends AbstractControllerSupport {
+public class UserController extends AbstractControllerSupport {
 
-    /** 字典服务. */
+    /** 用户服务. */
     @Resource
-    private DictService service;
+    private UserService service;
 
     /**
      * 查询实体.
      */
     public void query() {
-        final SysDictionary condition = workDTO.convertJsonToBeanByKey("condition", SysDictionary.class);
+        final SysUser condition = workDTO.convertJsonToBeanByKey("condition", SysUser.class);
         workDTO.setResult(service.query(condition, workDTO.getStart(), workDTO.getLimit()));
         workDTO.setTotle(service.count(condition));
     }
 
     /**
      * 创建实体.
-     * @throws WarnException 有已经存在重复的类型和编码
+     * @throws WarnException 有重复的账号，不能创建
      */
     public void create() throws WarnException {
-        service.create(workDTO.convertJsonToBeanByKey("entity", SysDictionary.class));
+        service.create(workDTO.convertJsonToBeanByKey("entity", SysUser.class));
     }
 
     /**
      * 修改实体.
-     * @throws WarnException 有已经存在重复的类型和编码
+     * @throws WarnException 有重复的账号，不能修改
      */
     public void update() throws WarnException {
-        service.update(workDTO.convertJsonToBeanByKey("entity", SysDictionary.class));
+        service.update(workDTO.convertJsonToBeanByKey("entity", SysUser.class));
+    }
+
+    /**
+     * 更新账户.
+     * @throws WarnException 有重复的账号，不能修改
+     */
+    public void updateAccount() throws WarnException {
+        service.updateAccount(workDTO.convertJsonToBeanByKey("entity", SysUserAccount.class));
+    }
+
+    /**
+     * 更新头像.
+     */
+    public void updatePhoto() {
+        service.updatePhoto(workDTO.convertJsonToBeanByKey("entity", SysUserPhoto.class));
     }
 
     /**
@@ -82,5 +99,13 @@ public class DictController extends AbstractControllerSupport {
      */
     public void resume() {
         service.changeStatus(workDTO.getInteger("id"), true);
+    }
+
+    /**
+     * 修改密码.
+     * @throws WarnException 有重复的账号，不能修改
+     */
+    public void changePassword() throws WarnException {
+        service.updateAccount(workDTO.convertJsonToBeanByKey("entity", SysUserAccount.class));
     }
 }

@@ -17,7 +17,7 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.lee.ez.esh.service;
+package com.lee.ez.esh.service.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lee.ez.esh.entity.EshZJ;
 import com.lee.ez.esh.entity.ZJZT;
+import com.lee.ez.esh.service.ZJFlowService;
 import com.lee.jwaf.token.Token;
 
 /**
@@ -37,28 +38,47 @@ import com.lee.jwaf.token.Token;
  *
  * @author Jimmybly Lee
  */
-public interface ZJFlowService {
+@Transactional
+@Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@SuppressWarnings("unused")
+public class ZJFlowServiceImpl implements ZJFlowService {
+
+    // CSOFF: MemberName
+    /** Hibernate 数据库操作管理器. **/
+    @PersistenceContext(unitName = "esh_mgmt")
+    private EntityManager em;
+    // CSON: MemberName
 
     /**
      * 提交.
      * @param userToken 操作人
      * @param id 专家ID
      */
-    void tiJiao(Token userToken, Long id);
+    public void tiJiao(Token userToken, Long id) {
+        final EshZJ entity = em.find(EshZJ.class, id);
+        entity.setXt_zt(ZJZT.DSL);
+    }
 
     /**
      * 受理.
      * @param userToken 操作人
      * @param id 专家ID
      */
-    void shouLi(Token userToken, Long id);
+    public void shouLi(Token userToken, Long id) {
+        final EshZJ entity = em.find(EshZJ.class, id);
+        entity.setXt_zt(ZJZT.DSH);
+    }
 
     /**
      * 通过.
      * @param userToken 操作人
      * @param id 专家ID
      */
-    void tongGuo(Token userToken, Long id);
+    public void tongGuo(Token userToken, Long id) {
+        final EshZJ entity = em.find(EshZJ.class, id);
+        entity.setXt_zt(ZJZT.SHTG);
+    }
 
     /**
      * 驳回.
@@ -66,5 +86,8 @@ public interface ZJFlowService {
      * @param id 专家ID
      * @param note 驳回意见
      */
-    void boHui(Token userToken, Long id, String note);
+    public void boHui(Token userToken, Long id, String note) {
+        final EshZJ entity = em.find(EshZJ.class, id);
+        entity.setXt_zt(ZJZT.BBH);
+    }
 }

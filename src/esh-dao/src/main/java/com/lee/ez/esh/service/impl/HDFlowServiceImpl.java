@@ -17,7 +17,7 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.lee.ez.esh.service;
+package com.lee.ez.esh.service.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,44 +27,23 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lee.ez.esh.entity.EshZJ;
-import com.lee.ez.esh.entity.ZJZT;
-import com.lee.jwaf.token.Token;
+import com.lee.ez.esh.service.HDFlowService;
 
 /**
- * Description: 登记专家流程服务.<br>
+ * Description: 活动流程服务.<br>
  * Created by Jimmybly Lee on 2017/6/28.
  *
  * @author Jimmybly Lee
  */
-public interface ZJFlowService {
+@Transactional
+@Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@SuppressWarnings("unused")
+public class HDFlowServiceImpl implements HDFlowService {
 
-    /**
-     * 提交.
-     * @param userToken 操作人
-     * @param id 专家ID
-     */
-    void tiJiao(Token userToken, Long id);
-
-    /**
-     * 受理.
-     * @param userToken 操作人
-     * @param id 专家ID
-     */
-    void shouLi(Token userToken, Long id);
-
-    /**
-     * 通过.
-     * @param userToken 操作人
-     * @param id 专家ID
-     */
-    void tongGuo(Token userToken, Long id);
-
-    /**
-     * 驳回.
-     * @param userToken 操作人
-     * @param id 专家ID
-     * @param note 驳回意见
-     */
-    void boHui(Token userToken, Long id, String note);
+    // CSOFF: MemberName
+    /** Hibernate 数据库操作管理器. **/
+    @PersistenceContext(unitName = "esh_mgmt")
+    private EntityManager em;
+    // CSON: MemberName
 }

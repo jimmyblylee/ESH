@@ -17,7 +17,7 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.lee.ez.esh.controller;
+package com.lee.ez.sys.controller;
 
 import java.util.List;
 

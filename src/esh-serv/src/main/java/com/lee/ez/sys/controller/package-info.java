@@ -18,9 +18,9 @@
  * ***************************************************************************/
 
 /**
- * Description: 专家库控制器包.<br>
- * Created by Jimmybly Lee on 2017/6/20.
+ * Description: sys 控制器包..<br>
+ * Created by Jimmybly Lee on 2017/7/10.
  *
  * @author Jimmybly Lee
  */
-package com.lee.ez.esh.controller;
+package com.lee.ez.sys.controller;

@@ -17,11 +17,19 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.lee.ez.esh.service;
-
-import java.util.List;
+package com.lee.ez.esh.service.impl;
 
 import com.lee.ez.esh.entity.EshZJFZ;
+import com.lee.ez.esh.service.ZJFZService;
+import com.lee.util.ObjectUtils;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Description: 专家辅助信息服务，服务于教育背景、工作经历、奖励情况、研究成果、学术组织.<br>
@@ -29,7 +37,17 @@ import com.lee.ez.esh.entity.EshZJFZ;
  *
  * @author Jimmybly Lee
  */
-public interface ZJFZService {
+@Transactional
+@Service
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@SuppressWarnings("unused")
+public class ZJFZServiceImpl implements ZJFZService {
+
+    // CSOFF: MemberName
+    /** Hibernate 数据库操作管理器. **/
+    @PersistenceContext(unitName = "esh_mgmt")
+    private EntityManager em;
+    // CSON: MemberName
 
     /**
      * 根据专家id返回辅助信息表,时间顺序.
@@ -37,18 +55,32 @@ public interface ZJFZService {
      * @param type 实体类型
      * @return 辅助信息表,时间顺序.
      */
-    List<EshZJFZ> queryJYBJ(Long id, Class type);
+    public List<EshZJFZ> queryJYBJ(Long id, Class type) {
+        //noinspection unchecked,JpaQlInspection
+        return em.createQuery("from " + type + " where zj.id = :id").setParameter("id", id).getResultList();
+    }
 
     /**
      * 将给定的专家辅助信息存储.
      * @param list 辅助信息列表
      */
-    void update(List<EshZJFZ> list);
+    public void update(List<EshZJFZ> list) {
+        for (EshZJFZ entity : list) {
+            if (!ObjectUtils.isEmpty(entity)) {
+                em.merge(entity);
+            } else {
+                em.persist(entity);
+            }
+        }
+    }
 
     /**
      * 删除实体.
      * @param entity 实体
      * @param type 实体类型
      */
-    void remove(EshZJFZ entity, Class type);
+    public void remove(EshZJFZ entity, Class type) {
+        //noinspection unchecked
+        em.remove(em.find(type, entity.getId()));
+    }
 }
