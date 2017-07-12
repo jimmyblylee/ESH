@@ -19,6 +19,9 @@
 
 package com.lee.ez.esh.entity;
 
+import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.JoinColumnOrFormula;
@@ -40,8 +43,9 @@ import com.lee.ez.sys.entity.SysUser;
 @Entity
 @Table(name = "ESH_ZJ")
 @SuppressWarnings("unused")
-public class EshZJ {
+public class EshZJ implements Serializable {
 
+    private static final long serialVersionUID = -7049126603171553458L;
     /** 专家ID.**/
     @Id
     @Column(name = "ZJ_ID")
@@ -87,13 +91,13 @@ public class EshZJ {
     private String jb_sj;
 
     /** 基本信息：简历.**/
-    @Basic(fetch = FetchType.LAZY)
     @Column(name = "ZJ_JB_JL")
     private String jb_jl;
 
     /** 基本信息：照片，base64编码.**/
+    @Lob
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "ZJ_JB_ZP")
+    @Column(name = "ZJ_JB_ZP", columnDefinition = "CLOB")
     private String jb_zp;
 
     /** 工作信息：工作单位.**/
@@ -186,6 +190,25 @@ public class EshZJ {
     /** 系统信息：更新时间（最近一次操作，包括保存和状态）.**/
     @Column(name = "ZJ_XT_GXSJ")
     private String xt_gxsj;
+
+    /** 工作经历. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    private Set<EshZJGZJL> gzjlList;
+    /** 奖励情况.*/
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    private Set<EshZJJLQK> jlqkList;
+    /** 教育背景. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    private Set<EshZJJYBJ> jybjList;
+    /** 兼职. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    private Set<EshZJJZ> jzList;
+    /** 研究成果. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    private Set<EshZJYJCG> yjcgList;
+    /** 研究成果. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    private Set<EshZJZYLB> zylbList;
 
     /**
      * Get the id.
@@ -851,5 +874,113 @@ public class EshZJ {
      */
     public void setXt_gxsj(String xt_gxsj) {
         this.xt_gxsj = xt_gxsj;
+    }
+
+    /**
+     * Get the gzjlList.
+     *
+     * @return return the gzjlList
+     */
+    public Set<EshZJGZJL> getGzjlList() {
+        return gzjlList;
+    }
+
+    /**
+     * Set gzjlList.
+     *
+     * @param gzjlList the gzjlList to set
+     */
+    public void setGzjlList(Set<EshZJGZJL> gzjlList) {
+        this.gzjlList = gzjlList;
+    }
+
+    /**
+     * Get the jlqkList.
+     *
+     * @return return the jlqkList
+     */
+    public Set<EshZJJLQK> getJlqkList() {
+        return jlqkList;
+    }
+
+    /**
+     * Set jlqkList.
+     *
+     * @param jlqkList the jlqkList to set
+     */
+    public void setJlqkList(Set<EshZJJLQK> jlqkList) {
+        this.jlqkList = jlqkList;
+    }
+
+    /**
+     * Get the jybjList.
+     *
+     * @return return the jybjList
+     */
+    public Set<EshZJJYBJ> getJybjList() {
+        return jybjList;
+    }
+
+    /**
+     * Set jybjList.
+     *
+     * @param jybjList the jybjList to set
+     */
+    public void setJybjList(Set<EshZJJYBJ> jybjList) {
+        this.jybjList = jybjList;
+    }
+
+    /**
+     * Get the jzList.
+     *
+     * @return return the jzList
+     */
+    public Set<EshZJJZ> getJzList() {
+        return jzList;
+    }
+
+    /**
+     * Set jzList.
+     *
+     * @param jzList the jzList to set
+     */
+    public void setJzList(Set<EshZJJZ> jzList) {
+        this.jzList = jzList;
+    }
+
+    /**
+     * Get the yjcgList.
+     *
+     * @return return the yjcgList
+     */
+    public Set<EshZJYJCG> getYjcgList() {
+        return yjcgList;
+    }
+
+    /**
+     * Set yjcgList.
+     *
+     * @param yjcgList the yjcgList to set
+     */
+    public void setYjcgList(Set<EshZJYJCG> yjcgList) {
+        this.yjcgList = yjcgList;
+    }
+
+    /**
+     * Get the zylbList.
+     *
+     * @return return the zylbList
+     */
+    public Set<EshZJZYLB> getZylbList() {
+        return zylbList;
+    }
+
+    /**
+     * Set zylbList.
+     *
+     * @param zylbList the zylbList to set
+     */
+    public void setZylbList(Set<EshZJZYLB> zylbList) {
+        this.zylbList = zylbList;
     }
 }

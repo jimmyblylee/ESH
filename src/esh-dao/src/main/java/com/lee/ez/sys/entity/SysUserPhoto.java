@@ -25,6 +25,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.*;
 
+import java.io.Serializable;
+
 /**
  * Description: 系统用户照片.<br>
  * Created by Jimmybly Lee on 2017/6/20.
@@ -34,8 +36,9 @@ import org.hibernate.annotations.*;
 @Entity
 @Table(name = "SYS_USER")
 @SuppressWarnings("unused")
-public class SysUserPhoto {
+public class SysUserPhoto implements Serializable {
 
+    private static final long serialVersionUID = 3194452506187802623L;
     /**
      * Id.
      */

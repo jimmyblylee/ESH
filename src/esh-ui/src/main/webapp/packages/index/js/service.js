@@ -88,5 +88,19 @@ angular.module("WebApp").service("$ajaxCall", ["$http", function($http){
                 return str.join("&");
             }
         }).success(param.success ? param.success : $.noop).error(param.error ? param.error : $.noop);
-    }
+    };
+    this.getDictList = function(scope, nature, key) {
+        this.post({
+            data: {
+                controller: "DictController",
+                method: "query",
+                condition: JSON.stringify({nature: nature, isNature: false, isEnabled: true}),
+                start: 0,
+                limit: 100
+            },
+            success: function(res) {
+                scope[key] = res.result;
+            }
+        });
+    };
 }]);

@@ -19,6 +19,8 @@
 
 package com.lee.ez.esh.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 // CSOFF: MethodCount
@@ -34,7 +36,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ESH_HD_ZJ")
 @SuppressWarnings("unused")
-public class EshHDZJ {
+public class EshHDZJ implements Serializable {
+    private static final long serialVersionUID = -7570424340449338466L;
     /** 活动ID.**/
     @Id
     @Column(name = "HDZJ_ID")

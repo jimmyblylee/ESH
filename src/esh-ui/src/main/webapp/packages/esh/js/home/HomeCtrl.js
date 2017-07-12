@@ -17,35 +17,10 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
-package com.lee.ez.esh.entity;
-
-import java.io.Serializable;
-
 /**
- * Description: 专家辅助信息应该具备的接口.<br>
- * Created by Jimmybly Lee on 2017/6/29.
- *
+ * Description: 首页控制器.<br>
+ * Created by Jimmybly Lee on 2017/7/2.
  * @author Jimmybly Lee
  */
-public interface EshZJFZ extends Serializable {
-    /** Get id.
-     * @return entity id.
-     * */
-    Long getId();
-
-    /** Set Id.
-     * @param id entity id
-     * */
-    void setId(Long id);
-
-    /** Get 专家.
-     * @return 专家
-     * */
-    EshZJ getZj();
-
-    /** Set 专家.
-     * @param zhuanJia 专家
-     * */
-    void setZj(EshZJ zhuanJia);
-
-}
+angular.module('WebApp').controller('HomeCtrl', ['$rootScope', '$scope', function($rootScope, $scope) {
+}]);

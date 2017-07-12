@@ -19,6 +19,8 @@
 
 package com.lee.ez.sys.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
@@ -30,13 +32,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SYS_DICT")
 @SuppressWarnings("unused")
-public class SysDict {
+public class SysDict implements Serializable {
 
     /**
      * 如果是类型，而非具体的字典项，此为标识.
      */
     @Transient
     public static final String CNS_NATURE = "NATURE";
+
+    private static final long serialVersionUID = 719977695136941338L;
 
     /**
      * Id.

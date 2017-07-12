@@ -23,6 +23,8 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.Formula;
 
+import java.io.Serializable;
+
 /**
  * Description: 字典实体类 for 编辑.<br>
  * Created by Jimmybly Lee on 2017/6/20.
@@ -32,8 +34,9 @@ import org.hibernate.annotations.Formula;
 @Entity
 @Table(name = "SYS_DICT")
 @SuppressWarnings("unused")
-public class SysDictionary {
+public class SysDictionary implements Serializable {
 
+    private static final long serialVersionUID = 3229911880935274561L;
     /** Id. */
     @Id
     @Column(name = "DICT_ID")

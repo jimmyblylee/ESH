@@ -23,6 +23,7 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.Formula;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -34,8 +35,9 @@ import java.util.List;
 @Entity
 @Table(name = "SYS_FUNC")
 @SuppressWarnings("unused")
-public class SysFunc {
+public class SysFunc implements Serializable {
 
+    private static final long serialVersionUID = -8861215077537994432L;
     /** Id. */
     @Id
     @Column(name = "FUNC_ID")

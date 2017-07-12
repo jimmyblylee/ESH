@@ -19,57 +19,55 @@
 
 package com.lee.ez.esh.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
 
-import com.lee.ez.sys.entity.SysUser;
+import org.hibernate.annotations.JoinColumnOrFormula;
+import org.hibernate.annotations.JoinColumnsOrFormulas;
+import org.hibernate.annotations.JoinFormula;
+
+import com.lee.ez.sys.entity.SysDict;
 
 // CSOFF: MethodCount
 // CSOFF: ParameterName
 // CSOFF: MethodName
 // CSOFF: MemberName
 /**
- * Description: 活动专家随机记录..<br>
- * Created by Jimmybly Lee on 2017/6/25.
+ * Description: 专家专业类别.<br>
+ * Created by Jimmybly Lee on 2017/7/12.
  *
  * @author Jimmybly Lee
  */
 @Entity
-@Table(name = "ESH_HD_ZJ_SJ")
+@Table(name = "ESH_ZJ_ZYLB")
 @SuppressWarnings("unused")
-public class EshHDZJSJ implements Serializable {
-    private static final long serialVersionUID = -3075221563787064114L;
-    /** 活动ID.**/
+public class EshZJZYLB implements EshZJFZ {
+
+    private static final long serialVersionUID = 751430676588807549L;
+    /** 研究成果ID.**/
     @Id
-    @Column(name = "SJ_ID")
+    @Column(name = "ZYLB_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
     private Long id;
-
-    /** 活动.**/
+    /** 专家.**/
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HD_ID")
-    private EshHD hd;
+    @JoinColumn(name = "ZJ_ID")
+    private EshZJ zj;
 
-    /** 备注.**/
-    @Column(name = "SJ_BZ")
-    private String bz;
-
-    /** 操作人.**/
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SJ_CZR")
-    private SysUser czr;
-
-    /** 操作时间.**/
-    @Column(name = "SJ_CZSJ")
-    private String czsj;
+    /** 专业类别：文化程度，关联字典项“ZYLB”.**/
+    // CSOFF: LineLength
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumnsOrFormulas({
+        @JoinColumnOrFormula(column = @JoinColumn(name = "ZYLB", referencedColumnName = "DICT_CODE", nullable = false)),
+        @JoinColumnOrFormula(formula = @JoinFormula(referencedColumnName = "DICT_NATURE", value = "'ZYLB'")) })
+    private SysDict zylb;
 
     /**
      * Get the id.
      *
      * @return return the id
      */
+    @Override
     public Long getId() {
         return id;
     }
@@ -79,79 +77,46 @@ public class EshHDZJSJ implements Serializable {
      *
      * @param id the id to set
      */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Get the hd.
+     * Get the zj.
      *
-     * @return return the hd
+     * @return return the zj
      */
-    public EshHD getHd() {
-        return hd;
+    @Override
+    public EshZJ getZj() {
+        return zj;
     }
 
     /**
-     * Set hd.
+     * Set zj.
      *
-     * @param hd the hd to set
+     * @param zj the zj to set
      */
-    public void setHd(EshHD hd) {
-        this.hd = hd;
+    @Override
+    public void setZj(EshZJ zj) {
+        this.zj = zj;
     }
 
     /**
-     * Get the bz.
+     * Get the zylb.
      *
-     * @return return the bz
+     * @return return the zylb
      */
-    public String getBz() {
-        return bz;
+    public SysDict getZylb() {
+        return zylb;
     }
 
     /**
-     * Set bz.
+     * Set zylb.
      *
-     * @param bz the bz to set
+     * @param zylb the zylb to set
      */
-    public void setBz(String bz) {
-        this.bz = bz;
-    }
-
-    /**
-     * Get the czr.
-     *
-     * @return return the czr
-     */
-    public SysUser getCzr() {
-        return czr;
-    }
-
-    /**
-     * Set czr.
-     *
-     * @param czr the czr to set
-     */
-    public void setCzr(SysUser czr) {
-        this.czr = czr;
-    }
-
-    /**
-     * Get the czsj.
-     *
-     * @return return the czsj
-     */
-    public String getCzsj() {
-        return czsj;
-    }
-
-    /**
-     * Set czsj.
-     *
-     * @param czsj the czsj to set
-     */
-    public void setCzsj(String czsj) {
-        this.czsj = czsj;
+    public void setZylb(SysDict zylb) {
+        this.zylb = zylb;
     }
 }

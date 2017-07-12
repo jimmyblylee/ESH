@@ -20,6 +20,7 @@
 package com.lee.ez.sys.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Description: 处室（部门）实体类.<br>
@@ -30,8 +31,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SYS_ORG")
 @SuppressWarnings("unused")
-public class SysOrg {
+public class SysOrg implements Serializable {
 
+    private static final long serialVersionUID = 2494748680229395013L;
     /** ID.*/
     @Id
     @Column(name = "ORG_ID")

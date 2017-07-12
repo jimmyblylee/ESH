@@ -19,27 +19,28 @@
 
 package com.lee.ez.esh.service.impl;
 
-import com.lee.ez.esh.entity.EshZJ;
-import com.lee.ez.esh.entity.ZJZT;
-import com.lee.ez.esh.service.ZJInfoService;
-import com.lee.ez.sys.service.DictService;
-import com.lee.ez.sys.service.UserService;
-import com.lee.jwaf.token.Token;
-import com.lee.util.BeanUtils;
-import com.lee.util.DateUtils;
-import com.lee.util.ObjectUtils;
-import com.lee.util.StringUtils;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.Date;
-import java.util.List;
+
+import com.lee.ez.esh.entity.*;
+import com.lee.util.Assert;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.lee.ez.esh.service.ZJInfoService;
+import com.lee.ez.sys.service.DictService;
+import com.lee.ez.sys.service.UserService;
+import com.lee.jwaf.token.Token;
+import com.lee.util.DateUtils;
+import com.lee.util.ObjectUtils;
+import com.lee.util.StringUtils;
 
 /**
  * Description: 专家基本信息服务实现类.<br>
@@ -88,6 +89,15 @@ public class ZJInfoServiceImpl implements ZJInfoService {
     @Transactional(readOnly = true)
     public List<EshZJ> query(EshZJ condition, Integer start, Integer limit) {
         String hql = "  from EshZJ as zj";
+        hql += " left join fetch zj.jb_zzmm";
+        hql += " left join fetch zj.gz_gzdw_dz_sheng";
+        hql += " left join fetch zj.jy_whcd";
+        hql += " left join fetch zj.gzjlList";
+        hql += " left join fetch zj.jlqkList";
+        hql += " left join fetch zj.jybjList";
+        hql += " left join fetch zj.jzList";
+        hql += " left join fetch zj.yjcgList";
+        hql += " left join fetch zj.zylbList";
         // 是否启用
         hql += " where zj.xt_qy = :xt_qy";
         // 姓名
@@ -265,7 +275,7 @@ public class ZJInfoServiceImpl implements ZJInfoService {
      * @return 持久实体
      */
     public EshZJ create(Token userToken, EshZJ entity) {
-
+        validate(entity);
         entity.setJb_zzmm(dictService.get(entity.getJb_zzmm().getId()));
         entity.setGz_gzdw_dz_sheng(dictService.get(entity.getGz_gzdw_dz_sheng().getId()));
         entity.setJy_whcd(dictService.get(entity.getJy_whcd().getId()));
@@ -274,7 +284,38 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         entity.setXt_djr(userService.get(userToken.user().getId()));
         entity.setXt_djsj(DateUtils.formatDateToYMD(new Date().getTime()));
         em.persist(entity);
+
+        for (EshZJFZ item : entity.getGzjlList()) {
+            item.setZj(entity);
+            em.persist(item);
+        }
+        for (EshZJFZ item : entity.getJlqkList()) {
+            item.setZj(entity);
+            em.persist(item);
+        }
+        for (EshZJFZ item : entity.getJybjList()) {
+            item.setZj(entity);
+            em.persist(item);
+        }
+        for (EshZJFZ item : entity.getJzList()) {
+            item.setZj(entity);
+            em.persist(item);
+        }
+        for (EshZJFZ item : entity.getYjcgList()) {
+            item.setZj(entity);
+            em.persist(item);
+        }
+        for (EshZJFZ item : entity.getZylbList()) {
+            item.setZj(entity);
+            em.persist(item);
+        }
         return entity;
+    }
+
+    private void validate(EshZJ entity) {
+        Assert.notNull(entity.getJb_zzmm(),"专家不能为空！");
+        Assert.notNull(entity.getGz_gzdw_dz_sheng(),"单位所在地不能为空！");
+        Assert.notNull(entity.getJy_whcd(),"文化程度不能为空！");
     }
 
     /**
@@ -283,14 +324,17 @@ public class ZJInfoServiceImpl implements ZJInfoService {
      * @param entity 游离实体
      */
     public void update(Token userToken, EshZJ entity) {
-        final EshZJ entityInDB = em.find(EshZJ.class, entity.getId());
-        BeanUtils.copyProperties(entity, entityInDB,
-            "xt_zt", "xt_qy", "xt_zt_bz", "xt_djr", "xt_shr", "xt_djsj", "xt_gxsj");
+
+        validate(entity);
         entity.setJb_zzmm(dictService.get(entity.getJb_zzmm().getId()));
         entity.setGz_gzdw_dz_sheng(dictService.get(entity.getGz_gzdw_dz_sheng().getId()));
         entity.setJy_whcd(dictService.get(entity.getJy_whcd().getId()));
         entity.setXt_zt(ZJZT.DSB);
+        entity.setXt_djr(userService.get(userToken.user().getId()));
+        entity.setXt_djsj(DateUtils.formatDateToYMD(new Date().getTime()));
         entity.setXt_gxsj(DateUtils.formatDateToYMD(new Date().getTime()));
+
+        em.merge(entity);
     }
 
     /**
@@ -300,7 +344,7 @@ public class ZJInfoServiceImpl implements ZJInfoService {
      * @param isEnabled true for 启用
      */
     public void setStatus(Token userToken, Integer id, Boolean isEnabled) {
-        final EshZJ entity = em.find(EshZJ.class, id);
+        final EshZJ entity = em.find(EshZJ.class, id.longValue());
         entity.setXt_qy(isEnabled);
         entity.setXt_gxsj(DateUtils.formatDateToYMD(new Date().getTime()));
     }

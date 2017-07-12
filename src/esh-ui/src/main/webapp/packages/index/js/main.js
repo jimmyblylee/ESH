@@ -191,7 +191,7 @@ angular.module('WebApp').config(['$stateProvider', '$urlRouterProvider', functio
             deps: ["$ocLazyLoad", function ($ocLazyLoad) {
                 return $ocLazyLoad.load({
                     name: "WebApp",
-                    files: ["packages/esh/js/HomeCtrl.js" + cacheVersion]
+                    files: ["packages/esh/js/home/HomeCtrl.js" + cacheVersion]
                 });
             }]
         }

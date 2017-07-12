@@ -20,6 +20,7 @@
 package com.lee.ez.sys.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Description: 系统用户.<br>
@@ -30,8 +31,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SYS_USER")
 @SuppressWarnings("unused")
-public class SysUser {
+public class SysUser implements Serializable {
 
+    private static final long serialVersionUID = -380223446376828251L;
     /** Id. */
     @Id
     @Column(name = "USER_ID")

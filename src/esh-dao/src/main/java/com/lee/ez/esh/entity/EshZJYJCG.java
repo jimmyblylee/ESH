@@ -36,6 +36,7 @@ import javax.persistence.*;
 @SuppressWarnings("unused")
 public class EshZJYJCG implements EshZJFZ {
 
+    private static final long serialVersionUID = 7594014286680297687L;
     /** 研究成果ID.**/
     @Id
     @Column(name = "YJCG_ID")

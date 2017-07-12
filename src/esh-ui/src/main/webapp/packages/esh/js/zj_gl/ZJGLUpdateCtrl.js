@@ -18,51 +18,49 @@
  * ***************************************************************************/
 
 /**
- * Description: 更新用户控制器.<br>
+ * Description: 更新专家控制器.<br>
  * Created by Jimmybly Lee on 2017/7/3.
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('UserUpdateCtrl', ['$scope', "$ajaxCall", function ($scope, $ajaxCall) {
+angular.module('WebApp').controller('ZJGLUpdateCtrl', ['$scope', "$ajaxCall", function ($scope, $ajaxCall) {
+
+    // 政治面貌字典列表
+    $ajaxCall.getDictList($scope, "ZZMM", 'zzmmList');
+    // 省字典列表
+    $ajaxCall.getDictList($scope, "SHENG", 'shengList');
+    // 文化程度典列表
+    $ajaxCall.getDictList($scope, "WHCD", 'whcdList');
+    // 专业类别典列表
+    $ajaxCall.getDictList($scope, "ZYLB", 'zylbList');
 
     /**
      * 提交表单
      */
-    $scope.submit = function () {
+    $scope.submit = function() {
         $ajaxCall.post({
-            data: {
-                controller: "UserController",
+            data : {
+                controller: "ZJInfoController",
                 method: $scope.method,
-                entity: JSON.stringify($scope.entity)
+                entity : JSON.stringify($scope.entity)
             },
-            success: function () {
+            success: function() {
                 $scope.$emit("submitted");
             }
         });
     };
-    /**
-     * 初始化下拉菜单
-     */
-    $ajaxCall.post({
-        data: {
-            controller: "DictController",
-            method: "query",
-            start: 0,
-            limit: 100,
-            condition: JSON.stringify({
-                isEnabled: true,
-                isNature: true
-            })
-        },
-        success: function(data) {
-            $scope.natureList = data.result;
-        }
-    });
+
 
     $scope.prepare2SetPhoto = function() {
         var uploadModalScope = $("#uploadPhoto").scope();
         uploadModalScope.init();
         uploadModalScope.$on("submit", function(event, data) {
-            $scope.entity.photo.data = data;
+            $scope.entity.jb_zp = data;
         });
     };
+
+    $scope.onZYLBSelected = function(item) {
+        if ($.inArray(item, $scope.entity.zylbList) < 0) {
+            $scope.entity.zylbList.push({zylb: item});
+        }
+    }
 }]);

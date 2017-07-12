@@ -19,6 +19,8 @@
 
 package com.lee.ez.esh.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.JoinColumnOrFormula;
@@ -40,7 +42,8 @@ import com.lee.ez.sys.entity.SysDict;
 @Entity
 @Table(name = "ESH_HD_XQ_TJ")
 @SuppressWarnings("unused")
-public class EshHDXQTJ {
+public class EshHDXQTJ implements Serializable {
+    private static final long serialVersionUID = 3934981306797460095L;
     /** 条件ID.**/
     @Id
     @Column(name = "TJ_ID")

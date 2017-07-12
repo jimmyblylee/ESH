@@ -22,6 +22,7 @@
         <class>com.lee.ez.esh.entity.EshZJJYBJ</class>
         <class>com.lee.ez.esh.entity.EshZJJZ</class>
         <class>com.lee.ez.esh.entity.EshZJYJCG</class>
+        <class>com.lee.ez.esh.entity.EshZJZYLB</class>
         <!-- 活动信息 -->
         <class>com.lee.ez.esh.entity.EshHD</class>
         <class>com.lee.ez.esh.entity.EshHDXQ</class>

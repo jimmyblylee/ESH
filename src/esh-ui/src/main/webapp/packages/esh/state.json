@@ -65,10 +65,13 @@
             "pageTitle": "专家浏览",
             "pageSubTitle": "浏览系统中的专家"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/esh/views/zj_ll/main.html",
+        "controller": "ZJLLListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/esh/css/zjinfo.css",
+
+            "packages/esh/js/zj_ll/ZJLLListCtrl.js",
+            "packages/esh/js/zj_ll/ZJLLViewCtrl.js"
         ]
     },
     "zj-gl": {
@@ -77,10 +80,17 @@
             "pageTitle": "专家管理",
             "pageSubTitle": "维护系统中的专家"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/esh/views/zj_gl/main.html",
+        "controller": "ZJGLListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/esh/css/zjinfo.css",
+
+            "packages/common/js/UploadPhotoCtrl.js",
+            "packages/esh/js/zj_gl/ZJGLListCtrl.js",
+            "packages/esh/js/zj_gl/ZJGLUpdateCtrl.js"
         ]
     },
     "zj-sh": {
@@ -101,10 +111,17 @@
             "pageTitle": "专家登记",
             "pageSubTitle": "登记并上报专家"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/esh/views/zj_dj/main.html",
+        "controller": "ZJDJListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css",
+            "resources/global/plugins/jquery-file-upload/css/jquery.fileupload.css",
+
+            "packages/esh/css/zjinfo.css",
+
+            "packages/common/js/UploadPhotoCtrl.js",
+            "packages/esh/js/zj_dj/ZJDJListCtrl.js",
+            "packages/esh/js/zj_dj/ZJDJUpdateCtrl.js"
         ]
     }
 }
