@@ -23,10 +23,11 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.JoinColumnOrFormula;
-import org.hibernate.annotations.JoinColumnsOrFormulas;
-import org.hibernate.annotations.JoinFormula;
+import org.hibernate.annotations.*;
 
 import com.lee.ez.sys.entity.SysDict;
 import com.lee.ez.sys.entity.SysUser;
@@ -192,22 +193,22 @@ public class EshZJ implements Serializable {
     private String xt_gxsj;
 
     /** 工作经历. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj", cascade = {CascadeType.ALL})
     private Set<EshZJGZJL> gzjlList;
     /** 奖励情况.*/
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj", cascade = {CascadeType.ALL})
     private Set<EshZJJLQK> jlqkList;
     /** 教育背景. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj", cascade = {CascadeType.ALL})
     private Set<EshZJJYBJ> jybjList;
     /** 兼职. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj", cascade = {CascadeType.ALL})
     private Set<EshZJJZ> jzList;
     /** 研究成果. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj", cascade = {CascadeType.ALL})
     private Set<EshZJYJCG> yjcgList;
     /** 研究成果. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "zj", cascade = {CascadeType.ALL})
     private Set<EshZJZYLB> zylbList;
 
     /**

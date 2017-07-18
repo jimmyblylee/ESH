@@ -25,7 +25,7 @@
 angular.module('WebApp').controller('ZJDJListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
     $scope.condition = {xt_qy: true};
     $listService.init($scope, {
-        pageSizeList: [4, 8, 12, 24],
+        pageSizeList: [4, 6, 8, 12, 18, 24],
         pageSize: 4,
         "controller": "ZJInfoController",
         "method": "query",

@@ -68,6 +68,12 @@ public class SysDict implements Serializable {
     private String value;
 
     /**
+     * 描述.
+     */
+    @Column(name = "DICT_DESC")
+    private String desc;
+
+    /**
      * 是否禁用.
      */
     @Column(name = "IS_ENABLED")
@@ -143,6 +149,24 @@ public class SysDict implements Serializable {
      */
     public void setValue(String value) {
         this.value = value;
+    }
+
+    /**
+     * Get the desc.
+     *
+     * @return return the desc
+     */
+    public String getDesc() {
+        return desc;
+    }
+
+    /**
+     * Set desc.
+     *
+     * @param desc the desc to set
+     */
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     /**

@@ -78,7 +78,7 @@
                             <i class="fa fa-flask"></i> {{entity.jy_whcd_sszy}}
                         </li>
                         <li bs-tooltip data-title="技术职称">
-                            <i class="fa fa-graduation-cap"></i> {{entity.zy_jszc.value}}
+                            <i class="fa fa-graduation-cap"></i> {{entity.zy_jszc}}
                         </li>
                         <li bs-tooltip data-title="资格认证">
                             <i class="fa fa-thumbs-up"></i> {{entity.zy_zgrz}}
@@ -100,10 +100,10 @@
                                     <span class="sale-info"> 所在单位意见
                                         <i class="fa fa-check-square-o"></i>
                                     </span>
-                                    <span class="sale-num"> {{entity.yj_szdw}} </span>
+                                    <span class="sale-num"> {{entity.gz_gzdw}}:{{entity.yj_szdw}} </span>
                                 </li>
                                 <li>
-                                    <span class="sale-info"> 推荐单位（推荐单位）意见
+                                    <span class="sale-info"> 推荐单位意见
                                         <i class="fa fa-check-square-o"></i>
                                     </span>
                                     <span class="sale-num"> {{entity.yj_tjdw_mc}}:{{entity.yj_tjdw}} </span>

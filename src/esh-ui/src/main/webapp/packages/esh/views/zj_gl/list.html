@@ -1,81 +1,85 @@
 <div class="form">
     <form action="#" class="form-horizontal">
         <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label class="control-label col-md-4">姓名</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="姓名" ng-model="condition.jb_xm">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">姓名</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="姓名" ng-model="condition.jb_xm">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label class="control-label col-md-4">性别</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="男/女" ng-model="condition.jb_xb">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">性别</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="男/女" ng-model="condition.jb_xb">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label class="control-label col-md-4">民族</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="..." ng-model="condition.jb_mz">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">民族</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="..." ng-model="condition.jb_mz">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label class="control-label col-md-4">推荐</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="单位名称..." ng-model="condition.yj_tjdw_mc">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">推荐</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="单位名称..." ng-model="condition.yj_tjdw_mc">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label class="control-label col-md-4">单位</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" placeholder="单位名称..." ng-model="condition.gz_gzdw">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">单位</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="单位名称..." ng-model="condition.gz_gzdw">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-4">体制内</label>
-                    <div class="col-md-8">
-                        <div class="md-checkbox-inline">
-                            <div class="md-checkbox">
-                                <input type="checkbox" id="zj_search_gaxt" class="md-check" checked
-                                       ng-model="condition.gz_gaxt">
-                                <label for="zj_search_gaxt">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> 是 </label>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">系统内</label>
+                            <div class="col-md-6">
+                                <div class="md-checkbox-inline">
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="zj_search_gaxt" class="md-check" checked
+                                               ng-model="condition.gz_gaxt">
+                                        <label for="zj_search_gaxt">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">启用状态</label>
+                            <div class="col-md-6">
+                                <div class="md-checkbox-inline">
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="zj_search_zt" class="md-check" checked
+                                               ng-model="condition.xt_qy">
+                                        <label for="zj_search_zt">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 启用 </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-4">启用状态</label>
-                    <div class="col-md-8">
-                        <div class="md-checkbox-inline">
-                            <div class="md-checkbox">
-                                <input type="checkbox" id="zj_search_zt" class="md-check" checked
-                                       ng-model="condition.xt_qy">
-                                <label for="zj_search_zt">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> 启用 </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-right margin-bottom-15">
                 <a href="javascript:" class="btn btn-sm grey-mint" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
             </div>
         </div>
@@ -100,7 +104,7 @@
     <div class="portlet-body">
         <div class="mt-element-card mt-element-overlay">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="item in list">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="item in list">
                     <div class="mt-card-item">
                         <div class="mt-card-avatar mt-overlay-1">
                             <img src="data:image/png;base64,{{item.jb_zp}}" />
@@ -136,19 +140,19 @@
                             </div>
                         </div>
                         <div class="mt-card-content">
-                            <h3 class="mt-card-name">{{item.jb_xm}}</h3>
-                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-building-o"></i> {{item.gz_gzdw}}</p>
-                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item.jb_dh}}</p>
-                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item.jb_sj}}</p>
+                            <h3 class="mt-card-name">{{item['jb_xm']}}</h3>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-building-o"></i> {{item['gz_gzdw']}}</p>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['jb_dh']}}</p>
+                            <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['jb_sj']}}</p>
                             <div class="mt-card-social">
                                 <ul>
                                     <li>
-                                        <a href="mailto:{{item.mail}}" bs-tooltip data-title="发送邮件给">
+                                        <a href="mailto:{{item['mail']}}" bs-tooltip data-title="发送邮件给">
                                             <i class="icon-envelope-open"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="tel:{{item.jb_sj}}" bs-tooltip data-title="打电话给ta">
+                                        <a href="tel:{{item['jb_sj']}}" bs-tooltip data-title="打电话给ta">
                                             <i class="fa fa-phone"></i>
                                         </a>
                                     </li>

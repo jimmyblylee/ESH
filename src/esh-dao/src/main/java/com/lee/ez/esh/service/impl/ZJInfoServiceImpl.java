@@ -21,26 +21,31 @@ package com.lee.ez.esh.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.lee.ez.esh.entity.*;
-import com.lee.util.Assert;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lee.ez.esh.entity.*;
 import com.lee.ez.esh.service.ZJInfoService;
 import com.lee.ez.sys.service.DictService;
 import com.lee.ez.sys.service.UserService;
+import com.lee.jwaf.exception.ServiceException;
 import com.lee.jwaf.token.Token;
+import com.lee.util.Assert;
 import com.lee.util.DateUtils;
 import com.lee.util.ObjectUtils;
 import com.lee.util.StringUtils;
+
+// CSOFF: RegexpSinglelineJava
+// CSOFF: ParameterName
 
 /**
  * Description: 专家基本信息服务实现类.<br>
@@ -55,20 +60,27 @@ import com.lee.util.StringUtils;
 public class ZJInfoServiceImpl implements ZJInfoService {
 
     // CSOFF: MemberName
-    /** Hibernate 数据库操作管理器. **/
+    /**
+     * Hibernate 数据库操作管理器.
+     **/
     @PersistenceContext(unitName = "esh_mgmt")
     private EntityManager em;
     // CSON: MemberName
 
-    /** 字典服务. */
+    /**
+     * 字典服务.
+     */
     @Resource
     private DictService dictService;
-    /** 用户服务. */
+    /**
+     * 用户服务.
+     */
     @Resource
     private UserService userService;
 
     /**
      * 根据id获得实例.
+     *
      * @param id 实例id
      * @return 实例
      */
@@ -79,11 +91,13 @@ public class ZJInfoServiceImpl implements ZJInfoService {
 
     // CSOFF: NPathComplexity
     // CSOFF: CyclomaticComplexity
+
     /**
      * 根据条件搜索实例.
+     *
      * @param condition 条件，姓名，推荐单位，审核状态，是否已启用，登记人所在单位
-     * @param start 分页开始
-     * @param limit 分页长度
+     * @param start     分页开始
+     * @param limit     分页长度
      * @return 实例列表
      */
     @Transactional(readOnly = true)
@@ -181,8 +195,10 @@ public class ZJInfoServiceImpl implements ZJInfoService {
 
     // CSOFF: CyclomaticComplexity
     // CSOFF: NPathComplexity
+
     /**
      * 根据条件搜索实例数量.
+     *
      * @param condition 条件，姓名，推荐单位，审核状态，是否已启用，登记人所在单位
      * @return 实例数量
      */
@@ -270,12 +286,22 @@ public class ZJInfoServiceImpl implements ZJInfoService {
 
     /**
      * 持久化实体.
+     *
      * @param userToken 用户令牌
-     * @param entity 游离实体
+     * @param entity    游离实体
      * @return 持久实体
+     * @throws ServiceException 校验不过
      */
-    public EshZJ create(Token userToken, EshZJ entity) {
+    public EshZJ create(Token userToken, EshZJ entity) throws ServiceException {
         validate(entity);
+
+        setZJ(entity.getGzjlList(), entity);
+        setZJ(entity.getJlqkList(), entity);
+        setZJ(entity.getJybjList(), entity);
+        setZJ(entity.getJzList(), entity);
+        setZJ(entity.getYjcgList(), entity);
+        setZJ(entity.getZylbList(), entity);
+
         entity.setJb_zzmm(dictService.get(entity.getJb_zzmm().getId()));
         entity.setGz_gzdw_dz_sheng(dictService.get(entity.getGz_gzdw_dz_sheng().getId()));
         entity.setJy_whcd(dictService.get(entity.getJy_whcd().getId()));
@@ -284,48 +310,55 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         entity.setXt_djr(userService.get(userToken.user().getId()));
         entity.setXt_djsj(DateUtils.formatDateToYMD(new Date().getTime()));
         em.persist(entity);
-
-        for (EshZJFZ item : entity.getGzjlList()) {
-            item.setZj(entity);
-            em.persist(item);
-        }
-        for (EshZJFZ item : entity.getJlqkList()) {
-            item.setZj(entity);
-            em.persist(item);
-        }
-        for (EshZJFZ item : entity.getJybjList()) {
-            item.setZj(entity);
-            em.persist(item);
-        }
-        for (EshZJFZ item : entity.getJzList()) {
-            item.setZj(entity);
-            em.persist(item);
-        }
-        for (EshZJFZ item : entity.getYjcgList()) {
-            item.setZj(entity);
-            em.persist(item);
-        }
-        for (EshZJFZ item : entity.getZylbList()) {
-            item.setZj(entity);
-            em.persist(item);
-        }
         return entity;
     }
 
-    private void validate(EshZJ entity) {
-        Assert.notNull(entity.getJb_zzmm(),"专家不能为空！");
-        Assert.notNull(entity.getGz_gzdw_dz_sheng(),"单位所在地不能为空！");
-        Assert.notNull(entity.getJy_whcd(),"文化程度不能为空！");
+    /**
+     * 反向设置级联保存或者更新的内容.
+     *
+     * @param set 一对多的多的部分集合
+     * @param zj  专家
+     */
+    private void setZJ(Set<? extends EshZJFZ> set, EshZJ zj) {
+        for (EshZJFZ item : set) {
+            item.setZj(zj);
+        }
+    }
+
+    /**
+     * 校验.
+     *
+     * @param entity 实体
+     * @throws ServiceException 校验不过
+     */
+    private void validate(EshZJ entity) throws ServiceException {
+        try {
+            Assert.notNull(entity.getJb_zzmm(), "政治面貌不能为空！");
+            Assert.notNull(entity.getGz_gzdw_dz_sheng(), "单位所在地不能为空！");
+            Assert.notNull(entity.getJy_whcd(), "文化程度不能为空！");
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
     }
 
     /**
      * 更新实体.
+     *
      * @param userToken 用户令牌
-     * @param entity 游离实体
+     * @param entity    游离实体
+     * @throws ServiceException 校验不过
      */
-    public void update(Token userToken, EshZJ entity) {
+    public void update(Token userToken, EshZJ entity) throws ServiceException {
 
         validate(entity);
+
+        setZJ(entity.getGzjlList(), entity);
+        setZJ(entity.getJlqkList(), entity);
+        setZJ(entity.getJybjList(), entity);
+        setZJ(entity.getJzList(), entity);
+        setZJ(entity.getYjcgList(), entity);
+        setZJ(entity.getZylbList(), entity);
+
         entity.setJb_zzmm(dictService.get(entity.getJb_zzmm().getId()));
         entity.setGz_gzdw_dz_sheng(dictService.get(entity.getGz_gzdw_dz_sheng().getId()));
         entity.setJy_whcd(dictService.get(entity.getJy_whcd().getId()));
@@ -339,13 +372,23 @@ public class ZJInfoServiceImpl implements ZJInfoService {
 
     /**
      * 更新是否启用状态.
+     *
      * @param userToken 用户令牌
-     * @param id 实体ID
+     * @param id        实体ID
      * @param isEnabled true for 启用
      */
     public void setStatus(Token userToken, Integer id, Boolean isEnabled) {
         final EshZJ entity = em.find(EshZJ.class, id.longValue());
         entity.setXt_qy(isEnabled);
         entity.setXt_gxsj(DateUtils.formatDateToYMD(new Date().getTime()));
+    }
+
+    /**
+     * 删除辅助信息.
+     * @param id 辅助类型id
+     * @param type 辅助类型
+     */
+    public void removeFz(Long id, Class<? extends EshZJFZ> type) {
+        em.remove(em.find(type, id));
     }
 }

@@ -25,7 +25,7 @@
 angular.module('WebApp').controller('ZJLLListCtrl', ['$rootScope', '$scope', "$listService", function ($rootScope, $scope, $listService) {
     $scope.condition = {xt_qy: true, gz_gaxt:true};
     $listService.init($scope, {
-        pageSizeList: [4, 8, 12, 24],
+        pageSizeList: [4, 6, 8, 12, 16, 18, 24],
         pageSize: 4,
         "controller": "ZJInfoController",
         "method": "query",

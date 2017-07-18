@@ -24,7 +24,7 @@
                                 <a href="javascript:">
                                     <label class="control-label">手机</label>
                                     <div class="input-icon">
-                                        <i class="fa fa-phone"></i>
+                                        <i class="fa fa-phone-square"></i>
                                         <input type="text" class="form-control" placeholder="010-12345678" ng-model="entity.jb_sj">
                                     </div>
                                 </a>
@@ -52,8 +52,8 @@
                                     <label class="control-label" for="gz_gzdw_dz_sheng">单位地址</label>
                                     <div class="input-icon">
                                         <i class="fa fa-map-marker"></i>
-                                        <select id="gz_gzdw_dz_sheng" class="form-control" ng-model="entity.gz_gzdw_dz_sheng"
-                                                ng-options="item as item.value for item in shengList"></select>
+                                        <select id="gz_gzdw_dz_sheng" class="form-control" ng-model="entity.gz_gzdw_dz_sheng.id"
+                                                ng-options="item.id as item.value for item in shengList"></select>
                                     </div>
                                     <div class="input-icon">
                                         <i class="fa fa-map-marker"></i>
@@ -80,7 +80,7 @@
                         <div class="row">
                             <div class="col-md-8 profile-info">
                                 <div class="row">
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-6">
+                                    <div class="form-group form-md-line-input col-md-6">
                                         <div class="input-icon">
                                             <input id="jb_xm" type="text" class="form-control" ng-model="entity.jb_xm">
                                             <label for="jb_xm">姓名</label>
@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-12">
+                                    <div class="form-group form-md-line-input col-md-12">
                                         <div class="input-icon">
                                             <textarea id="jb_jl" class="form-control" rows="8" ng-model="entity.jb_jl"></textarea>
                                             <label for="jb_jl">简历</label>
@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-6">
+                                    <div class="form-group form-md-line-input col-md-6">
                                         <div class="input-icon">
                                             <input id="jb_sfzh" type="text" class="form-control" ng-model="entity.jb_sfzh">
                                             <label for="jb_sfzh">身份证号</label>
@@ -110,18 +110,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
-                                        <div class="input-icon">
-                                            <select id="gz_gaxt" class="form-control" ng-model="entity.gz_gaxt">
-                                                <option value="true">是</option>
-                                                <option value="false">否</option>
-                                            </select>
-                                            <label for="gz_gaxt">系统内</label>
-                                            <span class="help-block">是/否</span>
-                                            <i class="fa fa-black-tie"></i>
+                                    <div class="form-group col-md-3">
+                                        <div class="md-checkbox-inline">
+                                            <div class="md-checkbox">
+                                                <input type="checkbox" id="zj_update_gaxt" class="md-check" checked
+                                                       ng-model="entity.gz_gaxt">
+                                                <label for="zj_update_gaxt">
+                                                    <span></span>
+                                                    <span class="check" style="top: 10px;"></span>
+                                                    <span class="box" style="top: 10px;"></span>
+                                                    系统内
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-6">
+                                    <div class="form-group form-md-line-input col-md-6">
                                         <div class="input-icon">
                                             <input id="gz_gaxt_kssj" type="text" class="form-control" ng-model="entity.gz_gaxt_kssj"
                                                    bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
@@ -132,7 +135,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-2">
+                                    <div class="form-group form-md-line-input col-md-2">
                                         <div class="input-icon">
                                             <input id="jb_xb" type="text" class="form-control" ng-model="entity.jb_xb">
                                             <label for="jb_xb">性别</label>
@@ -140,7 +143,7 @@
                                             <i class="fa fa-smile-o"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-2">
+                                    <div class="form-group form-md-line-input col-md-2">
                                         <div class="input-icon">
                                             <input id="jb_mz" type="text" class="form-control" ng-model="entity.jb_mz">
                                             <label for="jb_mz">民族</label>
@@ -148,14 +151,14 @@
                                             <i class="fa fa-users"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-2">
+                                    <div class="form-group form-md-line-input col-md-2">
                                         <div class="input-icon">
                                             <input id="jb_jkzk" type="text" class="form-control" ng-model="entity.jb_jkzk">
                                             <label for="jb_jkzk">健康</label>
                                             <i class="fa fa-heart"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-6">
+                                    <div class="form-group form-md-line-input col-md-6">
                                         <div class="input-icon">
                                             <input id="jb_csrq" type="text" class="form-control" ng-model="entity.jb_csrq"
                                                    bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
@@ -164,53 +167,53 @@
                                             <i class="fa fa-calendar"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3">
                                         <div class="input-icon">
                                             <input id="jb_jg" type="text" class="form-control" ng-model="entity.jb_jg">
                                             <label for="jb_jg">籍贯</label>
                                             <i class="fa fa-map-marker"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3">
                                         <div class="input-icon">
-                                            <select id="jb_zzmm" class="form-control" ng-model="entity.jb_zzmm"
-                                                    ng-options="item as item.value for item in zzmmList"></select>
+                                            <select id="jb_zzmm" class="form-control" ng-model="entity.jb_zzmm.id"
+                                                    ng-options="item.id as item.value for item in zzmmList"></select>
                                             <label for="jb_zzmm">政治面貌</label>
                                             <span class="help-block">党员/群众</span>
                                             <i class="fa fa-exclamation-circle"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3">
                                         <div class="input-icon">
-                                            <select id="jy_whcd" class="form-control" ng-model="entity.jy_whcd"
-                                                    ng-options="item as item.value for item in whcdList"></select>
+                                            <select id="jy_whcd" class="form-control" ng-model="entity.jy_whcd.id"
+                                                    ng-options="item.id as item.value for item in whcdList"></select>
                                             <label for="jy_whcd">文化程度</label>
                                             <span class="help-block">请选择</span>
                                             <i class="fa fa-graduation-cap"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3">
                                         <div class="input-icon">
                                             <input id="jy_whcd_sszy" type="text" class="form-control" ng-model="entity.jy_whcd_sszy">
                                             <label for="jy_whcd_sszy">所学专业</label>
                                             <i class="fa fa-flask"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3">
                                         <div class="input-icon">
                                             <input id="zy_jszc" type="text" class="form-control" ng-model="entity.zy_jszc">
                                             <label for="zy_jszc">技术职称</label>
                                             <i class="fa fa-graduation-cap"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3">
                                         <div class="input-icon">
                                             <input id="zy_zgrz" type="text" class="form-control" ng-model="entity.zy_zgrz">
                                             <label for="zy_zgrz">资格认证</label>
                                             <i class="fa fa-thumbs-up"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input form-md-floating-label col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3">
                                         <div class="input-icon">
                                             <input id="zy_ywzc" type="text" class="form-control" ng-model="entity.zy_ywzc">
                                             <label for="zy_ywzc">业务专长</label>
@@ -263,7 +266,7 @@
                                         <div class="caption font-green-dark sbold"> 专业类别 </div>
                                         <div class="inputs">
                                             <div class="portlet-input input-inline input-small">
-                                                <select class="form-control" ng-model="zylbTemp"
+                                                <select class="form-control" ng-model="zylbTemp" title="专业类别"
                                                         ng-options="item as item.value group by item.parent.value for item in zylbList"
                                                         ng-change="onZYLBSelected(zylbTemp);">
                                                 </select>
@@ -273,9 +276,9 @@
                                     <div class="portlet-body">
                                         <ul class="list-unstyled">
                                             <li ng-repeat="item in entity.zylbList">
-                                                <span class="sale-info"> {{item.zylb.parent.value}} / {{item.zylb.value}}</span>
+                                                <span class="sale-info"> {{item.zylb.desc}} / {{item.zylb.value}}</span>
                                                 <span class="sale-num">
-                                                    <a href="javascript:" class="btn btn-xs red" ng-click="entity.zylbList.splice($index, 1);">
+                                                    <a href="javascript:" class="btn btn-xs red" ng-click="remove($index, 'zylbList', item.id, 'com.lee.ez.esh.entity.EshZJZYLB');">
                                                         <i class="fa fa-close"></i>
                                                     </a>
                                                 </span>
@@ -328,7 +331,7 @@
                                                     <input type="text" class="form-control" ng-model="item.zw" bs-tooltip data-title="职位（职级）" placeholder="职位名称...">
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity.gzjlList.splice($index,1);">
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'gzjlList', item.id, 'com.lee.ez.esh.entity.EshZJGZJL');">
                                                         <i class="fa fa-close"></i>
                                                     </a>
                                                 </td>
@@ -379,7 +382,7 @@
                                                     <input type="text" class="form-control" ng-model="item.zy" bs-tooltip data-title="所学专业" placeholder="专业名称...">
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity.jybjList.splice($index,1);">
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'jybjList', item.id, 'com.lee.ez.esh.entity.EshZJJYBJ');">
                                                         <i class="fa fa-close"></i>
                                                     </a>
                                                 </td>
@@ -433,7 +436,7 @@
                                                            bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity.yjcgList.splice($index,1);">
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'yjcgList', item.id, 'com.lee.ez.esh.entity.EshZJYJCG');">
                                                         <i class="fa fa-close"></i>
                                                     </a>
                                                 </td>
@@ -479,7 +482,7 @@
                                                            bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity.jlqkList.splice($index,1);">
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'jlqkList', item.id, 'com.lee.ez.esh.entity.EshZJJLQK');">
                                                         <i class="fa fa-close"></i>
                                                     </a>
                                                 </td>
@@ -525,7 +528,7 @@
                                                            bs-datepicker data-date-format="yyyy年MM月dd日" data-max-date="today" data-date-type="string">
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="entity.jzList.splice($index,1);">
+                                                    <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="删除" ng-click="remove($index, 'jzList', item.id, 'com.lee.ez.esh.entity.EshZJJZ');">
                                                         <i class="fa fa-close"></i>
                                                     </a>
                                                 </td>

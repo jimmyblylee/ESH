@@ -46,7 +46,7 @@ angular.module('WebApp').controller('HeaderController', ['$rootScope', '$scope',
                             },
                             success: function() {
                                 $rootScope.$state.go("home");
-                                $rootScope.reloadToken();
+                                window.location.reload();
                             }
                         });
                     }

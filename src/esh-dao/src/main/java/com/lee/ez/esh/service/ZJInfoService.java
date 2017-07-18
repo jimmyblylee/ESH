@@ -22,6 +22,8 @@ package com.lee.ez.esh.service;
 import java.util.List;
 
 import com.lee.ez.esh.entity.EshZJ;
+import com.lee.ez.esh.entity.EshZJFZ;
+import com.lee.jwaf.exception.ServiceException;
 import com.lee.jwaf.token.Token;
 
 /**
@@ -34,6 +36,7 @@ public interface ZJInfoService {
 
     /**
      * 根据id获得实例.
+     *
      * @param id 实例id
      * @return 实例
      */
@@ -41,48 +44,64 @@ public interface ZJInfoService {
 
     // CSOFF: NPathComplexity
     // CSOFF: CyclomaticComplexity
+
     /**
      * 根据条件搜索实例.
+     *
      * @param condition 条件，姓名，推荐单位，审核状态，是否已启用，登记人所在单位
-     * @param start 分页开始
-     * @param limit 分页长度
+     * @param start     分页开始
+     * @param limit     分页长度
      * @return 实例列表
      */
-     List<EshZJ> query(EshZJ condition, Integer start, Integer limit);
+    List<EshZJ> query(EshZJ condition, Integer start, Integer limit);
     // CSON: CyclomaticComplexity
     // CSON: NPathComplexity
 
     // CSOFF: CyclomaticComplexity
     // CSOFF: NPathComplexity
+
     /**
      * 根据条件搜索实例数量.
+     *
      * @param condition 条件，姓名，推荐单位，审核状态，是否已启用，登记人所在单位
      * @return 实例数量
      */
-    public Integer count(EshZJ condition);
+    Integer count(EshZJ condition);
     // CSON: CyclomaticComplexity
     // CSON: NPathComplexity
 
     /**
      * 持久化实体.
+     *
      * @param userToken 用户令牌
-     * @param entity 游离实体
+     * @param entity    游离实体
      * @return 持久实体
+     * @throws ServiceException 校验不过
      */
-    EshZJ create(Token userToken, EshZJ entity);
+    EshZJ create(Token userToken, EshZJ entity) throws ServiceException;
 
     /**
      * 更新实体.
+     *
      * @param userToken 用户令牌
-     * @param entity 游离实体
+     * @param entity    游离实体
+     * @throws ServiceException 校验不过
      */
-    void update(Token userToken, EshZJ entity);
+    void update(Token userToken, EshZJ entity) throws ServiceException;
 
     /**
      * 更新是否启用状态.
+     *
      * @param userToken 用户令牌
-     * @param id 实体ID
+     * @param id        实体ID
      * @param isEnabled true for 启用
      */
     void setStatus(Token userToken, Integer id, Boolean isEnabled);
+
+    /**
+     * 删除辅助信息.
+     * @param id 辅助类型id
+     * @param type 辅助类型
+     */
+    void removeFz(Long id, Class<? extends EshZJFZ> type);
 }

@@ -49,7 +49,9 @@ angular.module('WebApp').controller('ZJGLUpdateCtrl', ['$scope', "$ajaxCall", fu
         });
     };
 
-
+    /**
+     * 准备设置图片
+     */
     $scope.prepare2SetPhoto = function() {
         var uploadModalScope = $("#uploadPhoto").scope();
         uploadModalScope.init();
@@ -58,9 +60,34 @@ angular.module('WebApp').controller('ZJGLUpdateCtrl', ['$scope', "$ajaxCall", fu
         });
     };
 
+    /**
+     * 当专业类别被选中时，添加到专业类别列表中
+     * @param item
+     */
     $scope.onZYLBSelected = function(item) {
         if ($.inArray(item, $scope.entity.zylbList) < 0) {
             $scope.entity.zylbList.push({zylb: item});
         }
-    }
+    };
+
+    /**
+     * 删除辅助信息
+     * @param idx 序号
+     * @param key entity中的名称
+     * @param id 辅助信息的id
+     * @param type 辅助信息的java类
+     */
+    $scope.remove = function(idx, key, id, type) {
+        $scope.entity[key].splice(idx,1);
+        if (id) {
+            $ajaxCall.post({
+                data : {
+                    controller: "ZJInfoController",
+                    method: "removeFz",
+                    id : id,
+                    type: type
+                }
+            })
+        }
+    };
 }]);
