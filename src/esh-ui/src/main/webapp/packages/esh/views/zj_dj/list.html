@@ -23,7 +23,12 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">审核</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="审核状态" ng-model="condition.xt_zt">
+                                <select class="form-control" placeholder="审核状态" ng-model="condition.xt_zt" ng-change="onZTConditionChange()">
+                                    <option value="DSB">待提交</option>
+                                    <option value="DSL">待受理</option>
+                                    <option value="BBH">被驳回</option>
+                                    <option value="SHTG">审核通过</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -103,11 +108,22 @@
                                             <i class="fa fa-recycle"></i>
                                         </a>
                                     </li>
+                                    <li ng-if="item['xt_zt'] === 'DSB'">
+                                        <!--suppress HtmlUnknownAnchorTarget -->
+                                        <a class="btn btn-xs btn-outline blue-steel"
+                                           ng-click="take(item, 'tiJiao')" bs-tooltip data-title="上报">
+                                            <i class="fa fa-thumbs-up"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="mt-card-content">
-                            <h3 class="mt-card-name">{{item['jb_xm']}}</h3>
+                            <h3 class="mt-card-name">{{item['jb_xm']}}
+                                <span class="font-xs bg-{{cfg['zj'][item['xt_zt']].color}} bg-font-{{cfg['zj'][item['xt_zt']].color}}" style="padding: 0 3px;">
+                                    {{cfg['zj'][item['xt_zt']].msg}}
+                                </span>
+                            </h3>
                             <p class="mt-card-desc font-grey-mint"><i class="fa fa-building-o"></i> {{item['gz_gzdw']}}</p>
                             <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['jb_dh']}}</p>
                             <p class="mt-card-desc font-grey-mint"><i class="fa fa-phone"></i> {{item['jb_sj']}}</p>

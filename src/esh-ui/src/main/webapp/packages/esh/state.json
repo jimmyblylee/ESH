@@ -99,10 +99,12 @@
             "pageTitle": "专家审核",
             "pageSubTitle": "审核登记的专家"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/esh/views/zj_sh/main.html",
+        "controller": "ZJSHListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/esh/css/zjinfo.css",
+
+            "packages/esh/js/zj_sh/ZJSHListCtrl.js"
         ]
     },
     "zj-dj": {

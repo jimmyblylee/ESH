@@ -72,6 +72,11 @@ angular.module("WebApp").controller("UploadPhotoCtrl", ["$rootScope", "$scope", 
             alert("无法找到唯一的文件！");
             return;
         }
+        console.log("filesize", []);
+        if (files[0].files[0].size/(1024*1024) > 2) {
+            alert("选择图片大小不能大于2兆(M)。");
+            return;
+        }
         var fd = new FormData();
         fd.append("photo", files[0].files[0]);
         $http({

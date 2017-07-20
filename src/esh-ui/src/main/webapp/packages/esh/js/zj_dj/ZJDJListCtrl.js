@@ -23,6 +23,11 @@
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('ZJDJListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
+    $.getJSON("packages/esh/views/com/cfg.json", function(data) {
+        $scope.cfg = data;
+        console.log($scope.cfg);
+    });
+
     $scope.condition = {xt_qy: true};
     $listService.init($scope, {
         pageSizeList: [4, 6, 8, 12, 18, 24],
@@ -81,6 +86,7 @@ angular.module('WebApp').controller('ZJDJListCtrl', ['$rootScope', '$scope', "$l
         scope.title = "注册专家信息";
         scope.method = "create";
         scope.entity = {
+            gz_gaxt: true,
             jb_zp: $rootScope.cfg ["defaultPhoto"],
             gzjlList: [],
             jlqkList: [],
@@ -121,6 +127,19 @@ angular.module('WebApp').controller('ZJDJListCtrl', ['$rootScope', '$scope', "$l
 
         scope.$on("submitted", function () {
             $scope.load();
+        });
+    };
+
+    $scope.take = function (item,task) {
+        $ajaxCall.post({
+            data : {
+                controller: "ZJInfoController",
+                method: task,
+                id: item.id
+            },
+            success: function() {
+                $scope.load();
+            }
         });
     };
 

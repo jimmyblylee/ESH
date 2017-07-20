@@ -81,6 +81,7 @@ angular.module('WebApp').controller('ZJGLListCtrl', ['$rootScope', '$scope', "$l
         scope.title = "注册专家信息";
         scope.method = "create";
         scope.entity = {
+            gz_gaxt: true,
             jb_zp: $rootScope.cfg ["defaultPhoto"],
             gzjlList: [],
             jlqkList: [],

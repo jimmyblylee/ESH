@@ -69,7 +69,7 @@ angular.module('WebApp').controller('LoginController', ['$rootScope', '$scope', 
             },
             success: function (req) {
                 if (req.result) {
-                    $rootScope.$state.go("home");
+                    window.location.href="index.html#/home.html";
                     window.location.reload();
                 } else {
                     App.alert({

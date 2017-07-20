@@ -37,16 +37,19 @@ angular.module('WebApp').controller('ZJGLUpdateCtrl', ['$scope', "$ajaxCall", fu
      * 提交表单
      */
     $scope.submit = function() {
-        $ajaxCall.post({
-            data : {
-                controller: "ZJInfoController",
-                method: $scope.method,
-                entity : JSON.stringify($scope.entity)
-            },
-            success: function() {
-                $scope.$emit("submitted");
-            }
-        });
+        if ($scope.validate()) {
+            $ajaxCall.post({
+                data : {
+                    controller: "ZJInfoController",
+                    method: $scope.method,
+                    entity : JSON.stringify($scope.entity)
+                },
+                success: function() {
+                    $scope.$emit("submitted");
+                }
+            });
+            $(".modal").modal('hide');
+        }
     };
 
     /**
@@ -88,6 +91,62 @@ angular.module('WebApp').controller('ZJGLUpdateCtrl', ['$scope', "$ajaxCall", fu
                     type: type
                 }
             })
+        }
+    };
+
+    /**
+     * 校验当前实体，一些必须为非空的东西需要有所提示
+     */
+    $scope.validate = function() {
+        var message = "";
+        var nullCheck = function(key, msg, parent) {
+            var dom = $("input[ng-model='entity." + key + "'").parents(parent ? "." + parent : ".form-group");
+            dom.removeClass("has-error");
+            if ($scope.entity[key] === undefined || $scope.entity[key].length === 0) {
+                message += msg + "不能为空;";
+                dom.addClass("has-error");
+            }
+        };
+
+        nullCheck("jb_dh", "电话", "input-icon");
+        nullCheck("jb_sj", "手机", "input-icon");
+        nullCheck("gz_gzdw", "工作单位", "input-icon");
+        nullCheck("gz_gzdw_zw", "职务", "input-icon");
+        nullCheck("gz_gzdw_dz_sheng", "单位地址", "input-icon");
+        nullCheck("gz_gzdw_dz_shi", "单位地址", "input-icon");
+        nullCheck("gz_gzdw_dz_jd", "单位地址", "input-icon");
+
+        nullCheck("jb_xm", "姓名");
+        nullCheck("jb_jl", "简历");
+        nullCheck("jb_sfzh", "身份证号");
+        nullCheck("jb_xb", "性别");
+        nullCheck("jb_zzmm", "政治面貌");
+        nullCheck("jy_whcd", "文化程度");
+        nullCheck("jy_whcd_sszy", "所学专业");
+        nullCheck("zy_jszc", "技术职称(可以写‘无’)");
+        nullCheck("zy_zgrz", "资格认证(可以写‘无’)");
+        nullCheck("zy_ywzc", "业务专长(可以写‘无’)");
+
+        if ($scope.entity.gz_gaxt) {
+            nullCheck("gz_gaxt_kssj", "参加系统时间");
+        }
+        if ($scope.entity.zylbList.length === 0) {
+            message += "至少选择一个专业类别;";
+        }
+
+        if (message.length > 0) {
+            App.alert({
+                container: $("#updateZJErrorMsgDiv"),
+                place: 'append', // append or prepent in container
+                type: 'warning', // alert's type
+                message: message, // alert's message
+                close: true, // make alert closable
+                icon: 'fa fa-warning' // put icon class before the message
+            });
+            return false;
+        } else {
+            App.alert({reset: true});
+            return true;
         }
     };
 }]);

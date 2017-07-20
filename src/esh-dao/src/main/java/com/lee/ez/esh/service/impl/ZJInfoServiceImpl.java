@@ -140,7 +140,7 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         }
         // 审核状态
         if (!ObjectUtils.isEmpty(condition.getXt_zt())) {
-            hql += "  and zj.xt_zt = :xt_zj";
+            hql += "  and zj.xt_zt = :xt_zt";
         }
         // 登记人所在单位
         if (!ObjectUtils.isEmpty(condition.getXt_djr()) && !ObjectUtils.isEmpty(condition.getXt_djr().getOrg())
@@ -233,7 +233,7 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         }
         // 审核状态
         if (!ObjectUtils.isEmpty(condition.getXt_zt())) {
-            hql += "  and zj.xt_zt = :xt_zj";
+            hql += "  and zj.xt_zt = :xt_zt";
         }
         // 登记人所在单位
         if (!ObjectUtils.isEmpty(condition.getXt_djr()) && !ObjectUtils.isEmpty(condition.getXt_djr().getOrg())

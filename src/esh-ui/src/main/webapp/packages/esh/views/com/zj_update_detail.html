@@ -14,17 +14,17 @@
                             <li bs-tooltip data-title="电话">
                                 <a href="javascript:">
                                     <label class="control-label">电话</label>
-                                    <div class="input-icon">
-                                        <i class="fa fa-phone"></i>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-phone font-yellow"></i>
                                         <input type="text" class="form-control" placeholder="010-12345678" ng-model="entity.jb_dh">
                                     </div>
                                 </a>
                             </li>
                             <li bs-tooltip data-title="手机">
                                 <a href="javascript:">
-                                    <label class="control-label">手机</label>
+                                    <label class="control-label has-warning">手机</label>
                                     <div class="input-icon">
-                                        <i class="fa fa-phone-square"></i>
+                                        <i class="fa fa-phone-square font-yellow"></i>
                                         <input type="text" class="form-control" placeholder="010-12345678" ng-model="entity.jb_sj">
                                     </div>
                                 </a>
@@ -32,8 +32,8 @@
                             <li>
                                 <a href="javascript:">
                                     <label class="control-label">工作单位</label>
-                                    <div class="input-icon">
-                                        <i class="fa fa-building-o"></i>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-building-o font-yellow"></i>
                                         <input type="text" class="form-control" placeholder="..." ng-model="entity.gz_gzdw">
                                     </div>
                                 </a>
@@ -41,8 +41,8 @@
                             <li>
                                 <a href="javascript:">
                                     <label class="control-label">职务</label>
-                                    <div class="input-icon">
-                                        <i class="fa fa-briefcase"></i>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-briefcase font-yellow"></i>
                                         <input type="text" class="form-control" placeholder="..." ng-model="entity.gz_gzdw_zw">
                                     </div>
                                 </a>
@@ -50,8 +50,8 @@
                             <li>
                                 <a href="javascript:">
                                     <label class="control-label" for="gz_gzdw_dz_sheng">单位地址</label>
-                                    <div class="input-icon">
-                                        <i class="fa fa-map-marker"></i>
+                                    <div class="input-icon has-warning">
+                                        <i class="fa fa-map-marker font-yellow"></i>
                                         <select id="gz_gzdw_dz_sheng" class="form-control" ng-model="entity.gz_gzdw_dz_sheng.id"
                                                 ng-options="item.id as item.value for item in shengList"></select>
                                     </div>
@@ -80,17 +80,17 @@
                         <div class="row">
                             <div class="col-md-8 profile-info">
                                 <div class="row">
-                                    <div class="form-group form-md-line-input col-md-6">
+                                    <div class="form-group form-md-line-input col-md-6 has-warning">
                                         <div class="input-icon">
                                             <input id="jb_xm" type="text" class="form-control" ng-model="entity.jb_xm">
                                             <label for="jb_xm">姓名</label>
                                             <span class="help-block">专家姓名...</span>
-                                            <i class="fa fa-user"></i>
+                                            <i class="fa fa-user font-yellow"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group form-md-line-input col-md-12">
+                                    <div class="form-group form-md-line-input col-md-12 has-warning">
                                         <div class="input-icon">
                                             <textarea id="jb_jl" class="form-control" rows="8" ng-model="entity.jb_jl"></textarea>
                                             <label for="jb_jl">简历</label>
@@ -100,17 +100,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group form-md-line-input col-md-6">
+                                    <div class="form-group form-md-line-input col-md-6 has-warning">
                                         <div class="input-icon">
                                             <input id="jb_sfzh" type="text" class="form-control" ng-model="entity.jb_sfzh">
                                             <label for="jb_sfzh">身份证号</label>
                                             <span class="help-block">18位身份证号...</span>
-                                            <i class="fa fa-newspaper-o"></i>
+                                            <i class="fa fa-newspaper-o font-yellow"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-3 has-warning">
                                         <div class="md-checkbox-inline">
                                             <div class="md-checkbox">
                                                 <input type="checkbox" id="zj_update_gaxt" class="md-check" checked
@@ -135,12 +135,12 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group form-md-line-input col-md-2">
+                                    <div class="form-group form-md-line-input col-md-2 has-warning">
                                         <div class="input-icon">
                                             <input id="jb_xb" type="text" class="form-control" ng-model="entity.jb_xb">
                                             <label for="jb_xb">性别</label>
                                             <span class="help-block">男/女</span>
-                                            <i class="fa fa-smile-o"></i>
+                                            <i class="fa fa-smile-o font-yellow"></i>
                                         </div>
                                     </div>
                                     <div class="form-group form-md-line-input col-md-2">
@@ -174,50 +174,50 @@
                                             <i class="fa fa-map-marker"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
                                         <div class="input-icon">
                                             <select id="jb_zzmm" class="form-control" ng-model="entity.jb_zzmm.id"
                                                     ng-options="item.id as item.value for item in zzmmList"></select>
                                             <label for="jb_zzmm">政治面貌</label>
                                             <span class="help-block">党员/群众</span>
-                                            <i class="fa fa-exclamation-circle"></i>
+                                            <i class="fa fa-exclamation-circle font-yellow"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
                                         <div class="input-icon">
                                             <select id="jy_whcd" class="form-control" ng-model="entity.jy_whcd.id"
                                                     ng-options="item.id as item.value for item in whcdList"></select>
                                             <label for="jy_whcd">文化程度</label>
                                             <span class="help-block">请选择</span>
-                                            <i class="fa fa-graduation-cap"></i>
+                                            <i class="fa fa-graduation-cap font-yellow"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
                                         <div class="input-icon">
                                             <input id="jy_whcd_sszy" type="text" class="form-control" ng-model="entity.jy_whcd_sszy">
                                             <label for="jy_whcd_sszy">所学专业</label>
-                                            <i class="fa fa-flask"></i>
+                                            <i class="fa fa-flask font-yellow"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
                                         <div class="input-icon">
                                             <input id="zy_jszc" type="text" class="form-control" ng-model="entity.zy_jszc">
                                             <label for="zy_jszc">技术职称</label>
-                                            <i class="fa fa-graduation-cap"></i>
+                                            <i class="fa fa-graduation-cap font-yellow"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
                                         <div class="input-icon">
                                             <input id="zy_zgrz" type="text" class="form-control" ng-model="entity.zy_zgrz">
                                             <label for="zy_zgrz">资格认证</label>
-                                            <i class="fa fa-thumbs-up"></i>
+                                            <i class="fa fa-thumbs-up font-yellow"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group form-md-line-input col-md-3">
+                                    <div class="form-group form-md-line-input col-md-3 has-warning">
                                         <div class="input-icon">
                                             <input id="zy_ywzc" type="text" class="form-control" ng-model="entity.zy_ywzc">
                                             <label for="zy_ywzc">业务专长</label>
-                                            <i class="fa fa-trophy"></i>
+                                            <i class="fa fa-trophy font-yellow"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -541,6 +541,7 @@
                     </div>
                 </div>
             </div>
+            <div id="updateZJErrorMsgDiv"></div>
         </div>
     </form>
 </div>

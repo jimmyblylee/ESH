@@ -29,6 +29,7 @@ import org.springframework.stereotype.Controller;
 
 import com.lee.ez.esh.entity.EshZJ;
 import com.lee.ez.esh.entity.EshZJFZ;
+import com.lee.ez.esh.service.ZJFlowService;
 import com.lee.ez.esh.service.ZJInfoService;
 import com.lee.jwaf.action.AbstractControllerSupport;
 import com.lee.jwaf.exception.ServiceException;
@@ -47,10 +48,14 @@ import com.lee.jwaf.exception.ServiceException;
 public class ZJInfoController extends AbstractControllerSupport {
 
     /**
-     * 专家辅助.
+     * 专家服务.
      */
     @Resource
     private ZJInfoService service;
+
+    /** 专家流程服务. */
+    @Resource
+    private ZJFlowService flowService;
 
     /**
      * 查询.
@@ -127,5 +132,33 @@ public class ZJInfoController extends AbstractControllerSupport {
         } catch (ClassNotFoundException ex) {
             throw new ServiceException("无法找到匹配的类型");
         }
+    }
+
+    /**
+     * 提交.
+     */
+    public void tiJiao() {
+        flowService.tiJiao(sessionDTO.currentToken(), workDTO.getLong("id"));
+    }
+
+    /**
+     * 受理.
+     */
+    public void shouLi() {
+        flowService.shouLi(sessionDTO.currentToken(), workDTO.getLong("id"));
+    }
+
+    /**
+     * 通过.
+     */
+    public void tongGuo() {
+        flowService.tongGuo(sessionDTO.currentToken(), workDTO.getLong("id"));
+    }
+
+    /**
+     * 驳回.
+     */
+    public void boHui() {
+        flowService.boHui(sessionDTO.currentToken(), workDTO.getLong("id"), "");
     }
 }
