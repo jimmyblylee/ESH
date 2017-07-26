@@ -1,0 +1,151 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">主题</label>
+                        <div class="col-md-9">
+                            <input class="form-control" placeholder="主题" ng-model="condition.mc">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">开始</label>
+                        <div class="col-md-9">
+                            <input class="form-control" placeholder="大于" ng-model="condition.ks"
+                                   bs-datepicker data-date-format="yyyy年MM月dd日" data-date-type="string">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">结束</label>
+                        <div class="col-md-9">
+                            <input class="form-control" placeholder="大于" ng-model="condition.zz"
+                                   bs-datepicker data-date-format="yyyy年MM月dd日" data-date-type="string">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">性质</label>
+                        <div class="col-md-9">
+                            <select class="form-control" placeholder="性质" ng-model="condition.xz"
+                                    ng-change="onZTConditionChange()">
+                                <option value="PSL">评审类</option>
+                                <option value="FPSL">非评审类</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">状态</label>
+                        <div class="col-md-9">
+                            <select class="form-control" placeholder="状态" ng-model="condition.zt">
+                                <option value="DSB">待提交</option>
+                                <option value="DSL">待受理</option>
+                                <option value="DSX">待筛选</option>
+                                <option value="DBC">待补充</option>
+                                <option value="DQD">待启动</option>
+                                <option value="DKS">待开始</option>
+                                <option value="HDZ">活动中</option>
+                                <option value="DZJ">待总结</option>
+                                <option value="JS">结束</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">启用状态</label>
+                        <div class="col-md-6">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="hd_search_zt" class="md-check" checked
+                                           ng-model="condition.qy">
+                                    <label for="hd_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-right margin-bottom-15">
+                    <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-note"></i> 本部活动信息
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+        <div class="actions">
+            <!--suppress HtmlUnknownAnchorTarget -->
+            <a href="/#updateHDModalDiv" data-toggle="modal" class="btn btn-default" ng-click="prepareToAdd()">
+                <i class="glyphicon glyphicon-plus"></i> 登记活动
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center wid260px">主题</th>
+                        <th class="text-center wid160px">开始时间</th>
+                        <th class="text-center wid160px">终止时间</th>
+                        <th class="text-center wid100px">性质</th>
+                        <th class="text-center wid90px">专家人数</th>
+                        <th class="text-center wid90px">申报人</th>
+                        <th class="text-center wid140px">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td>{{item['mc']}}</td>
+                        <td class="text-center">{{item['ks']}}</td>
+                        <td class="text-center">{{item['zz']}}</td>
+                        <td class="text-center">
+                            <span ng-if="item['xz']==='PSL'" class="label label-sm label-warning">评审类</span>
+                            <span ng-if="item['xz']==='FPSL'" class="label label-sm label-info">非评审类</span>
+                        </td>
+                        <td class="text-center">{{item['xq']}}</td>
+                        <td class="text-center">{{item['djr']['name']}}</td>
+                        <td>
+                            <!-- 启用/禁用 -->
+                            <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
+                               ng-if="item.qy" ng-click="changeStatus(item, false)">
+                                <i class="fa fa-ban"></i>
+                            </a>
+                            <a href="javascript:" class="btn btn-xs green" bs-tooltip data-title="启用"
+                               ng-if="!item.qy" ng-click="changeStatus(item, true)">
+                                <i class="fa fa-recycle"></i>
+                            </a>
+                            <!-- 编辑 -->
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#updateHDModalDiv" data-toggle="modal" class="btn btn-xs blue"
+                               bs-tooltip data-title="编辑" ng-click="prepareToUpdate(item)">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

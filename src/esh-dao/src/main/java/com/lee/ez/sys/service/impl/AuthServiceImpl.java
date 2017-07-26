@@ -63,12 +63,7 @@ public class AuthServiceImpl implements AuthService {
     private EntityManager em;
     // CSON: MemberName
 
-    /**
-     * 校验账号和密码.
-     * @param account 账号
-     * @param pwd 密码
-     * @return user id 获得 空（如果找不到）
-     */
+    @Override
     @Transactional(readOnly = true)
     public Integer checkAccountAndPwd(String account, String pwd) {
         String hql = "from SysUserAccount as u";
@@ -83,12 +78,7 @@ public class AuthServiceImpl implements AuthService {
         return result.size() > 0 ? result.get(0).getId() : null;
     }
 
-    /**
-     * 给用户指定对应的功能.
-     * @param userId 用户id
-     * @param funcId 功能id
-     * @param assigned 是否关联
-     */
+    @Override
     public void assignFuncToUser(Integer userId, Integer funcId, Boolean assigned) {
         // CSOFF: LineLength
         if (assigned) {
@@ -105,11 +95,7 @@ public class AuthServiceImpl implements AuthService {
         // CSON: LineLength
     }
 
-    /**
-     * 根据给定的用户ID返回用户令牌.
-     * @param userId 用户id
-     * @return 用户令牌
-     */
+    @Override
     @Transactional(readOnly = true)
     public Token getTokenByUserId(Integer userId) {
         final EshToken token = new EshToken();
@@ -142,12 +128,43 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
+     * 根据树结构菜单获得菜单列表.
+     * @param func 树节点
+     * @return 菜单列表
+     */
+    private List<Func> getFuncList(FuncTree func) {
+        final List<Func> result = new LinkedList<>();
+        result.add(func);
+        if (func.getChildren().size() > 0) {
+            for (FuncTree child : func.getChildren()) {
+                result.addAll(getFuncList(child));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Number> queryFuncIdByUser(Integer userId) {
+        //noinspection unchecked
+        return em.createNativeQuery("SELECT FUNC_ID FROM SYS_USER_FUNC WHERE USER_ID = :userId")
+            .setParameter("userId", userId).getResultList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public SysFunc getAllFuncByTree() {
+        final SysFunc root = em.find(SysFunc.class, -1000000);
+        fetchChildren(root);
+        return root;
+    }
+
+    /**
      * 从根菜单开始获取数据传输对象.
      * @param node 当前节点
      * @param ids 权限列表
      * @return 权限过滤后的跟菜单数据传输对象
      */
-    @Transactional(readOnly = true)
     private EshFunc fetchChildren(SysFunc node, List<Integer> ids) {
         if (node.getIsLeaf() && !ids.contains(node.getId())) {
             // 如果是最终功能，而且，不在权限列表中，那么返回空，等待“不”加到列表中
@@ -175,46 +192,6 @@ public class AuthServiceImpl implements AuthService {
         }
         // 如果作为分菜单没有任何子菜单，则返回空，等待“不”加到列表中
         return !func.getIsLeaf() && func.getChildren().size() == 0 && !func.getIsRoot() ? null : func;
-    }
-
-    /**
-     * 根据树结构菜单获得菜单列表.
-     * @param func 树节点
-     * @return 菜单列表
-     */
-    @Transactional(readOnly = true)
-    private List<Func> getFuncList(FuncTree func) {
-        final List<Func> result = new LinkedList<>();
-        result.add(func);
-        if (func.getChildren().size() > 0) {
-            for (FuncTree child : func.getChildren()) {
-                result.addAll(getFuncList(child));
-            }
-        }
-        return result;
-    }
-
-    /**
-     * 根据用户id获得用户拥有的权限.
-     * @param userId 用户id
-     * @return 用户拥有的权限id列表
-     */
-    @Transactional(readOnly = true)
-    public List<Number> queryFuncIdByUser(Integer userId) {
-        //noinspection unchecked
-        return em.createNativeQuery("SELECT FUNC_ID FROM SYS_USER_FUNC WHERE USER_ID = :userId")
-            .setParameter("userId", userId).getResultList();
-    }
-
-    /**
-     * 获得所有的功能菜单，并以树结构展示.
-     * @return 树结构功能菜单。
-     */
-    @Transactional(readOnly = true)
-    public SysFunc getAllFuncByTree() {
-        SysFunc root = em.find(SysFunc.class, -1000000);
-        fetchChildren(root);
-        return root;
     }
 
     /**

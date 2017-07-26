@@ -20,6 +20,7 @@
 package com.lee.ez.esh.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -57,9 +58,9 @@ public class EshHDXQ implements Serializable {
     private EshHD hd;
     // CSOFF: LineLength
     /** 专业类别.**/
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumnsOrFormulas({
-        @JoinColumnOrFormula(column = @JoinColumn(name = "HD_XQ_ZYLB", referencedColumnName = "DICT_CODE", nullable = false)),
+        @JoinColumnOrFormula(column = @JoinColumn(name = "XQ_ZYLB", referencedColumnName = "DICT_CODE", nullable = false)),
         @JoinColumnOrFormula(formula = @JoinFormula(referencedColumnName = "DICT_NATURE", value = "'ZYLB'")) })
     private SysDict zylb;
     // CSON: LineLength
@@ -69,6 +70,14 @@ public class EshHDXQ implements Serializable {
     /** 是否特定抽取.**/
     @Column(name = "XQ_TDCQ")
     private Boolean tdcq;
+
+    /** 条件列表. */
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq")
+    private Set<EshHDXQTJ> tjList;
+
+    /** 库外专家列表. */
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq")
+    private Set<EshHDXQKW> kwList;
 
     /**
      * Get the id.
@@ -158,5 +167,41 @@ public class EshHDXQ implements Serializable {
      */
     public void setTdcq(Boolean tdcq) {
         this.tdcq = tdcq;
+    }
+
+    /**
+     * Get the tjList.
+     *
+     * @return return the tjList
+     */
+    public Set<EshHDXQTJ> getTjList() {
+        return tjList;
+    }
+
+    /**
+     * Set tjList.
+     *
+     * @param tjList the tjList to set
+     */
+    public void setTjList(Set<EshHDXQTJ> tjList) {
+        this.tjList = tjList;
+    }
+
+    /**
+     * Get the kwList.
+     *
+     * @return return the kwList
+     */
+    public Set<EshHDXQKW> getKwList() {
+        return kwList;
+    }
+
+    /**
+     * Set kwList.
+     *
+     * @param kwList the kwList to set
+     */
+    public void setKwList(Set<EshHDXQKW> kwList) {
+        this.kwList = kwList;
     }
 }

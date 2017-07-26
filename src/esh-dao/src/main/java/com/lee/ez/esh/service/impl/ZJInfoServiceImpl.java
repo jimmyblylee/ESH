@@ -78,12 +78,7 @@ public class ZJInfoServiceImpl implements ZJInfoService {
     @Resource
     private UserService userService;
 
-    /**
-     * 根据id获得实例.
-     *
-     * @param id 实例id
-     * @return 实例
-     */
+    @Override
     @Transactional(readOnly = true)
     public EshZJ get(Long id) {
         return em.find(EshZJ.class, id);
@@ -92,14 +87,8 @@ public class ZJInfoServiceImpl implements ZJInfoService {
     // CSOFF: NPathComplexity
     // CSOFF: CyclomaticComplexity
 
-    /**
-     * 根据条件搜索实例.
-     *
-     * @param condition 条件，姓名，推荐单位，审核状态，是否已启用，登记人所在单位
-     * @param start     分页开始
-     * @param limit     分页长度
-     * @return 实例列表
-     */
+    @SuppressWarnings("ConstantConditions")
+    @Override
     @Transactional(readOnly = true)
     public List<EshZJ> query(EshZJ condition, Integer start, Integer limit) {
         String hql = "  from EshZJ as zj";
@@ -196,12 +185,8 @@ public class ZJInfoServiceImpl implements ZJInfoService {
     // CSOFF: CyclomaticComplexity
     // CSOFF: NPathComplexity
 
-    /**
-     * 根据条件搜索实例数量.
-     *
-     * @param condition 条件，姓名，推荐单位，审核状态，是否已启用，登记人所在单位
-     * @return 实例数量
-     */
+    @SuppressWarnings("ConstantConditions")
+    @Override
     @Transactional(readOnly = true)
     public Integer count(EshZJ condition) {
         String hql = "  select count(zj) from EshZJ as zj";
@@ -284,14 +269,7 @@ public class ZJInfoServiceImpl implements ZJInfoService {
     // CSON: CyclomaticComplexity
     // CSON: NPathComplexity
 
-    /**
-     * 持久化实体.
-     *
-     * @param userToken 用户令牌
-     * @param entity    游离实体
-     * @return 持久实体
-     * @throws ServiceException 校验不过
-     */
+    @Override
     public EshZJ create(Token userToken, EshZJ entity) throws ServiceException {
         validate(entity);
 
@@ -341,13 +319,7 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         }
     }
 
-    /**
-     * 更新实体.
-     *
-     * @param userToken 用户令牌
-     * @param entity    游离实体
-     * @throws ServiceException 校验不过
-     */
+    @Override
     public void update(Token userToken, EshZJ entity) throws ServiceException {
 
         validate(entity);
@@ -370,24 +342,14 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         em.merge(entity);
     }
 
-    /**
-     * 更新是否启用状态.
-     *
-     * @param userToken 用户令牌
-     * @param id        实体ID
-     * @param isEnabled true for 启用
-     */
+    @Override
     public void setStatus(Token userToken, Integer id, Boolean isEnabled) {
         final EshZJ entity = em.find(EshZJ.class, id.longValue());
         entity.setXt_qy(isEnabled);
         entity.setXt_gxsj(DateUtils.formatDateToYMD(new Date().getTime()));
     }
 
-    /**
-     * 删除辅助信息.
-     * @param id 辅助类型id
-     * @param type 辅助类型
-     */
+    @Override
     public void removeFz(Long id, Class<? extends EshZJFZ> type) {
         em.remove(em.find(type, id));
     }

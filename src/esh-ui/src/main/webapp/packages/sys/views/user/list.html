@@ -1,50 +1,52 @@
 <div class="form">
     <form action="#" class="form-horizontal">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-3">姓名</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3" ng-if="!isOrgMgmt">
-                <div class="form-group">
-                    <label class="control-label col-md-3">部门</label>
-                    <div class="col-md-9">
-                        <div class="input-icon right">
-                            <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.org = undefined"></i>
-                            <ui-select ng-model="condition.org" theme="bootstrap">
-                                <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
-                                <ui-select-choices repeat="item in orgList | filter: $select.search">
-                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
-                                    <small ng-bind-html="'电话：' + item.tel | highlight: $select.search"></small>
-                                </ui-select-choices>
-                            </ui-select>
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">姓名</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="姓名" ng-model="condition.name">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-6">是否启用</label>
-                    <div class="col-md-6">
-                        <div class="md-checkbox-inline">
-                            <div class="md-checkbox">
-                                <input type="checkbox" id="dict_search_zt" class="md-check" checked
-                                       ng-model="condition.isEnabled">
-                                <label for="dict_search_zt">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> 启用 </label>
+                <div class="col-md-3" ng-if="!isOrgMgmt">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">部门</label>
+                        <div class="col-md-9">
+                            <div class="input-icon right">
+                                <i class="fa fa-close font-grey-gallery margin-right-20" ng-click="condition.org = undefined"></i>
+                                <ui-select ng-model="condition.org" theme="bootstrap">
+                                    <ui-select-match placeholder="选择或查找..."><span>{{$select.selected.name}}</span></ui-select-match>
+                                    <ui-select-choices repeat="item in orgList | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        <small ng-bind-html="'电话：' + item.tel | highlight: $select.search"></small>
+                                    </ui-select-choices>
+                                </ui-select>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">是否启用</label>
+                        <div class="col-md-6">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="dict_search_zt" class="md-check" checked
+                                           ng-model="condition.isEnabled">
+                                    <label for="dict_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
             </div>
         </div>
     </form>

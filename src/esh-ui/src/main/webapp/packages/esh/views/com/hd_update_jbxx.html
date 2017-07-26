@@ -1,0 +1,72 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">主题</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="主题" ng-model="entity.mc">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">开始时间</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="yyyy年mm月dd日" ng-model="entity.ks"
+                       bs-datepicker data-date-format="yyyy年MM月dd日" data-date-type="string">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">终止时间</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="yyyy年mm月dd日" ng-model="entity.zz"
+                       bs-datepicker data-date-format="yyyy年MM月dd日" data-date-type="string">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">性质</label>
+            <div class="col-md-9">
+                <select class="form-control" placeholder="性质" ng-model="entity.xz">
+                    <option value="PSL">评审类</option>
+                    <option value="FPSL">非评审类</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">组织部门</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="组织部门" ng-model="entity.bm">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">活动地址</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="活动地址" ng-model="entity.dz">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">专家人数</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="活动地址" ng-model="entity.xq">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label col-md-3">活动描述</label>
+            <div class="col-md-9">
+                <textarea class="form-control" placeholder="活动地址" rows="5" ng-model="entity.ms"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

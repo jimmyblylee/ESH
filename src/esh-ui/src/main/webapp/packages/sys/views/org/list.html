@@ -1,41 +1,43 @@
 <div class="form">
     <form action="#" class="form-horizontal">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-3">名称</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="处室名称" ng-model="condition.name">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">名称</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="处室名称" ng-model="condition.name">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-3">电话</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="电话" ng-model="condition.tel">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">电话</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="电话" ng-model="condition.tel">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-3">状态</label>
-                    <div class="col-md-9">
-                        <div class="md-checkbox-inline">
-                            <div class="md-checkbox">
-                                <input type="checkbox" id="org_search_zt" class="md-check" checked
-                                       ng-model="condition.isEnabled">
-                                <label for="org_search_zt">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> 启用 </label>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">状态</label>
+                        <div class="col-md-9">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="org_search_zt" class="md-check" checked
+                                           ng-model="condition.isEnabled">
+                                    <label for="org_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                <div class="col-md-3">
+                    <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
             </div>
         </div>
     </form>

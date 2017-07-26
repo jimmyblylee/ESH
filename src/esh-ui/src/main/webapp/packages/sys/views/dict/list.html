@@ -1,58 +1,60 @@
 <div class="form">
     <form action="#" class="form-horizontal">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-3">类型</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="类型" ng-model="condition.nature">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">类型</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="类型" ng-model="condition.nature">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label col-md-3">编码</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="编码" ng-model="condition.code">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">编码</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="编码" ng-model="condition.code">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label class="control-label col-md-6">是否类型</label>
-                    <div class="col-md-6">
-                        <div class="md-checkbox-inline">
-                            <div class="md-checkbox">
-                                <input type="checkbox" id="dict_search_lx" class="md-check" checked
-                                       ng-change="changeConditionStatus('isNature')" ng-model="condition.isNature">
-                                <label for="dict_search_lx">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> 类型 </label>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">是否类型</label>
+                        <div class="col-md-6">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="dict_search_lx" class="md-check" checked
+                                           ng-change="changeConditionStatus('isNature')" ng-model="condition.isNature">
+                                    <label for="dict_search_lx">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 类型 </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label class="control-label col-md-6">是否启用</label>
-                    <div class="col-md-6">
-                        <div class="md-checkbox-inline">
-                            <div class="md-checkbox">
-                                <input type="checkbox" id="dict_search_zt" class="md-check" checked
-                                       ng-change="changeConditionStatus('isEnabled')" ng-model="condition.isEnabled">
-                                <label for="dict_search_zt">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> 启用 </label>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label col-md-6">是否启用</label>
+                        <div class="col-md-6">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" id="dict_search_zt" class="md-check" checked
+                                           ng-change="changeConditionStatus('isEnabled')" ng-model="condition.isEnabled">
+                                    <label for="dict_search_zt">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 启用 </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <a href="javascript:" class="btn btn-sm grey-cascade" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                <div class="col-md-2">
+                    <a href="javascript:" class="btn btn-sm grey-cascade" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
             </div>
         </div>
     </form>

@@ -17,26 +17,36 @@
  * with this library; if not, write to the Free Software Foundation.
  * ***************************************************************************/
 
+package com.lee.ez.esh.service;
+
+import com.lee.ez.esh.entity.EshHDZJ;
+
+import java.util.List;
+
 /**
- * Description: 更新处室控制器.<br>
- * Created by Jimmybly Lee on 2017/7/3.
+ * Description: 活动相关专家服务.<br>
+ * Created by Jimmybly Lee on 2017/7/23.
+ *
  * @author Jimmybly Lee
  */
-angular.module('WebApp').controller('OrgUpdateCtrl', ['$scope', "$ajaxCall", function ($scope, $ajaxCall) {
+public interface HDZJService {
 
     /**
-     * 提交表单
+     * 为给定活动手动指定专家.
+     * @param zjId 专家ID
+     * @param hdId 活动ID
      */
-    $scope.submit = function() {
-        $ajaxCall.post({
-            data : {
-                controller: "OrgController",
-                method: $scope.method,
-                entity : JSON.stringify($scope.entity)
-            },
-            success: function() {
-                $scope.$emit("submitted");
-            }
-        });
-    };
-}]);
+    void assignZJ(Long zjId, Long hdId);
+
+    /**
+     * 查找已经选定的活动专家.
+     * @param hdId 活动ID
+     */
+    List<EshHDZJ> queryAssignedZJ(Long hdId);
+
+    /**
+     * 删除某活动专家.
+     * @param hdzjId 活动专家id
+     */
+    void removeZJ(Long hdzjId);
+}

@@ -1,0 +1,80 @@
+<div class="row">
+    <!-- 选择专家 -->
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-search"></i> 选择专家
+            </div>
+            <div class="inputs">
+                <div class="portlet-input input-inline input-large">
+                    <div class="input-group">
+                        <div class="input-icon right">
+                            <i class="icon-magnifier"></i>
+                            <input type="text" class="form-control input-circle" placeholder="按姓名查找..." ng-model="condition.jb_xm">
+                        </div>
+                        <div class="input-group-btn">
+                            <a href="javascript:" class="btn btn-success btn-sm" ng-click="search();"><i class="fa fa-search"></i> 搜索</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-scrollable">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <th class="text-center">姓名</th>
+                        <th class="text-center">单位</th>
+                        <th class="text-center">选择</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in searchList">
+                            <td class="text-center">{{item['jb_xm']}}</td>
+                            <td>{{item['gz_gzdw']}}</td>
+                            <td class="text-center">
+                                <span class="label label-sm label-info" ng-click="select(item);" style="cursor: pointer;">
+                                    <i class="fa fa-hand-lizard-o"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div table-paging-footer></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <!-- 已选专家 -->
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-check"></i> 已选专家
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-scrollable">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <th class="text-center">#</th>
+                        <th class="text-center">姓名</th>
+                        <th class="text-center">单位</th>
+                        <th class="text-center">操作</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in selectedList">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center">{{item['zj']['jb_xm']}}</td>
+                            <td>{{item['zj']['gz_gzdw']}}</td>
+                            <td class="text-center">
+                                <span class="label label-sm label-danger" ng-click="deselect(item);" style="cursor: pointer;">
+                                    <i class="fa fa-ban"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

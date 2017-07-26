@@ -53,10 +53,12 @@
             "pageTitle": "活动登记",
             "pageSubTitle": "登记并上报活动"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/esh/views/hd_dj/main.html",
+        "controller": "HDDJListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/esh/js/hd_dj/HDDJListCtrl.js",
+            "packages/esh/js/hd_dj/HDDJUpdateCtrl.js",
+            "packages/esh/js/hd_dj/HDDJSelectZJCtrl.js"
         ]
     },
     "zj-ll": {

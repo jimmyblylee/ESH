@@ -60,43 +60,25 @@ public class UserServiceImpl implements UserService {
     private EntityManager em;
     // CSON: MemberName
 
-    /**
-     * 根据ID获得实体.
-     * @param id 实体ID
-     * @return 实体
-     */
+    @Override
     @Transactional(readOnly = true)
     public SysUser get(Integer id) {
         return em.find(SysUser.class, id);
     }
 
-    /**
-     * 根据ID获得用户，并把照片一并返回.
-     * @param id 用户ID
-     * @return 用户实体，拥有照片
-     */
+    @Override
     @Transactional(readOnly = true)
     public SysUserPhoto getUserPhoto(Integer id) {
         return em.find(SysUserPhoto.class, id);
     }
 
-    /**
-     * 根据id获得用户帐号.
-     * @param id 用户id
-     * @return 用户帐号
-     */
+    @Override
     @Transactional(readOnly = true)
     public SysUserAccount getUserAccount(Integer id) {
         return em.find(SysUserAccount.class, id);
     }
 
-    /**
-     * 根据条件返回实体列表.
-     * @param condition 可能参数，包括用户名，是否启用，处室名，处室ID
-     * @param start 分页开始
-     * @param limit 分页长度
-     * @return 实体列表
-     */
+    @Override
     @Transactional(readOnly = true)
     public List<SysUser> query(SysUser condition, Integer start, Integer limit) {
         String hql = "  from SysUser as u";
@@ -132,11 +114,7 @@ public class UserServiceImpl implements UserService {
         return query.getResultList();
     }
 
-    /**
-     * 根据条件返回用户个数.
-     * @param condition 可能参数，包括用户名，处室名，处室ID
-     * @return 用户个数
-     */
+    @Override
     @Transactional(readOnly = true)
     public int count(SysUser condition) {
         String hql = "  select count(u) from SysUser as u";
@@ -167,12 +145,7 @@ public class UserServiceImpl implements UserService {
         return ((Number) query.getSingleResult()).intValue();
     }
 
-    /**
-     * 创建用户.
-     * @param entity 用户游离实体
-     * @return 持久实体
-     * @throws WarnException 账号没校验通过
-     */
+    @Override
     public SysUser create(SysUser entity) throws WarnException {
         final SysUserAccount account = entity.getAccount();
         entity.setAccount(null);
@@ -200,10 +173,7 @@ public class UserServiceImpl implements UserService {
         return entityInDB;
     }
 
-    /**
-     * 更新用户实体.只更新用户名、电话、邮箱、头像
-     * @param entity 实体
-     */
+    @Override
     public void update(SysUser entity) {
         final SysUser entityInDB = em.find(SysUser.class, entity.getId());
         entityInDB.setName(entity.getName());
@@ -217,11 +187,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * 校验用户帐号.
-     * @param user 用户实体，校验其中的用户id以及账号
-     * @return true for 校验失败，已经有重复账号的用户了.
-     */
+    @Override
     @SuppressWarnings("WeakerAccess")
     @Transactional(readOnly = true)
     public boolean checkUserAccount(SysUserAccount user) {
@@ -238,11 +204,7 @@ public class UserServiceImpl implements UserService {
         return ((Number) query.getSingleResult()).intValue() > 0;
     }
 
-    /**
-     * 更新用户密码.
-     * @param entity 用户实体
-     * @throws WarnException 账号没校验通过
-     */
+    @Override
     public void updateAccount(SysUserAccount entity) throws WarnException {
         if (checkUserAccount(entity)) {
             throw new WarnException("有重复的账号，不能使用这个账号！");
@@ -252,20 +214,13 @@ public class UserServiceImpl implements UserService {
         entityInDB.setPwd(PasswordUtils.encryptByMD5(entity.getPwd()));
     }
 
-    /**
-     * 更新头像.
-     * @param photo 头像实体
-     */
+    @Override
     public void updatePhoto(SysUserPhoto photo) {
         final SysUserPhoto photoInDB = getUserPhoto(photo.getId());
         photoInDB.setData(photo.getData());
     }
 
-    /**
-     * 修改实体是否启用状态.
-     * @param id 实体ID
-     * @param isEnabled 是否启用
-     */
+    @Override
     public void changeStatus(Integer id, Boolean isEnabled) {
         em.find(SysUser.class, id).setIsEnabled(isEnabled);
     }

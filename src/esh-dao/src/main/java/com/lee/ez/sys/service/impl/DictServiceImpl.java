@@ -57,23 +57,13 @@ public class DictServiceImpl implements DictService {
     private EntityManager em;
     // CSON: MemberName
 
-    /**
-     * 根据ID获得实体.
-     * @param id 实体ID
-     * @return 实体
-     */
+    @Override
     @Transactional(readOnly = true)
     public SysDict get(Integer id) {
         return em.find(SysDict.class, id);
     }
 
-    /**
-     * 根据条件获得实体列表.
-     * @param condition 条件，类型，编码，值，是否启用
-     * @param start 分页开始
-     * @param limit 分页长度
-     * @return 实体列表
-     */
+    @Override
     @Transactional(readOnly = true)
     public List<SysDictionary> query(SysDictionary condition, Integer start, Integer limit) {
         String hql = " from SysDictionary as d";
@@ -115,11 +105,7 @@ public class DictServiceImpl implements DictService {
         return query.getResultList();
     }
 
-    /**
-     * 根据条件获得实体数量.
-     * @param condition 条件，类型，编码，值，是否启用
-     * @return 实体数量
-     */
+    @Override
     @Transactional(readOnly = true)
     public Integer count(SysDictionary condition) {
         String hql = " select count(d) from SysDictionary as d";
@@ -158,12 +144,7 @@ public class DictServiceImpl implements DictService {
         return ((Number) query.getSingleResult()).intValue();
     }
 
-    /**
-     * 创建实体.
-     * @param entity 游离状态实体
-     * @return 持久化实体
-     * @throws WarnException 有已经存在重复的类型和编码
-     */
+    @Override
     public SysDictionary create(SysDictionary entity) throws WarnException {
         if (checkNatureAndCode(entity)) {
             throw new WarnException("有已经存在重复的类型和编码！");
@@ -174,11 +155,7 @@ public class DictServiceImpl implements DictService {
         return entity;
     }
 
-    /**
-     * 更新实体.只更新编码，显示值，描述
-     * @param entity 游离状态实体.
-     * @throws WarnException 有已经存在重复的类型和编码
-     */
+    @Override
     public void update(SysDictionary entity) throws WarnException {
         if (checkNatureAndCode(entity)) {
             throw new WarnException("有已经存在重复的类型和编码！");
@@ -189,11 +166,7 @@ public class DictServiceImpl implements DictService {
         entityInDB.setDesc(entity.getDesc());
     }
 
-    /**
-     * 校验类型和编码.
-     * @param entity 实体
-     * @return 类型和编码校验失败，有重复的，不能这样变更或添加
-     */
+    @Override
     @SuppressWarnings("WeakerAccess")
     @Transactional(readOnly = true)
     public boolean checkNatureAndCode(SysDictionary entity) {
@@ -211,11 +184,7 @@ public class DictServiceImpl implements DictService {
         return ((Number) query.getSingleResult()).intValue() > 0;
     }
 
-    /**
-     * 修改实体是否启用状态.
-     * @param id 实体ID
-     * @param isEnabled 是否启用
-     */
+    @Override
     public void changeStatus(Integer id, Boolean isEnabled) {
         em.find(SysDictionary.class, id).setIsEnabled(isEnabled);
     }

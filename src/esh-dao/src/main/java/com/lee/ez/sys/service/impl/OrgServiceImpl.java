@@ -52,23 +52,13 @@ public class OrgServiceImpl implements OrgService {
     private EntityManager em;
     // CSON: MemberName
 
-    /**
-     * 根据ID获得实体.
-     * @param id 实体ID
-     * @return 实体
-     */
+    @Override
     @Transactional(readOnly = true)
     public SysOrg get(Integer id) {
-        return null;
+        return em.find(SysOrg.class, id);
     }
 
-    /**
-     * 根据条件获得实体列表.
-     * @param condition 条件，名称，电话，是否启用
-     * @param start 分页开始
-     * @param limit 分页长度
-     * @return 实体列表
-     */
+    @Override
     @Transactional(readOnly = true)
     public List<SysOrg> query(SysOrg condition, Integer start, Integer limit) {
         String hql = "  from SysOrg as o";
@@ -96,11 +86,7 @@ public class OrgServiceImpl implements OrgService {
         return query.getResultList();
     }
 
-    /**
-     * 根据条件获得实体数量.
-     * @param condition 条件，名称，电话，是否启用
-     * @return 实体数量
-     */
+    @Override
     @Transactional(readOnly = true)
     public Integer count(SysOrg condition) {
         String hql = "  select count(o) from SysOrg as o";
@@ -126,32 +112,21 @@ public class OrgServiceImpl implements OrgService {
         return ((Number) query.getSingleResult()).intValue();
     }
 
-    /**
-     * 创建实体.
-     * @param entity 游离状态实体
-     * @return 持久化实体
-     */
+    @Override
     public SysOrg create(SysOrg entity) {
         entity.setIsEnabled(true);
         em.persist(entity);
         return entity;
     }
 
-    /**
-     * 更新实体.只更新名称、电话
-     * @param entity 游离状态实体.
-     */
+    @Override
     public void update(SysOrg entity) {
         final SysOrg entityInDB = em.find(SysOrg.class, entity.getId());
         entityInDB.setName(entity.getName());
         entityInDB.setTel(entity.getTel());
     }
 
-    /**
-     * 修改实体是否启用状态.
-     * @param id 实体ID
-     * @param isEnabled 是否启用
-     */
+    @Override
     public void changeStatus(Integer id, Boolean isEnabled) {
         em.find(SysOrg.class, id).setIsEnabled(isEnabled);
     }

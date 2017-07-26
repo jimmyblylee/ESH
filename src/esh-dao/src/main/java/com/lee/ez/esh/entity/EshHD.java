@@ -20,8 +20,11 @@
 package com.lee.ez.esh.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import com.lee.ez.sys.entity.SysUser;
 
 // CSOFF: MethodCount
 // CSOFF: ParameterName
@@ -67,12 +70,42 @@ public class EshHD implements Serializable {
     @Enumerated
     @Column(name = "HD_ZT")
     private HDZT zt;
+    /** 登记人. */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HD_DJR")
+    private SysUser djr;
+    /** 审核人. */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HD_SHR")
+    private SysUser shr;
+    /** 状态备注.*/
+    @Column(name = "HD_ZT_BZ")
+    private String bz;
     /** 登记时间.**/
     @Column(name = "HD_DJSJ")
     private String djsj;
     /** 更新时间.**/
     @Column(name = "HD_GXSJ")
     private String gxsj;
+    /** 活动描述.*/
+    @Column(name = "HD_MS")
+    private String ms;
+    /** 活动是否启用.*/
+    @Column(name = "HD_QY")
+    private Boolean qy;
+    /** 需求专家总数.*/
+    @Column(name = "HD_XQ")
+    private Integer xq;
+
+    /** 需求列表. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd")
+    private Set<EshHDXQ> xqList;
+    /** 专家列表. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd")
+    private Set<EshHDZJ> zjList;
+    /** 随机列录列表. */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd")
+    private Set<EshHDZJSJ> sjList;
 
     /**
      * Get the id.
@@ -219,6 +252,60 @@ public class EshHD implements Serializable {
     }
 
     /**
+     * Get the djr.
+     *
+     * @return return the djr
+     */
+    public SysUser getDjr() {
+        return djr;
+    }
+
+    /**
+     * Set djr.
+     *
+     * @param djr the djr to set
+     */
+    public void setDjr(SysUser djr) {
+        this.djr = djr;
+    }
+
+    /**
+     * Get the shr.
+     *
+     * @return return the shr
+     */
+    public SysUser getShr() {
+        return shr;
+    }
+
+    /**
+     * Set shr.
+     *
+     * @param shr the shr to set
+     */
+    public void setShr(SysUser shr) {
+        this.shr = shr;
+    }
+
+    /**
+     * Get the bz.
+     *
+     * @return return the bz
+     */
+    public String getBz() {
+        return bz;
+    }
+
+    /**
+     * Set bz.
+     *
+     * @param bz the bz to set
+     */
+    public void setBz(String bz) {
+        this.bz = bz;
+    }
+
+    /**
      * Get the djsj.
      *
      * @return return the djsj
@@ -252,5 +339,113 @@ public class EshHD implements Serializable {
      */
     public void setGxsj(String gxsj) {
         this.gxsj = gxsj;
+    }
+
+    /**
+     * Get the ms.
+     *
+     * @return return the ms
+     */
+    public String getMs() {
+        return ms;
+    }
+
+    /**
+     * Set ms.
+     *
+     * @param ms the ms to set
+     */
+    public void setMs(String ms) {
+        this.ms = ms;
+    }
+
+    /**
+     * Get the qy.
+     *
+     * @return return the qy
+     */
+    public Boolean getQy() {
+        return qy;
+    }
+
+    /**
+     * Set qy.
+     *
+     * @param qy the qy to set
+     */
+    public void setQy(Boolean qy) {
+        this.qy = qy;
+    }
+
+    /**
+     * Get the xq.
+     *
+     * @return return the xq
+     */
+    public Integer getXq() {
+        return xq;
+    }
+
+    /**
+     * Set xq.
+     *
+     * @param xq the xq to set
+     */
+    public void setXq(Integer xq) {
+        this.xq = xq;
+    }
+
+    /**
+     * Get the xqList.
+     *
+     * @return return the xqList
+     */
+    public Set<EshHDXQ> getXqList() {
+        return xqList;
+    }
+
+    /**
+     * Set xqList.
+     *
+     * @param xqList the xqList to set
+     */
+    public void setXqList(Set<EshHDXQ> xqList) {
+        this.xqList = xqList;
+    }
+
+    /**
+     * Get the zjList.
+     *
+     * @return return the zjList
+     */
+    public Set<EshHDZJ> getZjList() {
+        return zjList;
+    }
+
+    /**
+     * Set zjList.
+     *
+     * @param zjList the zjList to set
+     */
+    public void setZjList(Set<EshHDZJ> zjList) {
+        this.zjList = zjList;
+    }
+
+    /**
+     * Get the sjList.
+     *
+     * @return return the sjList
+     */
+    public Set<EshHDZJSJ> getSjList() {
+        return sjList;
+    }
+
+    /**
+     * Set sjList.
+     *
+     * @param sjList the sjList to set
+     */
+    public void setSjList(Set<EshHDZJSJ> sjList) {
+        this.sjList = sjList;
     }
 }

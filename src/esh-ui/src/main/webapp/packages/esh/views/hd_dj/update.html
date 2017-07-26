@@ -1,0 +1,133 @@
+<div class="modal fade" id="updateHDModalDiv" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" ng-controller="HDDJUpdateCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="icon-note"></i> {{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <form action="#" class="form-horizontal">
+                        <div class="form-boy">
+                            <div class="mt-element-step">
+                                <!-- 非评审类 -->
+                                <div class="row step-thin" ng-if="!(entity.xz === 'PSL')">
+                                    <div class="col-md-4 bg-grey mt-step-col active" id="hd_fpsl_nav_jbxx">
+                                        <div class="mt-step-number bg-white font-grey">1</div>
+                                        <div class="mt-step-title">基本信息</div>
+                                        <div class="mt-step-content">编写基本信息</div>
+                                    </div>
+                                    <div class="col-md-4 bg-grey mt-step-col" id="hd_fpsl_nav_xzzj">
+                                        <div class="mt-step-number bg-white font-grey">2</div>
+                                        <div class="mt-step-title">选取专家</div>
+                                        <div class="mt-step-content">自由选取专家</div>
+                                    </div>
+                                    <div class="col-md-4 bg-grey mt-step-col" id="hd_fpsl_nav_qrxx">
+                                        <div class="mt-step-number bg-white font-grey">3</div>
+                                        <div class="mt-step-title">确认信息</div>
+                                        <div class="mt-step-content">确认活动信息</div>
+                                    </div>
+                                </div>
+
+                                <!-- 评审类 -->
+                                <div class="row step-thin" ng-if="entity.xz == 'PSL'">
+                                    <div class="col-md-4 bg-grey mt-step-col active">
+                                        <div class="mt-step-number bg-white font-grey">1</div>
+                                        <div class="mt-step-title">基本信息</div>
+                                        <div class="mt-step-content">编写基本信息</div>
+                                    </div>
+                                    <div class="col-md-4 bg-grey mt-step-col">
+                                        <div class="mt-step-number bg-white font-grey">2</div>
+                                        <div class="mt-step-title">专家需求</div>
+                                        <div class="mt-step-content">专家需求条件</div>
+                                    </div>
+                                    <div class="col-md-4 bg-grey mt-step-col">
+                                        <div class="mt-step-number bg-white font-grey">3</div>
+                                        <div class="mt-step-title">确认信息</div>
+                                        <div class="mt-step-content">确认活动信息</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabbable-line">
+                                <!-- 非评审类 -->
+                                <div class="tab-content" ng-if="!(entity.xz == 'PSL')">
+                                    <div class="tab-pane active" id="hd_fpsl_jbxx">
+                                        <!-- 基本信息 -->
+                                        <div data-ng-include="'packages/esh/views/com/hd_update_jbxx.html'+cacheVersion"></div>
+                                        <div class="pull-right">
+                                            <a href="javascript:" class="btn btn-outline dark" ng-click="discard();">
+                                                <i class="fa fa-ban"></i> 放弃
+                                            </a>
+                                            <a href="javascript:" class="btn btn-primary" ng-click="fpslJbxxNext();">
+                                                <i class="fa fa-hand-o-right"></i> 下一步
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="hd_fpsl_xzzj">
+                                        <!-- 选择专家 -->
+                                        <div data-ng-include="'packages/esh/views/com/hd_select_zj.html'+cacheVersion" ng-controller="HDDJSelectZJCtrl"></div>
+                                        <div class="pull-right">
+                                            <a href="javascript:" class="btn btn-outline dark" ng-click="discard();">
+                                                <i class="fa fa-ban"></i> 放弃
+                                            </a>
+                                            <a href="javascript:" class="btn btn-default" ng-click="fpslXzzjLast();">
+                                                <i class="fa fa-hand-o-left"></i> 上一步
+                                            </a>
+                                            <a href="javascript:" class="btn btn-primary" ng-click="fpslXzzjNext();">
+                                                <i class="fa fa-hand-o-right"></i> 下一步
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="hd_fpsl_qrxx">
+                                        <!-- 确认 -->
+                                        <div data-ng-include="'packages/esh/views/com/hd_view_base.html'+cacheVersion"></div>
+                                        <div class="pull-right">
+                                            <a href="javascript:" class="btn btn-outline dark" ng-click="discard();">
+                                                <i class="fa fa-ban"></i> 放弃
+                                            </a>
+                                            <a href="javascript:" class="btn btn-default" ng-click="fpslQrxxLast()">
+                                                <i class="fa fa-hand-o-left"></i> 上一步
+                                            </a>
+                                            <a href="javascript:" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">
+                                                <i class="fa fa-check"></i> 确认
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 评审类 -->
+                                <div class="tab-content" ng-if="entity.xz == 'PSL'">
+                                    <div class="tab-pane active" id="hd_psl_jbxx">
+                                        <!-- 基本信息 -->
+                                        <div data-ng-include="'packages/esh/views/com/hd_update_jbxx.html'+cacheVersion"></div>
+                                        <div class="pull-right">
+                                            <a href="javascript:" class="btn btn-outline dark"> <i class="fa fa-ban"></i> 放弃 </a>
+                                            <a href="javascript:" class="btn btn-primary"> <i class="fa fa-hand-o-right"></i> 下一步 </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="hd_psl_xzzj">
+                                        <!-- 选择专家 -->
+                                        <div data-ng-include="'packages/esh/views/com/hd_select_zj.html'+cacheVersion"></div>
+                                        <div class="pull-right">
+                                            <a href="javascript:" class="btn btn-outline dark">
+                                                <i class="fa fa-ban"></i> 放弃
+                                            </a>
+                                            <a href="javascript:" class="btn btn-default"> <i class="fa fa-hand-o-left"></i> 上一步 </a>
+                                            <a href="javascript:" class="btn btn-primary"> <i class="fa fa-hand-o-right"></i> 下一步 </a>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="hd_psl_sdxqzj">
+                                        <!-- 确认 -->
+                                        <div data-ng-include="'packages/esh/views/com/hd_select_zj.html'+cacheVersion"></div>
+                                        <div class="pull-right">
+                                            <a href="javascript:" class="btn btn-default">上一步</a>
+                                            <a href="javascript:" class="btn btn-primary">确认</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

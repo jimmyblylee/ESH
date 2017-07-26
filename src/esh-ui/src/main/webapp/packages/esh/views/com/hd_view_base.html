@@ -1,0 +1,65 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">主题</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.mc}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">开始时间</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.ks}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">终止时间</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.zz}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">性质</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.xz === "PSL" ? "评审类" : "非评审类"}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">组织部门</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.bm}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">活动地址</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.dz}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">专家人数</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.xq}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">活动描述</label>
+                        <div class="col-md-9"><span class="form-control-static">{{entity.ms}}</span></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">共选择了{{entity.selectedList.length}}个专家</label>
+                        <div class="col-md-9">
+                            <span class="form-control-static"><span class="margin-right-10" ng-repeat="item in entity.selectedList">{{item['zj']['jb_xm']}}</span></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

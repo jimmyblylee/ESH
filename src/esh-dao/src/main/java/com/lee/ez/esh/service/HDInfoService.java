@@ -19,6 +19,11 @@
 
 package com.lee.ez.esh.service;
 
+import java.util.List;
+
+import com.lee.ez.esh.entity.EshHD;
+import com.lee.jwaf.token.Token;
+
 /**
  * Description: 活动服务信息维护服务.<br>
  * Created by Jimmybly Lee on 2017/6/28.
@@ -26,4 +31,50 @@ package com.lee.ez.esh.service;
  * @author Jimmybly Lee
  */
 public interface HDInfoService {
+
+    /**
+     * 查询实体.
+     * @param condition 条件
+     * @param start 开始
+     * @param limit 长度
+     * @return 实体列表
+     */
+    List<EshHD> query(EshHD condition, Integer start, Integer limit);
+
+    /**
+     * 根据条件获取总数.
+     * @param condition 条件
+     * @return 总数
+     */
+    Integer count(EshHD condition);
+
+    /**
+     * 创建实体.
+     * @param token 用户令牌
+     * @param entity 待创建的实体
+     */
+    Long create(Token token, EshHD entity);
+
+    /**
+     * 更新实体.
+     * @param token 用户令牌
+     * @param entity 待更新的实体
+     */
+    void update(Token token, EshHD entity);
+
+    /**
+     * 更新是否启用状态.
+     *
+     * @param userToken 用户令牌
+     * @param id        实体ID
+     * @param isEnabled true for 启用
+     */
+    void setStatus(Token userToken, Integer id, Boolean isEnabled);
+
+    /**
+     * 物理删除活动信息.
+     * @param id 活动id
+     */
+    void doRealRemove(Long id);
+
 }
