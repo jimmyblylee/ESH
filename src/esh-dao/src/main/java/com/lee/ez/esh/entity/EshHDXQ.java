@@ -72,11 +72,11 @@ public class EshHDXQ implements Serializable {
     private Boolean tdcq;
 
     /** 条件列表. */
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq", cascade = {CascadeType.REMOVE})
     private Set<EshHDXQTJ> tjList;
 
     /** 库外专家列表. */
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq", cascade = {CascadeType.REMOVE})
     private Set<EshHDXQKW> kwList;
 
     /**

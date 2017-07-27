@@ -191,6 +191,9 @@ public class EshZJ implements Serializable {
     /** 系统信息：更新时间（最近一次操作，包括保存和状态）.**/
     @Column(name = "ZJ_XT_GXSJ")
     private String xt_gxsj;
+    /** 是否库外. */
+    @Column(name = "ZJ_XT_SFKW")
+    private Boolean xt_sfkw;
 
     /** 工作经历. */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "zj", cascade = {CascadeType.ALL})
@@ -983,5 +986,23 @@ public class EshZJ implements Serializable {
      */
     public void setZylbList(Set<EshZJZYLB> zylbList) {
         this.zylbList = zylbList;
+    }
+
+    /**
+     * Get the xt_sfkw.
+     *
+     * @return return the xt_sfkw
+     */
+    public Boolean getXt_sfkw() {
+        return xt_sfkw;
+    }
+
+    /**
+     * Set xt_sfkw.
+     *
+     * @param xt_sfkw the xt_sfkw to set
+     */
+    public void setXt_sfkw(Boolean xt_sfkw) {
+        this.xt_sfkw = xt_sfkw;
     }
 }
