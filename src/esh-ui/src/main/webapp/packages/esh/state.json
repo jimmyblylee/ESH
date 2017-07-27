@@ -92,7 +92,8 @@
 
             "packages/common/js/UploadPhotoCtrl.js",
             "packages/esh/js/zj_gl/ZJGLListCtrl.js",
-            "packages/esh/js/zj_gl/ZJGLUpdateCtrl.js"
+            "packages/esh/js/zj_gl/ZJGLUpdateCtrl.js",
+            "packages/esh/js/zj_gl/ZJKWGLUpdateCtrl.js"
         ]
     },
     "zj-sh": {
@@ -125,7 +126,8 @@
 
             "packages/common/js/UploadPhotoCtrl.js",
             "packages/esh/js/zj_dj/ZJDJListCtrl.js",
-            "packages/esh/js/zj_dj/ZJDJUpdateCtrl.js"
+            "packages/esh/js/zj_dj/ZJDJUpdateCtrl.js",
+            "packages/esh/js/zj_dj/ZJKWDJUpdateCtrl.js"
         ]
     }
 }

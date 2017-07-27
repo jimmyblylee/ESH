@@ -94,7 +94,7 @@ public class ZJInfoController extends AbstractControllerSupport {
      */
     public void create() throws ServiceException {
         final EshZJ entity = workDTO.convertJsonToBeanByKey("entity", EshZJ.class);
-        service.create(sessionDTO.currentToken(), entity);
+        workDTO.setResult(service.create(sessionDTO.currentToken(), entity).getId());
     }
 
     /**

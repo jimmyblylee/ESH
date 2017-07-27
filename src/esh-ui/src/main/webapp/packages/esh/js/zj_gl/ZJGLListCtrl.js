@@ -23,7 +23,8 @@
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('ZJGLListCtrl', ['$rootScope', '$scope', "$listService", "$ajaxCall", function ($rootScope, $scope, $listService, $ajaxCall) {
-    $scope.condition = {xt_qy: true, gz_gaxt:true};
+
+    $scope.condition = {xt_qy: true, gz_gaxt:true, xt_sfkw: false};
     $listService.init($scope, {
         pageSizeList: [4, 8, 12, 24],
         pageSize: 4,
@@ -76,12 +77,17 @@ angular.module('WebApp').controller('ZJGLListCtrl', ['$rootScope', '$scope', "$l
     /**
      * 准备添加实体
      */
-    $scope.prepareToAdd = function () {
-        var scope = $("#updateZJModalDiv").scope();
+    $scope.prepareToAdd = function (isKW) {
+        var divId = "updateZJModalDiv";
+        if (isKW) {
+            divId = "updateZJKWModalDiv";
+        }
+        var scope = $("#" + divId).scope();
         scope.title = "注册专家信息";
         scope.method = "create";
         scope.entity = {
             gz_gaxt: true,
+            xt_sfkw: !!isKW,
             jb_zp: $rootScope.cfg ["defaultPhoto"],
             gzjlList: [],
             jlqkList: [],
@@ -100,8 +106,12 @@ angular.module('WebApp').controller('ZJGLListCtrl', ['$rootScope', '$scope', "$l
     /**
      * 准备修改实体
      */
-    $scope.prepareToUpdate = function (item) {
-        var scope = $("#updateZJModalDiv").scope();
+    $scope.prepareToUpdate = function (item, isKW) {
+        var divId = "updateZJModalDiv";
+        if (isKW) {
+            divId = "updateZJKWModalDiv";
+        }
+        var scope = $("#" + divId).scope();
         scope.title = "修改专家信息";
         scope.method = "update";
         scope.entity = item;
@@ -114,8 +124,12 @@ angular.module('WebApp').controller('ZJGLListCtrl', ['$rootScope', '$scope', "$l
     /**
      * 准备查看实体
      */
-    $scope.prepareToView = function (item) {
-        var scope = $("#viewZJModalDiv").scope();
+    $scope.prepareToView = function (item, isKW) {
+        var divId = "viewZJModalDiv";
+        if (isKW) {
+            divId = "viewZJKWModalDiv";
+        }
+        var scope = $("#" + divId).scope();
         scope.title = "查看专家信息";
         scope.method = "update";
         scope.entity = item;

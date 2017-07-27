@@ -28,7 +28,7 @@ angular.module('WebApp').controller('ZJSHListCtrl', ['$rootScope', '$scope', "$l
         console.log($scope.cfg);
     });
 
-    $scope.condition = {xt_qy: true, xt_zt: "DSL"};
+    $scope.condition = {xt_qy: true, xt_zt: "DSL", xt_sfkw: false};
     $listService.init($scope, {
         pageSizeList: [4, 6, 8, 12, 18, 24],
         pageSize: 4,

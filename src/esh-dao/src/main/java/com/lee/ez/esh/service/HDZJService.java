@@ -19,9 +19,9 @@
 
 package com.lee.ez.esh.service;
 
-import com.lee.ez.esh.entity.EshHDZJ;
-
 import java.util.List;
+
+import com.lee.ez.esh.entity.EshHDZJ;
 
 /**
  * Description: 活动相关专家服务.<br>
@@ -33,6 +33,7 @@ public interface HDZJService {
 
     /**
      * 为给定活动手动指定专家.
+     *
      * @param zjId 专家ID
      * @param hdId 活动ID
      */
@@ -40,12 +41,15 @@ public interface HDZJService {
 
     /**
      * 查找已经选定的活动专家.
+     *
      * @param hdId 活动ID
+     * @return 活动专家列表
      */
     List<EshHDZJ> queryAssignedZJ(Long hdId);
 
     /**
      * 删除某活动专家.
+     *
      * @param hdzjId 活动专家id
      */
     void removeZJ(Long hdzjId);

@@ -103,6 +103,8 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         hql += " left join fetch zj.zylbList";
         // 是否启用
         hql += " where zj.xt_qy = :xt_qy";
+        // 是否库外
+        hql += "  and zj.xt_sfkw = :xt_sfkw";
         // 姓名
         if (!StringUtils.isEmpty(condition.getJb_xm())) {
             hql += "  and zj.jb_xm like :jb_xm";
@@ -142,6 +144,8 @@ public class ZJInfoServiceImpl implements ZJInfoService {
 
         // 是否启用
         query.setParameter("xt_qy", condition.getXt_qy());
+        // 是否库外
+        query.setParameter("xt_sfkw", condition.getXt_sfkw());
         // 姓名
         if (!StringUtils.isEmpty(condition.getJb_xm())) {
             query.setParameter("jb_xm", "%" + condition.getJb_xm() + "%");
@@ -192,6 +196,8 @@ public class ZJInfoServiceImpl implements ZJInfoService {
         String hql = "  select count(zj) from EshZJ as zj";
         // 是否启用
         hql += " where zj.xt_qy = :xt_qy";
+        // 是否库外
+        hql += "  and zj.xt_sfkw = :xt_sfkw";
         // 姓名
         if (!StringUtils.isEmpty(condition.getJb_xm())) {
             hql += "  and zj.jb_xm like :jb_xm";
@@ -230,6 +236,8 @@ public class ZJInfoServiceImpl implements ZJInfoService {
 
         // 是否启用
         query.setParameter("xt_qy", condition.getXt_qy());
+        // 是否库外
+        query.setParameter("xt_sfkw", condition.getXt_sfkw());
         // 姓名
         if (!StringUtils.isEmpty(condition.getJb_xm())) {
             query.setParameter("jb_xm", "%" + condition.getJb_xm() + "%");

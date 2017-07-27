@@ -1,0 +1,114 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div id="updateZJKWErrorMsgDiv"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">姓名</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="姓名" ng-model="entity.jb_xm">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">座机</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="座机" ng-model="entity.jb_dh">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">手机</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="手机" ng-model="entity.jb_sj">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">工作单位</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="工作单位" ng-model="entity.gz_gzdw">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">职务</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="职务" ng-model="entity.gz_gzdw_zw">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">职称</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="职称" ng-model="entity.zy_jszc">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">业务专长</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="业务专长" ng-model="entity.zy_ywzc">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">政治面貌</label>
+                        <div class="col-md-9">
+                            <select id="jb_zzmm" class="form-control" ng-model="entity.jb_zzmm.id"
+                                    ng-options="item.id as item.value for item in zzmmList"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">所在省份</label>
+                        <div class="col-md-9">
+                            <select id="gz_gzdw_dz_sheng" class="form-control" ng-model="entity.gz_gzdw_dz_sheng.id"
+                                    ng-options="item.id as item.value for item in shengList"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">文化程度</label>
+                        <div class="col-md-9">
+                            <select id="jy_whcd" class="form-control" ng-model="entity.jy_whcd.id"
+                                    ng-options="item.id as item.value for item in whcdList"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">专业类别</label>
+                        <div class="col-md-9">
+                            <select class="form-control" ng-model="zylbTemp" title="专业类别"
+                                    ng-options="item as item.value group by item.parent.value for item in zylbList"
+                                    ng-change="onZYLBSelected(zylbTemp);">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div ng-repeat="item in entity.zylbList" class="col-md-4 margin-bottom-5">
+                            <span  class="label label-sm label-success ">
+                                {{item.zylb.desc}} / {{item.zylb.value}}
+                                <a href="javascript:" ng-click="remove($index, 'zylbList', item.id, 'com.lee.ez.esh.entity.EshZJZYLB');"><i class="fa fa-close"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

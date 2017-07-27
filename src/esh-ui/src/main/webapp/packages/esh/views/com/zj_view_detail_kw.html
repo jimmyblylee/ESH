@@ -1,0 +1,99 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div id="updateZJKWErrorMsgDiv"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">姓名</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.jb_xm}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">座机</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.jb_dh}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">手机</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.jb_sj}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">工作单位</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.gz_gzdw}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">职务</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.gz_gzdw_zw}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">职称</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.zy_jszc}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">业务专长</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.zy_ywzc}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">政治面貌</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.jb_zzmm.value}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">所在省份</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.gz_gzdw_dz_sheng.value}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-5">文化程度</label>
+                        <div class="col-md-7">
+                            <span class="form-control-static">{{entity.jy_whcd.value}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div ng-repeat="item in entity.zylbList" class="col-md-4 margin-bottom-5">
+                            <span  class="label label-sm label-success ">
+                                {{item.zylb.desc}} / {{item.zylb.value}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

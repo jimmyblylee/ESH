@@ -43,6 +43,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">是否库外</label>
+                            <div class="col-md-6">
+                                <div class="md-checkbox-inline">
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="zj_search_sfkw" class="md-check" checked
+                                               ng-model="condition.xt_sfkw">
+                                        <label for="zj_search_sfkw">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> 是 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 col-x12">
                         <div class="form-group">
                             <label class="control-label col-md-4">系统内</label>
@@ -87,11 +104,19 @@
                             <img src="data:image/png;base64,{{item.jb_zp}}" />
                             <div class="mt-overlay">
                                 <ul class="mt-info">
-                                    <li>
+                                    <li ng-if="!item.xt_sfkw">
                                         <!--suppress HtmlUnknownAnchorTarget -->
                                         <a class="btn default btn-outline blue"
                                            href="/#viewZJModalDiv" data-toggle="modal"
                                            ng-click="prepareToView(item)" bs-tooltip data-title="查看">
+                                            <i class="fa fa-picture-o"></i>
+                                        </a>
+                                    </li>
+                                    <li ng-if="item.xt_sfkw">
+                                        <!--suppress HtmlUnknownAnchorTarget -->
+                                        <a class="btn default btn-outline blue"
+                                           href="/#viewZJKWModalDiv" data-toggle="modal"
+                                           ng-click="prepareToView(item, true)" bs-tooltip data-title="查看">
                                             <i class="fa fa-picture-o"></i>
                                         </a>
                                     </li>

@@ -104,4 +104,5 @@ public interface ZJInfoService {
      * @param type 辅助类型
      */
     void removeFz(Long id, Class<? extends EshZJFZ> type);
+
 }

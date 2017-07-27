@@ -23,7 +23,7 @@
  * @author Jimmybly Lee
  */
 angular.module('WebApp').controller('ZJLLListCtrl', ['$rootScope', '$scope', "$listService", function ($rootScope, $scope, $listService) {
-    $scope.condition = {xt_qy: true, gz_gaxt:true};
+    $scope.condition = {xt_qy: true, gz_gaxt:true, xt_sfkw: false};
     $listService.init($scope, {
         pageSizeList: [4, 6, 8, 12, 16, 18, 24],
         pageSize: 4,
@@ -42,11 +42,29 @@ angular.module('WebApp').controller('ZJLLListCtrl', ['$rootScope', '$scope', "$l
     };
     $scope.load();
 
-    /**
+     /**
      * 准备查看实体
      */
-    $scope.prepareToView = function (item) {
-        var scope = $("#viewZJModalDiv").scope();
+    $scope.prepareToView = function (item, isKW) {
+        var divId = "viewZJModalDiv";
+        if (isKW) {
+            divId = "viewZJKWModalDiv";
+        }
+        var scope = $("#" + divId).scope();
+        scope.title = "查看专家信息";
+        scope.method = "update";
+        scope.entity = item;
+
+        scope.$on("submitted", function () {
+            $scope.load();
+        });
+    };
+
+    /**
+     * 准备查看实体（库外）
+     */
+    $scope.prepareToViewKW = function (item) {
+        var scope = $("#viewZJKWModalDiv").scope();
         scope.title = "查看专家信息";
         scope.method = "update";
         scope.entity = item;
