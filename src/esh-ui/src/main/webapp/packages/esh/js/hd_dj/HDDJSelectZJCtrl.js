@@ -22,10 +22,9 @@
  * Created by Jimmybly Lee on 2017/7/27.
  * @author Jimmybly Lee
  */
-
 angular.module("WebApp").controller("HDDJSelectZJCtrl", ["$rootScope", "$scope", "$ajaxCall", "$listService", function($rootScope, $scope, $ajaxCall, $listService){
 
-    $scope.condition = {xt_qy: true};
+    $scope.condition = {xt_qy: true, xt_sfkw: false};
     $listService.init($scope, {
         "controller": "ZJInfoController",
         "method": "query",

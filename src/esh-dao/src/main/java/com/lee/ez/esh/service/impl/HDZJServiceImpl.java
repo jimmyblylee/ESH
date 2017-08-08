@@ -54,7 +54,7 @@ public class HDZJServiceImpl implements HDZJService {
     private EntityManager em;
 
     @Override
-    public void assignZJ(Long zjId, Long hdId) {
+    public void assignZJ(Integer zjId, Integer hdId) {
         final EshHDZJ entity = new EshHDZJ();
         entity.setHd(em.find(EshHD.class, hdId));
         entity.setZj(em.find(EshZJ.class, zjId));
@@ -62,14 +62,14 @@ public class HDZJServiceImpl implements HDZJService {
     }
 
     @Override
-    public List<EshHDZJ> queryAssignedZJ(Long hdId) {
+    public List<EshHDZJ> queryAssignedZJ(Integer hdId) {
         final String hql = "from EshHDZJ as d left join fetch d.zj where d.hd.id = :id";
         //noinspection unchecked
         return em.createQuery(hql).setParameter("id", hdId).getResultList();
     }
 
     @Override
-    public void removeZJ(Long hdzjId) {
+    public void removeZJ(Integer hdzjId) {
         em.remove(em.find(EshHDZJ.class, hdzjId));
     }
 }

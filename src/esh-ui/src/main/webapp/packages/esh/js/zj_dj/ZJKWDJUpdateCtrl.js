@@ -148,7 +148,7 @@ angular.module('WebApp').controller('ZJKWDJUpdateCtrl', ['$scope', "$ajaxCall", 
             });
             return false;
         } else {
-            App.alert({reset: true});
+            $('.custom-alerts').remove();
             return true;
         }
     };

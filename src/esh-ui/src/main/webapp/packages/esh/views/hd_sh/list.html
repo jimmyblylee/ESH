@@ -1,0 +1,107 @@
+<div class="form">
+    <form action="#" class="form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">主题</label>
+                        <div class="col-md-9">
+                            <input class="form-control" placeholder="主题" ng-model="condition.mc">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">状态</label>
+                        <div class="col-md-9">
+                            <select class="form-control" placeholder="状态" ng-model="condition.zt">
+                                <option value="DSL">待受理</option>
+                                <option value="DSX">待筛选</option>
+                                <option value="DBC">待补充</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-right margin-bottom-15">
+                    <a href="javascript:" class="btn btn-sm blue" ng-click="load()"><i class="fa fa-search"></i> 搜索</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-note"></i> 待处理活动
+        </div>
+        <div class="tools">
+            <a href="javascript:" class="fullscreen"></a>
+            <a href="javascript:" class="reload" ng-click="load()"></a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-scrollable">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center wid220px">主题</th>
+                        <th class="text-center wid90px">状态</th>
+                        <th class="text-center wid160px">开始时间</th>
+                        <th class="text-center wid160px">终止时间</th>
+                        <th class="text-center wid100px">性质</th>
+                        <th class="text-center wid90px">专家人数</th>
+                        <th class="text-center wid90px">申报人</th>
+                        <th class="text-center wid180px">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="item in list">
+                        <td>{{item['mc']}}</td>
+                        <td class="text-center">
+                            <span class="label label-sm bg-{{cfg['hd'][item['zt']]['color']}}">{{cfg['hd'][item['zt']]['msg']}}</span>
+                        </td>
+                        <td class="text-center">{{item['ks']}}</td>
+                        <td class="text-center">{{item['zz']}}</td>
+                        <td class="text-center">
+                            <span ng-if="item['xz']==='PSL'" class="label label-sm label-warning">评审类</span>
+                            <span ng-if="item['xz']==='FPSL'" class="label label-sm label-info">非评审类</span>
+                        </td>
+                        <td class="text-center">{{item['xq']}}</td>
+                        <td class="text-center">{{item['djr']['name']}}</td>
+                        <td>
+                            <!-- 查看专家需求 -->
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#hdxqViewModalDiv" data-toggle="modal" class="btn btn-xs green-seagreen" bs-tooltip data-title="查看专家需求"
+                               ng-if="item['xz']==='PSL'" ng-click="prepareToViewXQ(item)">
+                                <i class="fa fa-hand-lizard-o"></i>
+                            </a>
+                            <!-- 受理 -->
+                            <a href="javascript:" class="btn btn-xs blue-steel" bs-tooltip data-title="受理"
+                               ng-if="item.zt === 'DSL'" ng-click="shouLi(item)">
+                                <i class="fa fa-thumbs-up"></i>
+                            </a>
+                            <!-- 筛选 -->
+                            <a href="/#HDSXZJTakeModalDiv" data-toggle="modal" class="btn btn-xs blue-steel" bs-tooltip data-title="筛选专家"
+                               ng-if="item.zt === 'DSX'" ng-click="prepareToTakeSJ(item)">
+                                <i class="fa fa-user-secret"></i>
+                            </a>
+                            <!-- 筛选 -->
+                            <a href="/#HDSXZJViewModalDiv" data-toggle="modal" class="btn btn-xs yellow-gold" bs-tooltip data-title="查看筛选过程"
+                               ng-if="item.zt === 'DSX'" ng-click="prepareToViewSJ(item)">
+                                <i class="fa fa-users"></i>
+                            </a>
+                            <!-- 筛选 -->
+                            <a href="/#HDSXJGViewModalDiv" data-toggle="modal" class="btn btn-xs purple-intense" bs-tooltip data-title="查看筛选结果"
+                               ng-if="item.zt === 'DSX'" ng-click="prepareToViewSJJG(item)">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div table-paging-footer></div>
+    </div>
+</div>

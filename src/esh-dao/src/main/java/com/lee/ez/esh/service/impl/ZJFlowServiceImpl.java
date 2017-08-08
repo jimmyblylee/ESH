@@ -51,25 +51,25 @@ public class ZJFlowServiceImpl implements ZJFlowService {
     // CSON: MemberName
 
     @Override
-    public void tiJiao(Token userToken, Long id) {
+    public void tiJiao(Token userToken, Integer id) {
         final EshZJ entity = em.find(EshZJ.class, id);
         entity.setXt_zt(ZJZT.DSL);
     }
 
     @Override
-    public void shouLi(Token userToken, Long id) {
+    public void shouLi(Token userToken, Integer id) {
         final EshZJ entity = em.find(EshZJ.class, id);
         entity.setXt_zt(ZJZT.DSH);
     }
 
     @Override
-    public void tongGuo(Token userToken, Long id) {
+    public void tongGuo(Token userToken, Integer id) {
         final EshZJ entity = em.find(EshZJ.class, id);
         entity.setXt_zt(ZJZT.SHTG);
     }
 
     @Override
-    public void boHui(Token userToken, Long id, String note) {
+    public void boHui(Token userToken, Integer id, String note) {
         final EshZJ entity = em.find(EshZJ.class, id);
         entity.setXt_zt(ZJZT.BBH);
     }

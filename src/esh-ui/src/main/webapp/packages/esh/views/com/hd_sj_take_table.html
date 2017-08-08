@@ -1,0 +1,91 @@
+<!-- 活动 专家 需求 表 -->
+<h3 class="text-center bold">筛选专家</h3>
+<div class="table-scrollable">
+    <table class="table table-bordered table-hover">
+        <thead class="hide">
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+            <th class="wid90px"></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4" class="text-center bold">项目名称</td>
+                <td colspan="9" class="text-center bold">{{hd['mc']}}</td>
+            </tr>
+            <tr>
+                <td colspan="4" class="text-center bold">抽取时间</td>
+                <td colspan="9" class="text-center bold">
+                    <span ng-if="hd.sjList.length === 0">无</span>
+                    <span class="margin-right-10" ng-repeat="sj in hd.sjList">{{$index + 1}}、{{sj['czsj']}}</span>
+                </td>
+            </tr>
+        </tbody>
+        <!-- 有抽取的情况 -->
+        <tbody>
+            <tr ng-repeat-start="sj in hd['sjList']">
+                <!-- 只有第一轮随机有首列 -->
+                <td ng-if="$index === 0" rowspan="{{getSJZJZS() + hd.sjList.length * 3}} " class="text-center bold" style="vertical-align: middle;">专家抽取确认情况</td>
+
+                <!-- 抽取描述 -->
+                <td rowspan="{{sj['sjjgList'].length + 2}}" class="text-center bold" style="vertical-align: middle;">{{$index === 0 ? '首轮抽取' : '补充抽取'}}</td>
+
+                <!-- 抽取细节 -->
+                <td class="text-center bold">专业/数量</td>
+                <td class="text-center bold">所需专家数</td>
+                <td colspan="5" class="text-center bold">抽取专家基本信息</td>
+                <td colspan="2" class="text-center bold">专家确认</td>
+                <td class="text-center bold">已确定专家数</td>
+                <td class="text-center bold">需补充抽取专家数</td>
+            </tr>
+            <tr>
+                <!-- 抽取细节 -->
+                <td class="text-center bold">专业类别</td>
+                <td class="text-center bold">数量</td>
+                <td class="text-center bold">专家姓名</td>
+                <td class="text-center bold">性别</td>
+                <td class="text-center bold">支撑或专业水平</td>
+                <td class="text-center bold">工作单位</td>
+                <td class="text-center bold">联系方式</td>
+                <td class="text-center bold">是否参加（是/否）</td>
+                <td class="text-center bold">未参加原因</td>
+                <td class="text-center bold">数量</td>
+                <td class="text-center bold">数量</td>
+            </tr>
+            <tr ng-repeat="jg in sj['sjjgList']">
+                <td>TODO</td>
+                <td>TODO</td>
+                <td>{{jg['zj']['name']}}</td>
+                <td>TODO</td>
+                <td>{{jg['zj']['zysp']}}</td>
+                <td>{{jg['zj']['gzdw']}}</td>
+                <td>{{jg['zj']['lxfs']}}</td>
+                <td>
+                    <span ng-if="jg['wcjyy'] != '未联系'">{{jg['sfcj'] ? '是' : '否'}}</span>
+                    <a href="javascript:" class="btn btn-sm green-seagreen" ng-click="queRenCanJia(jg)"
+                       bs-tooltip data-title="确认参加" ng-if="jg['wcjyy'] === '未联系'">
+                        <i class="fa fa-thumbs-o-up"></i>
+                    </a>
+                    <a href="javascript:" class="btn btn-sm red-thunderbird" ng-click="queRenBuCanJia(jg)"
+                       bs-tooltip data-title="确认不参加" ng-if="jg['wcjyy'] === '未联系'">
+                        <i class="fa fa-thumbs-o-down"></i>
+                    </a>
+                </td>
+                <td>{{jg['wcjyy']}}</td>
+                <td>TODO</td>
+                <td>TODO</td>
+            </tr>
+            <tr ng-repeat-end></tr>
+        </tbody>
+    </table>
+</div>
+

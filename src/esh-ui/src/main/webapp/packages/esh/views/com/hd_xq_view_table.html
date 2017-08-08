@@ -1,0 +1,91 @@
+<!-- 活动 专家 需求 表 -->
+<h3 class="text-center bold">评审专家需求表</h3>
+<div class="table-scrollable">
+    <table class="table table-bordered table-hover">
+        <thead class="hide">
+            <th class="wid330px"></th>
+            <th class="wid330px"></th>
+            <th class="wid100px"></th>
+            <th class="wid100px"></th>
+            <th class="wid100px"></th>
+            <th class="wid100px"></th>
+            <th class="wid160px"></th>
+            <th class="wid160px"></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6" class="bold">使用单位（盖章）：</td>
+                <td colspan="2" class="bold">填表时间：   年  月  日</td>
+            </tr>
+            <tr>
+                <td class="text-center bold">项目名称</td>
+                <td class="text-center bold">{{hd['mc']}}</td>
+                <td colspan="4" class="text-center bold">项目评审时间</td>
+                <td colspan="2">{{hd['djsj']}}</td>
+            </tr>
+            <tr>
+                <td class="text-center bold">项目评审地点</td>
+                <td></td>
+                <td colspan="4" class="text-center bold">所需专家数量</td>
+                <td colspan="2">{{hd['xq']}}</td>
+            </tr>
+            <tr>
+                <td rowspan="{{hd['xqList'].length + 2}}" class="text-center bold" style="vertical-align: middle;">专家条件（常规抽取）</td>
+                <td rowspan="2" class="text-center bold" style="vertical-align: middle;">专业类别</td>
+                <td colspan="4" class="text-center bold">数量</td>
+                <td colspan="2" rowspan="2" class="text-center bold" style="vertical-align: middle;">其他条件（特定抽取）</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center bold" style="vertical-align: middle;">总数</td>
+                <td class="text-center bold">库内现有专家数</td>
+                <td class="text-center bold">是否特定抽取</td>
+            </tr>
+            <tr ng-repeat="xq in hd['xqList']">
+                <td class="text-center">{{xq['zylb']['name']}}</td>
+                <td colspan="2" class="text-center">{{xq['rs']}}</td>
+                <td class="text-center">{{xq['knrs']}}</td>
+                <td class="text-center">{{xq['isTdcq'] ? '是' : '否'}}</td>
+                <td colspan="2" class="text-center">
+                    <span ng-if="xq.tjList.length === 0">无</span>
+                    <span class="margin-right-10" ng-repeat="tj in xq.tjList">{{tj['lxmc'] + ":" + tj['z']}}</span>
+                </td>
+            </tr>
+
+            <!-- 备选专家名单 -->
+
+            <tr>
+                <td rowspan="{{hd.bxList.length + 1}}" class="text-center bold" style="vertical-align: middle;">备选专家名单（特定抽取）</td>
+
+                <td colspan="7" ng-if="hd.bxList.length === 0">无</td>
+
+                <td ng-if="hd.bxList.length != 0" class="text-center bold" style="vertical-align: middle;">专业类别</td>
+                <td ng-if="hd.bxList.length != 0" class="text-center bold" style="vertical-align: middle;">专家姓名</td>
+                <td ng-if="hd.bxList.length != 0" class="text-center bold" style="vertical-align: middle;">库内或库外</td>
+                <td ng-if="hd.bxList.length != 0" colspan="2" class="text-center bold" style="vertical-align: middle;">支撑或专业水平</td>
+                <td ng-if="hd.bxList.length != 0" class="text-center bold" style="vertical-align: middle;">工作单位</td>
+                <td ng-if="hd.bxList.length != 0" class="text-center bold" style="vertical-align: middle;">联系方式</td>
+            </tr>
+            <tr ng-repeat="zj in hd.bxList">
+                <td class="text-center bold"><span ng-repeat="zylb in zj.zylbList">{{zylb.name}}</span></td>
+                <td class="text-center bold">{{zj.name}}</td>
+                <td class="text-center bold">{{zj.isKW ? '库外' : '库内'}}</td>
+                <td colspan="2" class="text-center bold">{{zj.zysp}}</td>
+                <td>{{zj.gzdw}}</td>
+                <td class="text-center bold">{{zj.lxfs}}</td>
+            </tr>
+            <tr>
+                <td class="bold">审批人：</td>
+                <td class="bold" colspan="3">处室负责人：</td>
+                <td class="bold" colspan="4">联系人：</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td class="bold" colspan="4">联系方式：</td>
+            </tr>
+            <tr>
+                <td class="bold" colspan="8">说明：若在特定专家中选取，则所设专业应提供2倍数量以上的专家名单，以便进行抽取。</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

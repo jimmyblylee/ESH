@@ -105,6 +105,7 @@
                 <thead>
                     <tr>
                         <th class="text-center wid260px">主题</th>
+                        <th class="text-center wid90px">状态</th>
                         <th class="text-center wid160px">开始时间</th>
                         <th class="text-center wid160px">终止时间</th>
                         <th class="text-center wid100px">性质</th>
@@ -117,6 +118,9 @@
                 <tbody>
                     <tr ng-repeat="item in list">
                         <td>{{item['mc']}}</td>
+                        <td class="text-center">
+                            <span class="label label-sm bg-{{cfg['hd'][item['zt']]['color']}}">{{cfg['hd'][item['zt']]['msg']}}</span>
+                        </td>
                         <td class="text-center">{{item['ks']}}</td>
                         <td class="text-center">{{item['zz']}}</td>
                         <td class="text-center">
@@ -126,6 +130,27 @@
                         <td class="text-center">{{item['xq']}}</td>
                         <td class="text-center">{{item['djr']['name']}}</td>
                         <td>
+                            <!-- 查看专家需求 -->
+                            <!--suppress HtmlUnknownAnchorTarget -->
+                            <a href="/#hdxqViewModalDiv" data-toggle="modal" class="btn btn-xs green-seagreen" bs-tooltip data-title="查看专家需求"
+                               ng-if="item['xz']==='PSL'" ng-click="prepareToViewXQ(item)">
+                                <i class="fa fa-hand-lizard-o"></i>
+                            </a>
+                            <!-- 上报 -->
+                            <a href="javascript:" class="btn btn-xs blue-steel" bs-tooltip data-title="上报"
+                               ng-if="item.zt === 'DSB'" ng-click="shangBao(item)">
+                                <i class="fa fa-thumbs-up"></i>
+                            </a>
+                            <!-- 启动 -->
+                            <a href="javascript:" class="btn btn-xs blue-steel" bs-tooltip data-title="启动"
+                               ng-if="item.zt === 'DQD'" ng-click="qiDong(item)">
+                                <i class="fa fa-play"></i>
+                            </a>
+                            <!-- 开始 -->
+                            <a href="javascript:" class="btn btn-xs blue-steel" bs-tooltip data-title="开始"
+                               ng-if="item.zt === 'DKS'" ng-click="kaiShi(item)">
+                                <i class="fa fa-play"></i>
+                            </a>
                             <!-- 启用/禁用 -->
                             <a href="javascript:" class="btn btn-xs red" bs-tooltip data-title="禁用"
                                ng-if="item.qy" ng-click="changeStatus(item, false)">

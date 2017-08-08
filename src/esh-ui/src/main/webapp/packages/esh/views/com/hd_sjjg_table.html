@@ -1,0 +1,49 @@
+<!-- 活动 专家 需求 表 -->
+<h3 class="text-center bold">专家筛选结果表</h3>
+<div class="table-scrollable">
+    <table class="table table-bordered table-hover">
+        <thead class="hide">
+            <th class="wid90px"></th>
+            <th class="wid140px"></th>
+            <th class="wid90px"></th>
+            <th class="wid180px"></th>
+            <th class="wid180px"></th>
+            <th class="wid220px"></th>
+            <th class="wid160px"></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2" class="text-center bold">项目名称</td>
+                <td colspan="5" class="text-center bold">{{hd.mc}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center bold">抽取时间</td>
+                <td colspan="5"><span class="margin-right-10" ng-repeat="sj in hd.sjList">{{$index + 1}}、{{sj['czsj']}}</span></td>
+            </tr>
+            <tr>
+                <td colspan="7" class="text-center bold">专家基本信息</td>
+            </tr>
+            <tr>
+                <td class="text-center bold">#</td>
+                <td class="text-center bold">专家姓名</td>
+                <td class="text-center bold">性别</td>
+                <td class="text-center bold">专业类别</td>
+                <td class="text-center bold">职称或专业水平</td>
+                <td class="text-center bold">工作单位</td>
+                <td class="text-center bold">联系方式</td>
+            </tr>
+            <tr ng-repeat="zj in hd.zjList">
+                <td class="text-center bold">{{$index + 1}}</td>
+                <td class="text-center bold">{{zj['name']}}</td>
+                <td class="text-center">{{zj['xb']}}</td>
+                <td>
+                    <span class="margin-right-10" ng-repeat="zylb in zj['zylbList]">{{zylb['name']}}</span>
+                </td>
+                <td>{{zj['zysp']}}</td>
+                <td>{{zj['gzdw']}}</td>
+                <td class="text-center">{{zj['lxfs']}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -31,12 +31,12 @@ public interface EshZJFZ extends Serializable {
     /** Get id.
      * @return entity id.
      * */
-    Long getId();
+    Integer getId();
 
     /** Set Id.
      * @param id entity id
      * */
-    void setId(Long id);
+    void setId(Integer id);
 
     /** Get 专家.
      * @return 专家

@@ -1,0 +1,18 @@
+<!-- 筛选专家弹出画面 -->
+<div class="modal fade" id="HDSXZJTakeModalDiv" role="dialog" data-backdrop="static" data-keyboard="false" ng-controller="HDSXZJCtrl">
+    <div class="modal-dialog modal-full">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="icon-note"></i> 筛选专家</h4>
+            </div>
+            <div class="modal-body">
+                <div data-ng-include="'packages/esh/views/com/hd_sj_take_table.html'+cacheVersion"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline dark" data-dismiss="modal"> 关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="takeSJ();"> 随机抽取</button>
+                <button type="button" class="btn btn-primary" ng-click="wanChengShaiXuan();"> 完成筛选</button>
+            </div>
+        </div>
+    </div>
+</div>

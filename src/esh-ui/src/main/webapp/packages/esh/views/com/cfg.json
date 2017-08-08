@@ -20,5 +20,43 @@
             "msg": "审核通过",
             "color": "green-seagreen"
         }
+    },
+    "hd": {
+        "DSB": {
+            "msg": "待上报",
+            "color": "blue-steel"
+        },
+        "DSL": {
+            "msg": "待受理",
+            "color": "blue-madison"
+        },
+        "DSX": {
+            "msg": "待筛选",
+            "color": "purple-studio"
+        },
+        "DBC": {
+            "msg": "待补充",
+            "color": "red-mint"
+        },
+        "DQD": {
+            "msg": "待启动",
+            "color": "green-seagreen"
+        },
+        "DKS": {
+            "msg": "待开始",
+            "color": "green-seagreen"
+        },
+        "HDZ": {
+            "msg": "活动中",
+            "color": "green-seagreen"
+        },
+        "DZJ": {
+            "msg": "待总结",
+            "color": "green-seagreen"
+        },
+        "JS": {
+            "msg": "结束",
+            "color": "green-seagreen"
+        }
     }
 }

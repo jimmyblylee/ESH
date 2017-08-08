@@ -82,7 +82,9 @@ angular.module("WebApp").controller("HDDJListCtrl", ["$rootScope", "$scope", "$a
         var scope = $("#updateHDModalDiv").scope();
         scope.title = "添加活动信息";
         scope.method = "create";
-        scope.entity = {};
+        scope.entity = {
+            xqList: []
+        };
         scope.reset();
 
         scope.$on("submitted", function () {
@@ -105,5 +107,104 @@ angular.module("WebApp").controller("HDDJListCtrl", ["$rootScope", "$scope", "$a
         });
 
         $('div[ng-controller="HDDJSelectZJCtrl"]').scope().loadSelected();
+    };
+
+    /**
+     * 查看专家需求.
+     * @param item
+     */
+    $scope.prepareToViewXQ = function (item) {
+        var scope = $("#hdxqViewModalDiv").scope();
+        scope.load(item.id);
+    };
+
+    /**
+     * 上报
+     * @param item 活动 entity
+     */
+    $scope.shangBao = function(item) {
+        bootbox.dialog({
+            title: "请确认",
+            message: "是否上报？",
+            buttons: {
+                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+                danger: {
+                    label: " 上 报 ！ ",
+                    className: "fa fa-hand-o-up green",
+                    callback: function () {
+                        $ajaxCall.post({
+                            data: {
+                                controller: "HDController",
+                                method: "shangBao",
+                                id: item.id
+                            },
+                            success: function () {
+                                $scope.load();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    };
+
+    /**
+     * 启动
+     * @param item 活动 entity
+     */
+    $scope.qiDong = function(item) {
+        bootbox.dialog({
+            title: "请确认",
+            message: "是否启动？",
+            buttons: {
+                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+                danger: {
+                    label: " 启 动 ！ ",
+                    className: "fa fa-hand-o-up green",
+                    callback: function () {
+                        $ajaxCall.post({
+                            data: {
+                                controller: "HDController",
+                                method: "qiDong",
+                                id: item.id
+                            },
+                            success: function () {
+                                $scope.load();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    };
+
+    /**
+     * 启动
+     * @param item 活动 entity
+     */
+    $scope.qiDong = function(item) {
+        bootbox.dialog({
+            title: "请确认",
+            message: "是否开始？",
+            buttons: {
+                main: {label: " 取 消 ", className: "dark icon-ban btn-outline"},
+                danger: {
+                    label: " 开 始 ！ ",
+                    className: "fa fa-hand-o-up green",
+                    callback: function () {
+                        $ajaxCall.post({
+                            data: {
+                                controller: "HDController",
+                                method: "ksiShi",
+                                id: item.id
+                            },
+                            success: function () {
+                                $scope.load();
+                            }
+                        });
+                    }
+                }
+            }
+        });
     };
 }]);

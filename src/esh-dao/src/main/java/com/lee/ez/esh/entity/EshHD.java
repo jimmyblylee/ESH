@@ -46,7 +46,7 @@ public class EshHD implements Serializable {
     @Column(name = "HD_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
     /** 活动名称.**/
     @Column(name = "HD_MC")
     private String mc;
@@ -98,13 +98,13 @@ public class EshHD implements Serializable {
     private Integer xq;
 
     /** 需求列表. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd", cascade = {CascadeType.REMOVE})
     private Set<EshHDXQ> xqList;
     /** 专家列表. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd", cascade = {CascadeType.REMOVE})
     private Set<EshHDZJ> zjList;
     /** 随机列录列表. */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hd", cascade = {CascadeType.REMOVE})
     private Set<EshHDZJSJ> sjList;
 
     /**
@@ -112,7 +112,7 @@ public class EshHD implements Serializable {
      *
      * @return return the id
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -121,7 +121,7 @@ public class EshHD implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

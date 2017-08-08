@@ -20,6 +20,7 @@
 package com.lee.ez.esh.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -45,7 +46,7 @@ public class EshHDZJSJ implements Serializable {
     @Column(name = "SJ_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     /** 活动.**/
     @ManyToOne(fetch = FetchType.LAZY)
@@ -65,12 +66,16 @@ public class EshHDZJSJ implements Serializable {
     @Column(name = "SJ_CZSJ")
     private String czsj;
 
+    /** 随机记录结果. */
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sj", cascade = {CascadeType.ALL})
+    private Set<EshHDZJSJJG> sjjgList;
+
     /**
      * Get the id.
      *
      * @return return the id
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -79,7 +84,7 @@ public class EshHDZJSJ implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -153,5 +158,23 @@ public class EshHDZJSJ implements Serializable {
      */
     public void setCzsj(String czsj) {
         this.czsj = czsj;
+    }
+
+    /**
+     * Get the sjjgList.
+     *
+     * @return return the sjjgList
+     */
+    public Set<EshHDZJSJJG> getSjjgList() {
+        return sjjgList;
+    }
+
+    /**
+     * Set sjjgList.
+     *
+     * @param sjjgList the sjjgList to set
+     */
+    public void setSjjgList(Set<EshHDZJSJJG> sjjgList) {
+        this.sjjgList = sjjgList;
     }
 }

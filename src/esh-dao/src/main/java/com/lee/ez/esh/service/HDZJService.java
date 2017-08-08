@@ -37,7 +37,7 @@ public interface HDZJService {
      * @param zjId 专家ID
      * @param hdId 活动ID
      */
-    void assignZJ(Long zjId, Long hdId);
+    void assignZJ(Integer zjId, Integer hdId);
 
     /**
      * 查找已经选定的活动专家.
@@ -45,12 +45,12 @@ public interface HDZJService {
      * @param hdId 活动ID
      * @return 活动专家列表
      */
-    List<EshHDZJ> queryAssignedZJ(Long hdId);
+    List<EshHDZJ> queryAssignedZJ(Integer hdId);
 
     /**
      * 删除某活动专家.
      *
      * @param hdzjId 活动专家id
      */
-    void removeZJ(Long hdzjId);
+    void removeZJ(Integer hdzjId);
 }

@@ -138,27 +138,27 @@ public class ZJInfoController extends AbstractControllerSupport {
      * 提交.
      */
     public void tiJiao() {
-        flowService.tiJiao(sessionDTO.currentToken(), workDTO.getLong("id"));
+        flowService.tiJiao(sessionDTO.currentToken(), workDTO.getInteger("id"));
     }
 
     /**
      * 受理.
      */
     public void shouLi() {
-        flowService.shouLi(sessionDTO.currentToken(), workDTO.getLong("id"));
+        flowService.shouLi(sessionDTO.currentToken(), workDTO.getInteger("id"));
     }
 
     /**
      * 通过.
      */
     public void tongGuo() {
-        flowService.tongGuo(sessionDTO.currentToken(), workDTO.getLong("id"));
+        flowService.tongGuo(sessionDTO.currentToken(), workDTO.getInteger("id"));
     }
 
     /**
      * 驳回.
      */
     public void boHui() {
-        flowService.boHui(sessionDTO.currentToken(), workDTO.getLong("id"), "");
+        flowService.boHui(sessionDTO.currentToken(), workDTO.getInteger("id"), "");
     }
 }

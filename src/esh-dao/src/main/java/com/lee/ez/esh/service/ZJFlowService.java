@@ -44,21 +44,21 @@ public interface ZJFlowService {
      * @param userToken 操作人
      * @param id 专家ID
      */
-    void tiJiao(Token userToken, Long id);
+    void tiJiao(Token userToken, Integer id);
 
     /**
      * 受理.
      * @param userToken 操作人
      * @param id 专家ID
      */
-    void shouLi(Token userToken, Long id);
+    void shouLi(Token userToken, Integer id);
 
     /**
      * 通过.
      * @param userToken 操作人
      * @param id 专家ID
      */
-    void tongGuo(Token userToken, Long id);
+    void tongGuo(Token userToken, Integer id);
 
     /**
      * 驳回.
@@ -66,5 +66,5 @@ public interface ZJFlowService {
      * @param id 专家ID
      * @param note 驳回意见
      */
-    void boHui(Token userToken, Long id, String note);
+    void boHui(Token userToken, Integer id, String note);
 }

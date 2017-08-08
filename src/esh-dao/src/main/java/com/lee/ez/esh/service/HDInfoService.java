@@ -21,6 +21,7 @@ package com.lee.ez.esh.service;
 
 import java.util.List;
 
+import com.lee.ez.esh.dto.HD;
 import com.lee.ez.esh.entity.EshHD;
 import com.lee.jwaf.token.Token;
 
@@ -53,7 +54,7 @@ public interface HDInfoService {
      * @param token 用户令牌
      * @param entity 待创建的实体
      */
-    Long create(Token token, EshHD entity);
+    Integer create(Token token, EshHD entity);
 
     /**
      * 更新实体.
@@ -75,6 +76,13 @@ public interface HDInfoService {
      * 物理删除活动信息.
      * @param id 活动id
      */
-    void doRealRemove(Long id);
+    void doRealRemove(Integer id);
+
+    /**
+     * 获取活动相对全面的信息，通过dto传送.
+     * @param id 活动id
+     * @return 活动dto
+     */
+    HD getHDInfo(Integer id);
 
 }

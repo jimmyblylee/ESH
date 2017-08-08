@@ -52,7 +52,7 @@ public class EshZJ implements Serializable {
     @Column(name = "ZJ_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     /** 基本信息：姓名.**/
     @Column(name = "ZJ_JB_XM")
@@ -219,7 +219,7 @@ public class EshZJ implements Serializable {
      *
      * @return return the id
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -228,7 +228,7 @@ public class EshZJ implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

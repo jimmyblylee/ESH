@@ -1,0 +1,60 @@
+<div class="form">
+    <form action="#" class="form-horizontal ">
+        <h3 class="mt-repeater-title">专家需求</h3>
+        <div class="form-body mt-repeater">
+            <div class="row">
+                <a href="javascript:" ng-click="addXQ();"><i class="fa fa-plus"></i> 添加需求</a>
+            </div>
+            <div class="row mt-repeater-item" ng-repeat="xq in entity.xqList">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select class="form-control" ng-model="xq.zylb.id" bs-tooltip data-title="专业类别" ng-change="updateXQ(xq);"
+                                ng-options="item.id as item.value group by item.parent.value for item in zylbList">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" ng-model="xq.rs" placeholder="人数" ng-change="updateXQ(xq);">
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <div class="md-checkbox-inline">
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="xq_tdcq{{$index}}" class="md-check" checked ng-model="xq.tdcq" ng-change="updateXQ(xq);">
+                                <label for="xq_tdcq{{$index}}">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 特定抽取 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 8px;">
+                    <a href="javascript:" class="margin-right-10" ng-click="addTJ(xq);"><i class="fa fa-search-plus"></i> 条件</a>
+                    <a href="javascript:"><i class="fa fa-user-plus" ng-click="addKW(xq);"></i> 专家</a>
+                    <a href="javascript:" class="font-red-thunderbird"ng-click="deleteXQ($index, xq);"><i class="fa fa-close"></i> 删除</a>
+                </div>
+                <div class="col-md-6" ng-repeat="tj in xq.tjList">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-control" ng-model="tj.lx.id" bs-tooltip data-title="条件类型"
+                                    ng-options="item.id as item.value for item in tjlxList"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" ng-model="tj.z" bs-tooltip data-title="条件值">
+                        </div>
+                        <div class="col-md-2">
+                            <a href="javascript:" class="font-red-thunderbird" ng-click="deleteTJ($index, tj, xq)"><i class="fa fa-close"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-repeat="kw in xq.kwList">
+                    <div class="input-group">
+                        <select></select>
+                        <span class=""></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

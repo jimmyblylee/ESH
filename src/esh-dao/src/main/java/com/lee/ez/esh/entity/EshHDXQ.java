@@ -50,7 +50,7 @@ public class EshHDXQ implements Serializable {
     @Column(name = "XQ_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     /** 活动.**/
     @ManyToOne(fetch = FetchType.LAZY)
@@ -58,7 +58,7 @@ public class EshHDXQ implements Serializable {
     private EshHD hd;
     // CSOFF: LineLength
     /** 专业类别.**/
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumnsOrFormulas({
         @JoinColumnOrFormula(column = @JoinColumn(name = "XQ_ZYLB", referencedColumnName = "DICT_CODE", nullable = false)),
         @JoinColumnOrFormula(formula = @JoinFormula(referencedColumnName = "DICT_NATURE", value = "'ZYLB'")) })
@@ -72,11 +72,11 @@ public class EshHDXQ implements Serializable {
     private Boolean tdcq;
 
     /** 条件列表. */
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq", cascade = {CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "xq", cascade = {CascadeType.REMOVE})
     private Set<EshHDXQTJ> tjList;
 
     /** 库外专家列表. */
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "xq", cascade = {CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "xq", cascade = {CascadeType.REMOVE})
     private Set<EshHDXQKW> kwList;
 
     /**
@@ -84,7 +84,7 @@ public class EshHDXQ implements Serializable {
      *
      * @return return the id
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -93,7 +93,7 @@ public class EshHDXQ implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

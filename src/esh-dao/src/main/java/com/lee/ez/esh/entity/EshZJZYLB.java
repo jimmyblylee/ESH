@@ -48,7 +48,7 @@ public class EshZJZYLB implements EshZJFZ {
     @Column(name = "ZYLB_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
     /** 专家.**/
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ZJ_ID")
@@ -68,7 +68,7 @@ public class EshZJZYLB implements EshZJFZ {
      * @return return the id
      */
     @Override
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -78,7 +78,7 @@ public class EshZJZYLB implements EshZJFZ {
      * @param id the id to set
      */
     @Override
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

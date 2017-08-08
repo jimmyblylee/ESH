@@ -43,13 +43,13 @@ public class EshHDXQKW implements Serializable {
     @Column(name = "KW_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
     /** 需求.**/
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "XQ_ID")
     private EshHDXQ xq;
     /** 库外专家.**/
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ZJ_ID")
     private EshZJ zj;
 
@@ -58,7 +58,7 @@ public class EshHDXQKW implements Serializable {
      *
      * @return return the id
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -67,7 +67,7 @@ public class EshHDXQKW implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

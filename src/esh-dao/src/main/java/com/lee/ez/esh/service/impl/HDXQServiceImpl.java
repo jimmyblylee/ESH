@@ -19,23 +19,23 @@
 
 package com.lee.ez.esh.service.impl;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import com.lee.ez.esh.entity.EshHDXQKW;
-import com.lee.ez.esh.entity.EshHDXQTJ;
-import com.lee.ez.esh.entity.EshZJ;
-import com.lee.ez.sys.entity.SysDict;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lee.ez.esh.entity.EshHDXQ;
+import com.lee.ez.esh.entity.*;
 import com.lee.ez.esh.service.HDXQService;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import com.lee.ez.sys.entity.SysDict;
+import com.lee.ez.sys.entity.SysUser;
+import com.lee.jwaf.token.Token;
+import com.lee.util.DateUtils;
+import com.lee.util.StringUtils;
 
 /**
  * Description: 活动需求服务实现.<br>
@@ -57,35 +57,189 @@ public class HDXQServiceImpl implements HDXQService {
     private EntityManager em;
 
     @Override
-    public List<EshHDXQ> queryHDXQ(Long hdId) {
-        final String hql = "from EshHDXQ as d where d.hd.id = :id";
+    public List<EshHDXQ> queryXQ(Integer hdId) {
         //noinspection unchecked
-        return em.createQuery(hql).setParameter("id", hdId).getResultList();
+        return em.createQuery("from EshHDXQ where hd.id = :id").setParameter("id", hdId).getResultList();
     }
 
     @Override
-    public void assignHDXQ(EshHDXQ entity) {
-        final Set<EshHDXQTJ> tjList = entity.getTjList();
-        final Set<EshHDXQKW> kwList = entity.getKwList();
-        // 1、保存需求
+    public EshHDXQ createXQ(EshHDXQ entity) {
+        entity.setHd(em.find(EshHD.class, entity.getHd().getId()));
         entity.setZylb(em.find(SysDict.class, entity.getZylb().getId()));
+        entity.setKwList(Collections.emptySet());
+        entity.setTjList(Collections.emptySet());
         em.persist(entity);
-        // 2、保存条件
-        for (EshHDXQTJ tj : tjList) {
-            tj.setXq(entity);
-            tj.setLx(em.find(SysDict.class, tj.getLx().getId()));
-            em.persist(tj);
+        return entity;
+    }
+
+    @Override
+    public void updateXQ(EshHDXQ entity) {
+        final EshHDXQ entityInDB = em.find(EshHDXQ.class, entity.getId());
+        entityInDB.setZylb(em.find(SysDict.class, entity.getZylb().getId()));
+        entityInDB.setRs(entity.getRs());
+        entityInDB.setTdcq(entity.getTdcq());
+    }
+
+    @Override
+    public void removeXQ(Integer id) {
+        em.createQuery("delete EshHDXQ as xq where xq.id = :id").setParameter("id", id).executeUpdate();
+    }
+
+    @Override
+    public List<EshHDXQTJ> queryXQTJ(Integer id) {
+        //noinspection unchecked
+        return em.createQuery("from EshHDXQTJ where xq.id = :id").setParameter("id", id).getResultList();
+    }
+
+    @Override
+    public EshHDXQTJ createXQTJ(EshHDXQTJ entity) {
+        entity.setLx(em.find(SysDict.class, entity.getLx().getId()));
+        entity.setXq(em.find(EshHDXQ.class, entity.getXq().getId()));
+        if (StringUtils.isEmpty(entity.getZ())) {
+            entity.setZ("1");
         }
-        // 3、保存库外
-        for (EshHDXQKW kw : kwList) {
-            kw.setXq(entity);
-            kw.setZj(em.find(EshZJ.class, kw.getZj().getId()));
-            em.persist(kw);
+        em.persist(entity);
+        return entity;
+    }
+
+    @Override
+    public void updateXQTJ(EshHDXQTJ entity) {
+        entity.setLx(em.find(SysDict.class, entity.getLx().getId()));
+        entity.setXq(em.find(EshHDXQ.class, entity.getXq().getId()));
+        em.merge(entity);
+    }
+
+    @Override
+    public void removeXQTJ(Integer id) {
+        em.remove(em.find(EshHDXQTJ.class, id));
+    }
+
+    @Override
+    public List<EshHDXQKW> queryXQKW(Integer id) {
+        //noinspection unchecked
+        return em.createQuery("from EshHDXQKW where xq.id = :id").setParameter("id", id).getResultList();
+    }
+
+    @Override
+    public EshHDXQKW createXQKW(EshHDXQKW entity) {
+        entity.setXq(em.find(EshHDXQ.class, entity.getXq().getId()));
+        // 随便找一个库外人员.
+        entity.setZj((EshZJ) em.createQuery("from EshZJ where xt_sfkw = true").setMaxResults(1).getResultList().get(0));
+        em.persist(entity);
+        return entity;
+    }
+
+    @Override
+    public void updateXQKW(EshHDXQKW entity) {
+        entity.setXq(em.find(EshHDXQ.class, entity.getXq().getId()));
+        entity.setZj(em.find(EshZJ.class, entity.getZj().getId()));
+        em.merge(entity);
+
+    }
+
+    @Override
+    public void removeXQKW(Integer id) {
+        em.remove(em.find(EshHDXQKW.class, id));
+    }
+
+    @SuppressWarnings("CheckStyle")
+    @Override
+    public void suiJi(Token userToken, Integer id) {
+        // 1、获取所有需求
+        EshHD entity = em.find(EshHD.class, id);
+        Set<EshHDXQ> xqList = entity.getXqList();
+        for (EshHDXQ xq : xqList) {
+            // 组织待抽取选专家列表，暂时称之为“备选”与业务上的“备选专家”有所区别，
+            // 这是指随机前的库中可随机列表，而非随机后需要沟通是否参加的备选列表
+            final List<EshZJ> beiXuanZJ = new LinkedList<>();
+            if (xq.getTdcq()) { // 特定抽取
+                for (EshHDXQKW kw : xq.getKwList()) {
+                    beiXuanZJ.add(kw.getZj());
+                }
+            } else {
+                // 非特定抽取
+                String hql = "select d.zj from EshZJZYLB as d where d.zylb.id = :zylbId and d.zj.xt_qy = true and d.zj.xt_sfkw = false";
+                //noinspection unchecked
+                List<EshZJ> zjList = em.createQuery(hql).setParameter("zylbId", xq.getZylb().getId()).getResultList();
+                beiXuanZJ.addAll(zjList);
+            }
+
+            // 随机抽取
+            final int[] indexArray = random(0, beiXuanZJ.size() - 1, xq.getRs());
+            //noinspection ConstantConditions
+            for (int idx : indexArray) {
+                EshHDZJSJ sj = new EshHDZJSJ();
+                sj.setHd(entity);
+                sj.setCzr(em.find(SysUser.class, userToken.user().getId()));
+                sj.setCzsj(DateUtils.formatDateToYMD2(new Date().getTime()));
+                sj.setBz("第一次随机");
+                em.persist(sj);
+
+                EshHDZJSJJG jg = new EshHDZJSJJG();
+                jg.setSj(sj);
+                jg.setZj(beiXuanZJ.get(idx));
+                jg.setSfcj(true);
+                jg.setWcjyy("未联系");
+                em.persist(jg);
+            }
         }
     }
 
     @Override
-    public void removeHDXQ(Long hdxqId) {
-        em.remove(em.find(EshHDXQ.class, hdxqId));
+    public void queRenCanJia(Token userToken, Integer sjjgId) {
+        EshHDZJSJJG sjjg = em.find(EshHDZJSJJG.class, sjjgId);
+
+        sjjg.setWcjyy("确认参加");
+
+        EshHDZJ hdzj = new EshHDZJ();
+        hdzj.setHd(sjjg.getSj().getHd());
+        hdzj.setZj(sjjg.getZj());
+        em.persist(hdzj);
+
+    }
+
+    @Override
+    public void queRenBuCanJia(Token userToken, Integer sjjgId, String liYou) {
+        EshHDZJSJJG sjjg = em.find(EshHDZJSJJG.class, sjjgId);
+        sjjg.setSfcj(false);
+        sjjg.setWcjyy(liYou);
+    }
+
+    @Override
+    public void buChong(Integer xqId, Integer zjId) {
+        final EshHDXQKW entity = new EshHDXQKW();
+        entity.setXq(em.find(EshHDXQ.class, xqId));
+        entity.setZj(em.find(EshZJ.class, zjId));
+        em.persist(entity);
+    }
+
+    /**
+     * 在给定的范围内，获得 numCount 个随机数.
+     * @param min 最小
+     * @param max 最大
+     * @param numCount 个数
+     * @return 数组
+     */
+    private int[] random(@SuppressWarnings("SameParameterValue") int min, int max, int numCount) {
+        if (numCount > (max - min + 1) || max < min) {
+            return null;
+        }
+        final int[] result = new int[numCount];
+        int count = 0;
+        while (count < numCount) {
+            final int num = (int) (Math.random() * (max - min)) + min;
+            boolean flag = true;
+            for (int j = 0; j < numCount; j++) {
+                if (num == result[j]) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                result[count] = num;
+                count++;
+            }
+        }
+        return result;
     }
 }

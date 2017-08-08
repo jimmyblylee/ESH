@@ -1,0 +1,17 @@
+<!-- 活动 专家 需求 查看窗口 -->
+<div class="modal fade" id="hdxqViewModalDiv" role="dialog" data-backdrop="static" data-keyboard="false" ng-controller="HDXQViewCtrl">
+    <div class="modal-dialog modal-full">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="icon-note"></i> 筛选专家</h4>
+            </div>
+            <div class="modal-body">
+                <div data-ng-include="'packages/esh/views/com/hd_xq_view_table.html'+cacheVersion"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline dark" data-dismiss="modal" aria-hidden="true"> 关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+

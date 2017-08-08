@@ -41,10 +41,12 @@
             "pageTitle": "活动审核",
             "pageSubTitle": "审核活动需求并配选专家"
         },
-        "templateUrl": "packages/index/tpl/blank.html",
-        "controller": "BlankController",
+        "templateUrl": "packages/esh/views/hd_sh/main.html",
+        "controller": "HDSHListCtrl",
         "files": [
-            "packages/index/js/controllers/BlankController.js"
+            "packages/esh/js/hd_sh/HDSHListCtrl.js",
+            "packages/esh/js/hd_sh/HDSXZJCtrl.js",
+            "packages/esh/js/hd_dj/HDXQViewCtrl.js"
         ]
     },
     "hd-dj": {
@@ -58,7 +60,9 @@
         "files": [
             "packages/esh/js/hd_dj/HDDJListCtrl.js",
             "packages/esh/js/hd_dj/HDDJUpdateCtrl.js",
-            "packages/esh/js/hd_dj/HDDJSelectZJCtrl.js"
+            "packages/esh/js/hd_dj/HDDJSelectZJCtrl.js",
+            "packages/esh/js/hd_dj/HDXQCtrl.js",
+            "packages/esh/js/hd_dj/HDXQViewCtrl.js"
         ]
     },
     "zj-ll": {

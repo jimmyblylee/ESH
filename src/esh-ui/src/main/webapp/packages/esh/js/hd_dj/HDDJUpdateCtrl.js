@@ -35,9 +35,9 @@ angular.module("WebApp").controller("HDDJUpdateCtrl", ["$rootScope", "$scope", "
                 entity : JSON.stringify($scope.entity)
             },
             success: function(res) {
-                $scope.id = res.result;
-                $scope.entity.id = $scope.id;
-                $scope.$emit("submitted");
+                if ($scope.isCreate) {
+                    $scope.entity.id = res.result;
+                }
             }
         });
     };
@@ -47,7 +47,6 @@ angular.module("WebApp").controller("HDDJUpdateCtrl", ["$rootScope", "$scope", "
      * 校验当前实体，一些必须为非空的东西需要有所提示
      */
     $scope.validate = function() {
-        console.log($scope.entity.xz);
         var message = "";
         var nullCheck = function(key, msg, parent) {
             var dom = $("*[ng-model='entity." + key + "'").parents(parent ? "." + parent : ".form-group");
@@ -78,7 +77,7 @@ angular.module("WebApp").controller("HDDJUpdateCtrl", ["$rootScope", "$scope", "
             });
             return false;
         } else {
-            App.alert({reset: true});
+            $('.custom-alerts').remove();
             return true;
         }
     };
@@ -87,21 +86,28 @@ angular.module("WebApp").controller("HDDJUpdateCtrl", ["$rootScope", "$scope", "
      * 放弃.
      */
     $scope.discard = function() {
-        if ($scope.method === "create" && $scope.id) {
+        if ($scope.isCreate && $scope.entity.id) {
+            // 如果是新建的时候放弃，需要在数据库中删除已经创建的活动数据
             $ajaxCall.post({
                 data : {
                     controller: "HDController",
                     method: "doRealRemove",
-                    id: $scope.id
+                    id: $scope.entity.id
                 },
                 success: function() {
                 }
             });
         }
         $("#updateHDModalDiv").modal('hide');
+        $scope.$emit("submitted");
     };
 
+    /**
+     * 重置向导状态
+     */
     $scope.reset = function() {
+        $scope.isCreate = $scope.method === "create";
+        /* 非评审类 开始 */
         $("#hd_fpsl_jbxx").removeClass("active").addClass("active");
         $("#hd_fpsl_xzzj").removeClass("active");
         $("#hd_fpsl_qrxx").removeClass("active");
@@ -109,6 +115,17 @@ angular.module("WebApp").controller("HDDJUpdateCtrl", ["$rootScope", "$scope", "
         $("#hd_fpsl_nav_jbxx").removeClass("active").removeClass("done").addClass("active");
         $("#hd_fpsl_nav_xzzj").removeClass("active").removeClass("done");
         $("#hd_fpsl_nav_qrxx").removeClass("active").removeClass("done");
+        /* 非评审类 结束 */
+
+        /* 评审类 开始 */
+        $("#hd_psl_jbxx").removeClass("active").addClass("active");
+        $("#hd_psl_xq").removeClass("active");
+        $("#hd_psl_qrxx").removeClass("active");
+
+        $("#hd_psl_nav_jbxx").removeClass("active").removeClass("done").addClass("active");
+        $("#hd_psl_nav_xq").removeClass("active").removeClass("done");
+        $("#hd_psl_nav_qrxx").removeClass("active").removeClass("done");
+        /* 评审类 结束 */
     };
 
     /* 非评审类 开始 */
@@ -117,6 +134,10 @@ angular.module("WebApp").controller("HDDJUpdateCtrl", ["$rootScope", "$scope", "
      */
     $scope.fpslJbxxNext = function() {
         if ($scope.validate()) {
+            if ($scope.isCreate && $scope.entity.id) {
+                // 是创建行为，而且已经创建过了活动，需要变为更新
+                $scope.method = "update";
+            }
             $scope.submit();
             $("#hd_fpsl_nav_jbxx").removeClass("active").addClass("done");
             $("#hd_fpsl_nav_xzzj").addClass("active");
@@ -158,12 +179,58 @@ angular.module("WebApp").controller("HDDJUpdateCtrl", ["$rootScope", "$scope", "
         $("#hd_fpsl_xzzj").addClass("active");
         $("#hd_fpsl_qrxx").removeClass("active");
     };
+    /* 非评审类 结束 */
+
+    /* 评审类 开始 */
+    /**
+     * 基本信息，下一步
+     */
+    $scope.pslJbxxNext = function() {
+        if ($scope.validate()) {
+            if ($scope.isCreate && $scope.entity.id) {
+                // 是创建行为，而且已经创建过了活动，需要变为更新
+                $scope.method = "update";
+            }
+            $scope.submit();
+            $("#hd_psl_nav_jbxx").removeClass("active").addClass("done");
+            $("#hd_psl_nav_xq").addClass("active");
+
+            $("#hd_psl_jbxx").removeClass("active");
+            $("#hd_psl_xq").addClass("active");
+        }
+    };
 
     /**
-     * 确认信息，确认
+     * 需求，上一步
      */
-    $scope.fpslOK = function() {
-        $("#updateHDModalDiv").modal('hide');
+    $scope.pslXqLast = function() {
+        $("#hd_psl_nav_jbxx").removeClass("done").addClass("active");
+        $("#hd_psl_nav_xq").removeClass("active");
+
+        $("#hd_psl_xq").removeClass("active");
+        $("#hd_psl_jbxx").addClass("active");
     };
-    /* 非评审类 结束 */
+
+    /**
+     * 需求，下一步
+     */
+    $scope.pslXqNext = function() {
+        $("#hd_psl_nav_qrxx").addClass("active");
+        $("#hd_psl_nav_xq").removeClass("active").addClass("done");
+
+        $("#hd_psl_xq").removeClass("active");
+        $("#hd_psl_qrxx").addClass("active");
+    };
+
+    /**
+     * 确认信息，上一步
+     */
+    $scope.pslQrxxLast = function() {
+        $("#hd_psl_nav_qrxx").removeClass("active");
+        $("#hd_psl_nav_xq").addClass("active").removeClass("done");
+
+        $("#hd_psl_xq").addClass("active");
+        $("#hd_psl_qrxx").removeClass("active");
+    };
+    /* 评审类 结束 */
 }]);

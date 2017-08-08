@@ -43,7 +43,7 @@ public class EshHDZJ implements Serializable {
     @Column(name = "HDZJ_ID")
     @SequenceGenerator(name = "eshSEQ", sequenceName = "SEQ_ESH")
     @GeneratedValue(generator = "eshSEQ", strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
     /** 活动.**/
     @ManyToOne(fetch = FetchType.EAGER)
@@ -60,7 +60,7 @@ public class EshHDZJ implements Serializable {
      *
      * @return return the id
      */
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -69,7 +69,7 @@ public class EshHDZJ implements Serializable {
      *
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
